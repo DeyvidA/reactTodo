@@ -20,22 +20,29 @@
 }
 
 .buttonList{
-	border-radius: 50%;
-	border: 1px solid gray;
+	border: none;
 	width: 30px;
 	height: 30px;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 900;
+	background-color: transparent;
+	transition: .5s;
 
 }
 
 .circulo button:hover {
-	color: green
+	color: 	#7FFF00;
+	background-color: black;
+	border-radius: 50%;	
+	transform: scale(1.2);
 }
 .buttonDelete{
 	font-weight: 400;
 }
 .buttonDelete:hover{
 	color: red;
-	
+	background-color: black;
+	border-radius: 50%;	
+	transform: scale(1.2);
+
 }

@@ -39,6 +39,7 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 		<div className="todoCouter-container">
 			<p className="items-left">You have {completedTodos} of {totalTodos} completed</p>
 
+
 			<div className="filterTodo-buttons">
 				<button className="filter-btn all-btn" onClick={filterBtns}>
 					All
