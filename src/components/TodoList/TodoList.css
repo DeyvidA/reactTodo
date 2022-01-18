@@ -1,0 +1,6 @@
+.list {
+	border-radius: 5px;
+	overflow: hidden;
+	max-width: 600px;
+	margin: 0 auto;
+}

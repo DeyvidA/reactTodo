@@ -1,0 +1,41 @@
+.TodoItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 25px;
+	border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
+	list-style: none;
+	width: 100%;
+	font-size: 20px;
+	background-color: #fff;
+}
+
+.todoText {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.todoText-check {
+	text-decoration: line-through;
+}
+
+.buttonList{
+	border-radius: 50%;
+	border: 1px solid gray;
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 900;
+
+}
+
+.circulo button:hover {
+	color: green
+}
+.buttonDelete{
+	font-weight: 400;
+}
+.buttonDelete:hover{
+	color: red;
+	
+}
