@@ -14,7 +14,7 @@ const App = () => {
 	const [todos, saveTodos] = useState(initialTodos);
 	const [filterTodo, setFilterTodo] = useState('all');
 	const [editTodo, setEditTodo] = useState(false);
-
+	
 	const completedTodos = todos.filter((todo) => todo.completed).length;
 	const totalTodos = todos.length;
 
@@ -52,6 +52,49 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
+	const nuwValue = () => {
+		let un = 'tu';
+		return un
+	}
+
+	const onEdit = () =>{
+		setEditTodo(true);
+	}
+
+	const handleEdit = (text) => {
+		onEdit();
+		if(editTodo === false){
+			setEditTodo(true);
+			console.log(text, editTodo)
+			let newValue = todos.filter((todo) => todo.text === text);
+			if (newValue[0].text === text) {
+				
+				let newText = nuwValue();
+				newValue[0].text = newText
+				console.log(newValue[0].text)
+
+				return(
+					input()
+				)
+
+			} else {
+				newValue[0].completed = true;
+			}
+
+
+		} else {
+			setEditTodo(editTodo === false)
+		}
+	};
+
+	const input = () => {
+		if(editTodo === true){
+			<input></input>
+		} else {
+			<p>.</p>
+		}
+	}
+	
 	// Filtrar Todos
 	let showTodos = [];
 	if (filterTodo === 'all') {
@@ -61,6 +104,7 @@ const App = () => {
 	} else if (filterTodo === 'completed') {
 		showTodos = todos.filter((todo) => todo.completed !== false);
 	}
+	
 
 	// Estado Local Storage
 	useEffect(() => {
@@ -79,6 +123,7 @@ const App = () => {
 			<main className="main">
 				<TodoCreate   addTodo={addTodo} />
 				<TodoList
+					handleEdit={handleEdit}
 					completedTodos={completedTodos}
 					totalTodos={totalTodos}
 					showTodos={showTodos}
@@ -86,6 +131,8 @@ const App = () => {
 					deleteTodo={deleteTodo}
 					deleteTodoCompleted={deleteTodoCompleted}
 					setFilterTodo={setFilterTodo}
+					setEditTodo={setEditTodo}
+					editTodo={editTodo}
 				/>
 			</main>
 		</Fragment>

@@ -10,17 +10,31 @@ const  TodoList = ({
 	deleteTodo,
 	checkTodo,
 	deleteTodoCompleted,
-	setFilterTodo
+	setFilterTodo,
+	handleEdit,
+	setOpenModal,
+	openModal,
+	setInputEdit,
+	inputEdit,
+	setEditTodo,
+	editTodo
 }) => {
 	return (
 		<section className="list">
 			<ul>
 				{showTodos.map((todo) => (
 					<TodoItem
+						handleEdit={handleEdit}
 						checkTodo={checkTodo}
 						deleteTodo={deleteTodo}
 						todo={todo}
 						key={todo.text}
+						setOpenModal={setOpenModal}
+						openModal={openModal}
+						setInputEdit={setInputEdit}
+						InputEdit={inputEdit}
+						setEditTodo={setEditTodo}
+						editTodo={editTodo}
 					/>
 				))}
 			</ul>
