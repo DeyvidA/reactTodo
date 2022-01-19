@@ -1,11 +1,19 @@
 import React from 'react';
+import { TodoElementEdit } from '../TodoElementEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
 
-const TodoItem = ({ todo, deleteTodo, checkTodo }) => {
+const TodoItem = ({ 
+	todo,
+	deleteTodo, 
+	checkTodo, 
+	editTodos, 
+	editTodo, 
+	}) => {
+
+		const valueText = todo.text
 	return (
 		<li className="TodoItem">
 			<div className={`circulo ${todo.completed}`}>
@@ -17,13 +25,27 @@ const TodoItem = ({ todo, deleteTodo, checkTodo }) => {
 				key={todo.text}
 				className={`todoText ${todo.completed && 'todoText-check'}`}
 			>
-				{todo.text}
+				{
+					editTodo == false?
+					todo.text
+					:
+					<TodoElementEdit 
+					newValue={editTodos}
+					valueText={valueText}
+					/>
+				}
 			</p>
-			<button 				
-			onClick={() => deleteTodo(todo.text)}
-			className="buttonList buttonDelete">
-				<FontAwesomeIcon icon={ faTrash } />
-			</button>
+			<div>
+				<button
+				onClick={() => editTodos(todo.text)}>
+					<FontAwesomeIcon icon={ faEdit } />
+				</button>
+				<button 				
+				onClick={() => deleteTodo(todo.text)}
+				className="buttonList buttonDelete">
+					<FontAwesomeIcon icon={ faTrash } />
+				</button>
+			</div>
 		</li>
 	);
 }

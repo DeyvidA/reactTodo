@@ -19,8 +19,8 @@ const App = () => {
 	const totalTodos = todos.length;
 
 
+	// Todo Actions
 
-	// Acciones de los Todo
 
 	const addTodo = (text) => {
 		const newTodo = [...todos];
@@ -28,7 +28,6 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-	
 	const deleteTodo = (text) => {
 		const newTodo = todos.filter((todo) => todo.text !== text);
 		saveTodos(newTodo);
@@ -51,6 +50,22 @@ const App = () => {
 		newTodo = [...todos];
 		saveTodos(newTodo);
 	};
+
+	const editTodos = (text, newValue) => {
+
+
+		let todoEdit = todos.filter((todo) => todo.text === text);
+		if (todoEdit[0]) {
+			console.log(text, todoEdit[0])
+			todoEdit[0].text = newValue;
+		}
+		setEditTodo(!editTodo)
+		todoEdit = [...todos];
+		saveTodos(todoEdit);
+	}
+	const newValue = () => {
+
+	}
 
 	// Filtrar Todos
 	let showTodos = [];
@@ -86,6 +101,8 @@ const App = () => {
 					deleteTodo={deleteTodo}
 					deleteTodoCompleted={deleteTodoCompleted}
 					setFilterTodo={setFilterTodo}
+					editTodos={editTodos}
+					editTodo={editTodo}
 				/>
 			</main>
 		</Fragment>
