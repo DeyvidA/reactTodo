@@ -77,18 +77,20 @@ const App = () => {
 		<Fragment>	
 			<Header />
 			<main className="main">
-				<TodoCreate   addTodo={addTodo} />
-				<TodoList
-					completedTodos={completedTodos}
-					totalTodos={totalTodos}
-					showTodos={showTodos}
-					checkTodo={checkTodo}
-					deleteTodo={deleteTodo}
-					deleteTodoCompleted={deleteTodoCompleted}
-					setFilterTodo={setFilterTodo}
-					todos = {todos}
-					saveTodos = {saveTodos}
-				/>
+				<div className="container">						
+					<TodoCreate   addTodo={addTodo} />
+					<TodoList
+						completedTodos={completedTodos}
+						totalTodos={totalTodos}
+						showTodos={showTodos}
+						checkTodo={checkTodo}
+						deleteTodo={deleteTodo}
+						deleteTodoCompleted={deleteTodoCompleted}
+						setFilterTodo={setFilterTodo}
+						todos = {todos}
+						saveTodos = {saveTodos}
+					/>
+				</div>
 			</main>
 		</Fragment>
 	);

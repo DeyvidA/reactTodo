@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoElementEdit } from '../TodoElementEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTrashAlt, faEdit, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
 
@@ -14,18 +14,24 @@ const TodoItem = ({
 	todos,
 	saveTodos
 }) => {
-
 	const [editTodo, setEditTodo] = React.useState(false);
 
+	var lack;
 
-	const newValue = (text) => {
-		let newValue = text
-		return newValue
+	const newTextValue = (text) =>  {
+		return lack = text
 	}
 
-	const editTodos = (text) => {
 
-		let algo = newValue(text);
+	const editTodos = (text) => {
+		var algo
+
+		if(lack === undefined){
+			algo = text;
+			
+		} else {
+			 algo = lack;
+		}
 		let todoEdit = todos.filter((todo) => todo.text === text);
 		if (todoEdit[0]) {
 			console.log(text, todoEdit[0])
@@ -36,12 +42,17 @@ const TodoItem = ({
 		saveTodos(todoEdit);
 	}
 
+	const sendValue = (text) => {
+		let sendValue = text
+		return sendValue
+	}
+
 
 	return (
-		<li className="TodoItem">
+		<li className={todo.completed ? 'complete' : "todoItem"}>
 			<div className={`circulo ${todo.completed}`}>
-				<button className="buttonList" onClick={() => checkTodo(todo.text)}>
-					<FontAwesomeIcon icon={faCheck} />
+				<button className={editTodo ? `displayNone ` : `buttonList` } onClick={() => checkTodo(todo.text)}>
+					<FontAwesomeIcon icon={faCheckCircle} />
 				</button>
 			</div>
 			<p
@@ -53,21 +64,24 @@ const TodoItem = ({
 					todo.text
 					:
 					<TodoElementEdit 
-					editValue={editTodos}
 					valueText={todo.text}		
-					sendValue={newValue}			
+					sendValue={sendValue}
+					saveTodos={saveTodos}
+					todo={todos}
+					newTextValue={newTextValue}			
 					/>
 				}
 			</p>
 			<div>
 				<button
+				className={editTodo ? `buttonList bottonSaveEdit` : `buttonList buttonEdit` }
 				onClick={() => editTodos(todo.text)}>
-					<FontAwesomeIcon icon={ faEdit } />
+					<FontAwesomeIcon icon={editTodo ? faSave : faEdit} />
 				</button>
 				<button 				
 				onClick={() => deleteTodo(todo.text)}
-				className="buttonList buttonDelete">
-					<FontAwesomeIcon icon={ faTrash } />
+				className={editTodo ? `displayNone buttonList` : `buttonList buttonDelete` }>
+					<FontAwesomeIcon icon={ faTrashAlt } />
 				</button>
 			</div>
 		</li>

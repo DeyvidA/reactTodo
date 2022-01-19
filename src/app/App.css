@@ -10,7 +10,14 @@ html {
 }
 
 .main{
-	background-color: #cacbd5;
+	background-color: #F2F2F2 ;
 	height: 70vh;
-	position: relative;
+	
+}
+
+.container{
+	position: absolute;
+	top: 120px;
+	left: 0;
+	right: 1px;
 }

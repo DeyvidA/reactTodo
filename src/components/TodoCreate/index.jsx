@@ -8,7 +8,7 @@ const TodoCreate = ({ addTodo }) => {
 		if (event.charCode === 13 && event.target.value !== '') {
 			addTodo(event.target.value);
 			event.target.value = '';
-		} else if (event.charCode === 13 && event.target.value == '') {
+		} else if (event.charCode === 13 && event.target.value === '') {
 			alert("You need write something");
 		}
 	};

@@ -1,20 +1,26 @@
-.TodoItem {
+.todoItem, .complete {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px 25px;
-	border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
 	list-style: none;
 	width: 100%;
 	font-size: 20px;
 	background-color: #fff;
+	margin-bottom: 2px;
+}
+.complete{
+	background-color: #959595;
+}
+
+.todoItem:hover{
+	box-shadow: inset 0px 0px 15px lightgrey;
 }
 
 .todoText {
 	font-size: 18px;
 	font-weight: 400;
 }
-
 .todoText-check {
 	text-decoration: line-through;
 }
@@ -27,25 +33,32 @@
 	font-weight: 900;
 	background-color: transparent;
 	transition: .5s;
+	margin-right: 7px;
 
 }
-
-.circulo button:hover {
-	color: 	#7FFF00;
-	background-color: black;
-	border-radius: 50%;	
+.buttonList:hover {
+    box-shadow: 0px 1px 4px #393736;
+	font-size: 22px;
 	transform: scale(1.2);
+	border-radius: 10px;
+
 }
-.buttonDelete{
-	font-weight: 400;
+.circulo button:hover {
+	color: 	#30B409;
+	background-color: transparent;
+
 }
 .buttonDelete:hover{
 	color: red;
-	background-color: black;
-	border-radius: 50%;	
-	transform: scale(1.2);
 
 }
-.lua{
-	z-index: 3;
+.bottonSaveEdit:hover{
+	color: #30B409;
+}
+
+.buttonEdit:hover{
+	color:#109DC7 
+}
+.displayNone{
+	display: none;
 }

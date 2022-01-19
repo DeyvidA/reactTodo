@@ -16,7 +16,7 @@ const  TodoList = ({
 }) => {
 	return (
 		<section className="list">
-			<ul>
+			<ul className='todoList-container'>
 				{showTodos.map((todo) => (
 					<TodoItem
 						checkTodo={checkTodo}

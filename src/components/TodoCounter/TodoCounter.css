@@ -21,24 +21,26 @@
 	margin-left: 10px;
 	background: transparent;
 	font-weight: 400;
+	transition: .5s;
 }
 .filter-btn{
 	border: none;
 	font-size: 13px;
 	color: black;
-	margin-left: 50px;
+	margin-left: 35px;
 	height: inherit;
 	background-color: transparent;
 	font-weight: 900;
 }
 .filter-btn:hover{
-	color: blue;
+	color: #109DC7;
 }
 .filter-btn-active{
-	color: blue;
+	color: #109DC7;
 }
 
 .clear-btn:hover {
-	color: lightseagreen;
+	font-weight: 600;
+	color: red;
 }
 
