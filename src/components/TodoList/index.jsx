@@ -11,22 +11,20 @@ const  TodoList = ({
 	checkTodo,
 	deleteTodoCompleted,
 	setFilterTodo,
-	handleEdit,
-	editTodos,
-	editTodo
+	todos,
+	saveTodos
 }) => {
 	return (
 		<section className="list">
 			<ul>
 				{showTodos.map((todo) => (
 					<TodoItem
-						handleEdit={handleEdit}
 						checkTodo={checkTodo}
 						deleteTodo={deleteTodo}
 						todo={todo}
 						key={todo.text}
-						editTodos={editTodos}
-						editTodo={editTodo}
+						todos={todos}
+						saveTodos={saveTodos}
 					/>
 				))}
 			</ul>
