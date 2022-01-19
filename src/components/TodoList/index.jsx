@@ -12,11 +12,7 @@ const  TodoList = ({
 	deleteTodoCompleted,
 	setFilterTodo,
 	handleEdit,
-	setOpenModal,
-	openModal,
-	setInputEdit,
-	inputEdit,
-	setEditTodo,
+	editTodos,
 	editTodo
 }) => {
 	return (
@@ -29,11 +25,7 @@ const  TodoList = ({
 						deleteTodo={deleteTodo}
 						todo={todo}
 						key={todo.text}
-						setOpenModal={setOpenModal}
-						openModal={openModal}
-						setInputEdit={setInputEdit}
-						InputEdit={inputEdit}
-						setEditTodo={setEditTodo}
+						editTodos={editTodos}
 						editTodo={editTodo}
 					/>
 				))}

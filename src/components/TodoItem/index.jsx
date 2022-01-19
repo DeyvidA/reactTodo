@@ -1,26 +1,19 @@
 import React from 'react';
+import { TodoElementEdit } from '../TodoElementEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
 
-const TodoItem = ({ todo, deleteTodo, checkTodo , handleEdit, setEditTodo, editTodo }) => {
+const TodoItem = ({ 
+	todo,
+	deleteTodo, 
+	checkTodo, 
+	editTodos, 
+	editTodo, 
+	}) => {
 
-	const onEdit = () => {
-		setEditTodo(!editTodo)
-	}
-
-	// Add Todo con enter
-	const enterKey = (event) => {
-		console.log(event.target.value)
-		if (event.charCode === 13 && event.target.value !== '') {
-			handleEdit(event.target.value);
-			event.target.value = '';
-		} else if (event.charCode === 13 && event.target.value === '') {
-			alert("You need write something");
-		}
-	};
-
+		const valueText = todo.text
 	return (
 		<li className="TodoItem">
 			<div className={`circulo ${todo.completed}`}>
@@ -33,25 +26,19 @@ const TodoItem = ({ todo, deleteTodo, checkTodo , handleEdit, setEditTodo, editT
 				className={`todoText ${todo.completed && 'todoText-check'}`}
 			>
 				{
-					editTodo ?  
-					
+					editTodo === false?
 					todo.text
 					:
-					<div>
-						<input 
-						id='newValue'
-						onKeyPress={enterKey}
-						placeholder={todo.text} />
-						<button>
-							<FontAwesomeIcon icon={faCheck} />
-						</button>
-					</div>
+					<TodoElementEdit 
+					newValue={editTodos}
+					valueText={valueText}
+					/>
 				}
 			</p>
-			<div className="buttonSection">
+			<div>
 				<button
-				onClick={() => handleEdit(todo.text)}>
-					<FontAwesomeIcon icon={faEdit} />
+				onClick={() => editTodos(todo.text)}>
+					<FontAwesomeIcon icon={ faEdit } />
 				</button>
 				<button 				
 				onClick={() => deleteTodo(todo.text)}
