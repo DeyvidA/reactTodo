@@ -13,8 +13,7 @@ const App = () => {
 
 	const [todos, saveTodos] = useState(initialTodos);
 	const [filterTodo, setFilterTodo] = useState('all');
-	const [editTodo, setEditTodo] = useState(false);
-
+	
 	const completedTodos = todos.filter((todo) => todo.completed).length;
 	const totalTodos = todos.length;
 
@@ -51,23 +50,8 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-	const editTodos = (text, newValue) => {
 
-
-		let todoEdit = todos.filter((todo) => todo.text === text);
-		if (todoEdit[0]) {
-			console.log(text, todoEdit[0])
-			todoEdit[0].text = newValue;
-		}
-		setEditTodo(!editTodo)
-		todoEdit = [...todos];
-		saveTodos(todoEdit);
-	}
-	const newValue = () => {
-
-	}
-
-	// Filtrar Todos
+	// Filter Todos
 	let showTodos = [];
 	if (filterTodo === 'all') {
 		showTodos = todos;
@@ -76,8 +60,9 @@ const App = () => {
 	} else if (filterTodo === 'completed') {
 		showTodos = todos.filter((todo) => todo.completed !== false);
 	}
+	
 
-	// Estado Local Storage
+	//  Local Storage State
 	useEffect(() => {
 		if (initialTodos) {
 			localStorage.setItem('todos', JSON.stringify(todos));
@@ -101,8 +86,8 @@ const App = () => {
 					deleteTodo={deleteTodo}
 					deleteTodoCompleted={deleteTodoCompleted}
 					setFilterTodo={setFilterTodo}
-					editTodos={editTodos}
-					editTodo={editTodo}
+					todos = {todos}
+					saveTodos = {saveTodos}
 				/>
 			</main>
 		</Fragment>

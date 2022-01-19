@@ -5,15 +5,32 @@ import { faCheck, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
 
+
+
 const TodoItem = ({ 
 	todo,
 	deleteTodo, 
 	checkTodo, 
-	editTodos, 
-	editTodo, 
-	}) => {
+	todos,
+	saveTodos
+}) => {
+	
+	const [editTodo, setEditTodo] = React.useState(false);
 
-		const valueText = todo.text
+	const editTodos = (text) => {
+
+		let newValue = ''
+		let algo = newValue
+		let todoEdit = todos.filter((todo) => todo.text === text);
+		if (todoEdit[0]) {
+			console.log(text, todoEdit[0])
+			todoEdit[0].text = algo;
+		}
+		setEditTodo(!editTodo)
+		todoEdit = [...todos];
+		saveTodos(todoEdit);
+	}
+
 	return (
 		<li className="TodoItem">
 			<div className={`circulo ${todo.completed}`}>
@@ -26,12 +43,13 @@ const TodoItem = ({
 				className={`todoText ${todo.completed && 'todoText-check'}`}
 			>
 				{
-					editTodo == false?
+					editTodo === false?
 					todo.text
 					:
 					<TodoElementEdit 
 					newValue={editTodos}
-					valueText={valueText}
+					valueText={todo.text}
+					
 					/>
 				}
 			</p>

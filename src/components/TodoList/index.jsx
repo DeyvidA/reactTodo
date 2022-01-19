@@ -11,8 +11,8 @@ const  TodoList = ({
 	checkTodo,
 	deleteTodoCompleted,
 	setFilterTodo,
-	editTodos,
-	editTodo
+	todos,
+	saveTodos
 }) => {
 	return (
 		<section className="list">
@@ -23,8 +23,8 @@ const  TodoList = ({
 						deleteTodo={deleteTodo}
 						todo={todo}
 						key={todo.text}
-						editTodos={editTodos}
-						editTodo={editTodo}
+						todos={todos}
+						saveTodos={saveTodos}
 					/>
 				))}
 			</ul>
