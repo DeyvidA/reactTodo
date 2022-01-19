@@ -14,13 +14,18 @@ const TodoItem = ({
 	todos,
 	saveTodos
 }) => {
-	
+
 	const [editTodo, setEditTodo] = React.useState(false);
+
+
+	const newValue = (text) => {
+		let newValue = text
+		return newValue
+	}
 
 	const editTodos = (text) => {
 
-		let newValue = ''
-		let algo = newValue
+		let algo = newValue(text);
 		let todoEdit = todos.filter((todo) => todo.text === text);
 		if (todoEdit[0]) {
 			console.log(text, todoEdit[0])
@@ -30,6 +35,7 @@ const TodoItem = ({
 		todoEdit = [...todos];
 		saveTodos(todoEdit);
 	}
+
 
 	return (
 		<li className="TodoItem">
@@ -47,9 +53,9 @@ const TodoItem = ({
 					todo.text
 					:
 					<TodoElementEdit 
-					newValue={editTodos}
-					valueText={todo.text}
-					
+					editValue={editTodos}
+					valueText={todo.text}		
+					sendValue={newValue}			
 					/>
 				}
 			</p>

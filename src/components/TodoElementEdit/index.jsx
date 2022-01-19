@@ -1,6 +1,6 @@
 import React from "react";
 
-const TodoElementEdit = ({newValue, valueText}) => {
+const TodoElementEdit = ({newValue, valueText, sendValue}) => {
 
 
     
@@ -10,9 +10,14 @@ const TodoElementEdit = ({newValue, valueText}) => {
         newValue = event.target.value;
         console.log(newValue);
 
-		if (event.charCode === 13 && event.target.value !== '') {
+        let valor = newValue
+		
+        if (event.charCode === 13 && event.target.value !== '') {
             newValue = newValue = event.target.value
             newValue(event.target.value);
+
+            sendValue = valor;
+
 			event.target.value = '';
 		} else if (event.charCode === 13 && event.target.value === '') {
 			alert("You need write something");
@@ -23,7 +28,8 @@ const TodoElementEdit = ({newValue, valueText}) => {
     return (
         <input  
         onKeyPress={enterKey}
-        placeholder={valueText} />
+        placeholder={valueText}
+         />
     )
 }
 export { TodoElementEdit }
