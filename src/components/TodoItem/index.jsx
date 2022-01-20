@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoElementEdit } from '../TodoElementEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faTrashAlt, faEdit, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faSave, faTrashAlt, faCheckCircle, faEdit} from '@fortawesome/free-regular-svg-icons'
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
 
@@ -9,33 +9,38 @@ import '../TodoCreate/TodoCreate.css';
 
 const TodoItem = ({ 
 	todo,
-	deleteTodo, 
-	checkTodo, 
 	todos,
-	saveTodos
+	index,
+	checkTodo, 
+	saveTodos,
 }) => {
 	const [editTodo, setEditTodo] = React.useState(false);
 
-	var lack;
+	var oldTextValue;
 
 	const newTextValue = (text) =>  {
-		return lack = text
+		return oldTextValue = text
 	}
 
 
-	const editTodos = (text) => {
-		var algo
+	const deleteTodo = () => {
+		const newTodo = todos.filter((todo) => todo.text);
+		newTodo.splice(index, 1)
+		saveTodos(newTodo);
+	};
 
-		if(lack === undefined){
-			algo = text;
+	const editTodos = (text) => {
+		var catchText;
+
+		if(oldTextValue === undefined){
+			catchText = text;
 			
 		} else {
-			 algo = lack;
+			 catchText = oldTextValue;
 		}
 		let todoEdit = todos.filter((todo) => todo.text === text);
 		if (todoEdit[0]) {
-			console.log(text, todoEdit[0])
-			todoEdit[0].text = algo;
+			todoEdit[0].text = catchText;
 		}
 		setEditTodo(!editTodo)
 		todoEdit = [...todos];
@@ -49,7 +54,7 @@ const TodoItem = ({
 
 
 	return (
-		<li className={todo.completed ? 'complete' : "todoItem"}>
+		<li className={todo.completed ? 'todoItem-complete' : "todoItem"}>
 			<div className={`circulo ${todo.completed}`}>
 				<button className={editTodo ? `displayNone ` : `buttonList` } onClick={() => checkTodo(todo.text)}>
 					<FontAwesomeIcon icon={faCheckCircle} />
@@ -64,23 +69,25 @@ const TodoItem = ({
 					todo.text
 					:
 					<TodoElementEdit 
+					todo={todo}
 					valueText={todo.text}		
-					sendValue={sendValue}
 					saveTodos={saveTodos}
-					todo={todos}
-					newTextValue={newTextValue}			
+					sendValue={sendValue}
+					editState={setEditTodo}			
+					newTextValue={newTextValue}
 					/>
 				}
 			</p>
-			<div>
+			<div className={'actionsButtons'}>
 				<button
-				className={editTodo ? `buttonList bottonSaveEdit` : `buttonList buttonEdit` }
+				className={editTodo ? `buttonList ` : `buttonList buttonEdit` }
 				onClick={() => editTodos(todo.text)}>
-					<FontAwesomeIcon icon={editTodo ? faSave : faEdit} />
+					<FontAwesomeIcon icon={ editTodo ? faSave : faEdit } />
 				</button>
+				
 				<button 				
-				onClick={() => deleteTodo(todo.text)}
-				className={editTodo ? `displayNone buttonList` : `buttonList buttonDelete` }>
+					onClick={() => deleteTodo(index)}
+					className={editTodo ? `displayNone buttonList` : `buttonList buttonDelete` }>
 					<FontAwesomeIcon icon={ faTrashAlt } />
 				</button>
 			</div>

@@ -5,12 +5,15 @@ const TodoCreate = ({ addTodo }) => {
 
 	// Add Todo con enter
 	const enterKey = (event) => {
-		if (event.charCode === 13 && event.target.value !== '') {
+		let validation = event.target.value.trim().length > 0;
+
+
+		if (event.charCode === 13 && validation) {
 			addTodo(event.target.value);
 			event.target.value = '';
 		} else if (event.charCode === 13 && event.target.value === '') {
-			alert("You need write something");
-		}
+			alert("You need write something");			
+		}	
 	};
 
 	return (

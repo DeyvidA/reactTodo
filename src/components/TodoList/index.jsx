@@ -4,35 +4,34 @@ import { TodoCounter } from '../TodoCounter';
 import './TodoList.css';
 
 const  TodoList = ({
-	showTodos,
-	totalTodos,
-	completedTodos,
-	deleteTodo,
-	checkTodo,
-	deleteTodoCompleted,
-	setFilterTodo,
 	todos,
-	saveTodos
+	showTodos,
+	saveTodos,
+	checkTodo,
+	totalTodos,
+	setFilterTodo,
+	completedTodos,
+	deleteTodoCompleted,
 }) => {
 	return (
-		<section className="list">
+		<section className="list-element">
 			<ul className='todoList-container'>
-				{showTodos.map((todo) => (
+				{showTodos.map((todo, index) => (
 					<TodoItem
-						checkTodo={checkTodo}
-						deleteTodo={deleteTodo}
-						todo={todo}
-						key={todo.text}
+						key={index}
+						todo={todo }
 						todos={todos}
+						checkTodo={checkTodo}
 						saveTodos={saveTodos}
+						index={index}
 					/>
 				))}
 			</ul>
 			<TodoCounter
-				deleteTodoCompleted={deleteTodoCompleted}
 				totalTodos={totalTodos}
-				completedTodos={completedTodos}
 				setFilterTodo={setFilterTodo}
+				completedTodos={completedTodos}
+				deleteTodoCompleted={deleteTodoCompleted}
 			/>
 		</section>
 	);

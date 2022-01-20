@@ -3,9 +3,8 @@ import './TodoCounter.css';
 
 const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilterTodo }) => {
 	
-	// Filtrar estilo de botones
+	// Filter buttons
 	const filterBtns = (event) => {
-		// Estilo
 		const btns = document.querySelectorAll('.filter-btn');
 		btns.forEach((btn) => {
 			btn.classList.remove('filter-btn-active');
@@ -14,7 +13,7 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 			}
 		});
 
-		// Funcionalidad
+		// functionality
 		const target = event.target.classList;
 
 		if (target.contains('all-btn')) {
@@ -40,7 +39,7 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 			<p className="items-left">You have {completedTodos} of {totalTodos} completed</p>
 
 
-			<div className="filterTodo-buttons">
+			<div className="filterTodo-buttons-container">
 				<button className="filter-btn all-btn" onClick={filterBtns}>
 					All
 				</button>

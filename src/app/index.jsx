@@ -19,24 +19,18 @@ const App = () => {
 
 
 	// Todo Actions
-
-
 	const addTodo = (text) => {
 		const newTodo = [...todos];
 		newTodo.push({ text, completed: false });
 		saveTodos(newTodo);
 	};
 
-	const deleteTodo = (text) => {
-		const newTodo = todos.filter((todo) => todo.text !== text);
-		saveTodos(newTodo);
-	};
+
 
 	const deleteTodoCompleted = () => {
 		const newTodo = todos.filter((todo) => todo.completed !== true);
 		saveTodos(newTodo);
 	};
-
 
 	const checkTodo = (text) => {
 		let newTodo = todos.filter((todo) => todo.text === text);
@@ -50,7 +44,6 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-
 	// Filter Todos
 	let showTodos = [];
 	if (filterTodo === 'all') {
@@ -60,7 +53,6 @@ const App = () => {
 	} else if (filterTodo === 'completed') {
 		showTodos = todos.filter((todo) => todo.completed !== false);
 	}
-	
 
 	//  Local Storage State
 	useEffect(() => {
@@ -71,24 +63,22 @@ const App = () => {
 		}
 	}, [todos, initialTodos]);
 
-	
 	// App UI
 	return (
 		<Fragment>	
 			<Header />
 			<main className="main">
-				<div className="container">						
-					<TodoCreate   addTodo={addTodo} />
+				<div className="main-container">						
+					<TodoCreate addTodo={addTodo} />
 					<TodoList
 						completedTodos={completedTodos}
 						totalTodos={totalTodos}
 						showTodos={showTodos}
 						checkTodo={checkTodo}
-						deleteTodo={deleteTodo}
 						deleteTodoCompleted={deleteTodoCompleted}
 						setFilterTodo={setFilterTodo}
-						todos = {todos}
-						saveTodos = {saveTodos}
+						todos={todos}
+						saveTodos={saveTodos}
 					/>
 				</div>
 			</main>

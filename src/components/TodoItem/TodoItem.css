@@ -1,4 +1,4 @@
-.todoItem, .complete {
+.todoItem, .todoItem-complete {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -9,7 +9,7 @@
 	background-color: #fff;
 	margin-bottom: 2px;
 }
-.complete{
+.todoItem-complete{
 	background-color: #959595;
 }
 

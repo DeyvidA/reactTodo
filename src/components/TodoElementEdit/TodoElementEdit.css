@@ -1,0 +1,31 @@
+.inputEdit {
+    padding-left: 10px;
+    height: 30px;
+    width: 280px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    /* border-color: gray; */
+    font-size: 16px;
+    font-weight: 500;
+}
+.editContainer {
+    width: 100%;
+    display: flex;
+}
+.cancelEdit{
+    border: none;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 900;
+	background-color: transparent;
+	transition: .5s;
+    margin-left: 140px;
+}
+.cancelEdit:hover{
+    box-shadow: 0px 1px 4px #393736;
+	font-size: 22px;
+	transform: scale(1.2);
+	border-radius: 10px;
+    color: red;
+}
