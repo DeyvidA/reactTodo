@@ -11,7 +11,6 @@ const TodoItem = ({
 	todo,
 	todos,
 	index,
-	checkTodo, 
 	saveTodos,
 }) => {
 	const [editTodo, setEditTodo] = React.useState(false);
@@ -22,6 +21,17 @@ const TodoItem = ({
 		return oldTextValue = text
 	}
 
+	const checkTodo = () => {
+		let newTodo = todos.filter((todo) => todo.text);
+		if (newTodo[index].completed) {
+			newTodo[index].completed = false;
+		} else {
+			newTodo[index].completed = true;
+		}
+		console.log(index)
+		newTodo = [...todos];
+		saveTodos(newTodo);
+	};
 
 	const deleteTodo = () => {
 		const newTodo = todos.filter((todo) => todo.text);
@@ -45,18 +55,20 @@ const TodoItem = ({
 		setEditTodo(!editTodo)
 		todoEdit = [...todos];
 		saveTodos(todoEdit);
-	}
+	};
 
 	const sendValue = (text) => {
 		let sendValue = text
 		return sendValue
-	}
+	};
+
+
 
 
 	return (
 		<li className={todo.completed ? 'todoItem-complete' : "todoItem"}>
 			<div className={`circulo ${todo.completed}`}>
-				<button className={editTodo ? `displayNone ` : `buttonList` } onClick={() => checkTodo(todo.text)}>
+				<button className={editTodo ? `displayNone ` : `buttonList` } onClick={() => checkTodo(index)}>
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</button>
 			</div>

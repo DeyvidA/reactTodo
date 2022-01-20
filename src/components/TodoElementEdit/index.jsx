@@ -17,6 +17,7 @@ const TodoElementEdit = ({
 
         return newTextValue(newValue)
     }
+    let originalValue = value
 
     const enterKey = (event) => {
         
@@ -45,7 +46,7 @@ const TodoElementEdit = ({
             <input  
             className="inputEdit"
             onKeyPress={enterKey}
-            placeholder={value}
+            placeholder={originalValue}
             value={value}
             onChange={enterKey}
             />

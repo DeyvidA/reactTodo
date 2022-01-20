@@ -32,17 +32,7 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-	const checkTodo = (text) => {
-		let newTodo = todos.filter((todo) => todo.text === text);
-		if (newTodo[0].completed) {
-			newTodo[0].completed = false;
-		} else {
-			newTodo[0].completed = true;
-		}
 
-		newTodo = [...todos];
-		saveTodos(newTodo);
-	};
 
 	// Filter Todos
 	let showTodos = [];
@@ -71,14 +61,13 @@ const App = () => {
 				<div className="main-container">						
 					<TodoCreate addTodo={addTodo} />
 					<TodoList
-						completedTodos={completedTodos}
-						totalTodos={totalTodos}
-						showTodos={showTodos}
-						checkTodo={checkTodo}
-						deleteTodoCompleted={deleteTodoCompleted}
-						setFilterTodo={setFilterTodo}
 						todos={todos}
 						saveTodos={saveTodos}
+						showTodos={showTodos}
+						totalTodos={totalTodos}
+						setFilterTodo={setFilterTodo}
+						completedTodos={completedTodos}
+						deleteTodoCompleted={deleteTodoCompleted}
 					/>
 				</div>
 			</main>
