@@ -17,7 +17,6 @@ const App = () => {
 	const completedTodos = todos.filter((todo) => todo.completed).length;
 	const totalTodos = todos.length;
 
-
 	// Todo Actions
 	const addTodo = (text) => {
 		const newTodo = [...todos];
@@ -25,13 +24,10 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-
-
 	const deleteTodoCompleted = () => {
 		const newTodo = todos.filter((todo) => todo.completed !== true);
 		saveTodos(newTodo);
 	};
-
 
 
 	// Filter Todos

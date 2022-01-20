@@ -5,25 +5,26 @@ const TodoCreate = ({ addTodo }) => {
 
 	// Add Todo con enter
 	const enterKey = (event) => {
-		let validation = event.target.value.trim().length > 0;
-
+		let validation = event.target.value.trim();
 
 		if (event.charCode === 13 && validation) {
 			addTodo(event.target.value);
 			event.target.value = '';
 		} else if (event.charCode === 13 && event.target.value === '') {
 			alert("You need write something");			
-		}	
+		} else if(event.charCode === 13 && validation.length === 0){
+			alert ("You can not add 'Blank Spaces'")
+		}
 	};
 
 	return (
 		<div className="createTodo">
 			<div className="circulo"></div>
-			<input
+			<textarea
 				className="input"
 				placeholder="Create a new todo..."
 				onKeyPress={enterKey}
-			></input>
+			></textarea>
 		</div>
 	);
 }
