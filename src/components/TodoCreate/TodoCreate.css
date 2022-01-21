@@ -6,23 +6,39 @@
 	margin-bottom: 25px;
 	border-radius: 5px;
 	background: #fff;
+	height: auto;
+	max-height: 200px;
+	align-items: center;
 }
 
-.circulo {
+.addIcon {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	width: 25px;
 	height: 25px;
 	margin-right: 25px;
+	transition: .5s;
+}
+.addIcon:hover{
+	font-size: 22px;
+	color: 	#58d632e0;
+	border-radius: 10px;
+	transform: scale(1.5);
+	box-shadow: 0px 1px 4px rgba(49, 49, 49, 0.4);
 }
 
-.input {
-	width: 100%;
-	height: auto;
-	border: none;
-	outline: none;
-	background: transparent;
-	font-family: 'Josefin Sans', sans-serif;
-	font-size: 18px;
+textarea{  
+	display: block;
+	overflow: hidden;
+	box-sizing: padding-box;
+	border: 0;
+	width: 250px;
+	padding: 10px;
+	min-width: 90%;
+	font-size: 16px;
+	max-height: 90px;
+	min-height: 30px;
+	border-radius: 6px;
+	box-shadow: 2px 2px 8px rgba(black, .3);
 }

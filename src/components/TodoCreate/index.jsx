@@ -1,29 +1,75 @@
 import React from 'react';
 import './TodoCreate.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const TodoCreate = ({ addTodo }) => {
 
 	// Add Todo con enter
-	const enterKey = (event) => {
-		let validation = event.target.value.trim();
 
-		if (event.charCode === 13 && validation) {
-			addTodo(event.target.value);
-			event.target.value = '';
-		} else if (event.charCode === 13 && event.target.value === '') {
+	// const enterKey = (event) => {
+	// 	let validation = event.target.value.trim();
+
+	// 	if (event.charCode === 13 && validation) {
+	// 		addTodo(event.target.value);
+	// 		event.target.value = '';
+	// 	} else if (event.charCode === 13 && event.target.value === '') {
+	// 		alert("You need write something");			
+	// 	} else if(event.charCode === 13 && validation.length === 0){
+	// 		alert ("You can not add 'Blank Spaces'")
+	// 	}
+	// };
+
+	const addButton = () => {
+		let event = document.getElementById('textArea').value;
+		let validation = event.trim();
+		console.log(validation)
+
+		if (validation) {
+			addTodo(event);
+			document.getElementById('textArea').value = '';
+		} else if (event === '') {
 			alert("You need write something");			
-		} else if(event.charCode === 13 && validation.length === 0){
+		} else if(validation.length === 0){
 			alert ("You can not add 'Blank Spaces'")
 		}
+	}
+
+	const getScrollHeight = (elm) =>{
+		var savedValue = elm.value
+		elm.value = ''
+		elm._baseScrollHeight = elm.scrollHeight
+		elm.value = savedValue
 	};
+	  
+	const onExpandableTextareaInput = ({ target:elm }) =>{
+		// make sure the input event originated from a textarea and it's desired to be auto-expandable
+		if( !elm.classList.contains('autoExpand') || !elm.nodeName === 'TEXTAREA' ) return
+		
+		var minRows = elm.getAttribute('data-min-rows')|0, rows;
+		!elm._baseScrollHeight && getScrollHeight(elm)
+	  
+		elm.rows = minRows
+		rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+		elm.rows = minRows + rows
+	};
+	    
+	  // global delegated event listener
+	  document.addEventListener('input', onExpandableTextareaInput)
+	  
 
 	return (
 		<div className="createTodo">
-			<div className="circulo"></div>
+			<div className="addIcon" onClick={addButton} key={addTodo}>
+				<FontAwesomeIcon icon={ faPlus } />
+			</div>
 			<textarea
-				className="input"
+				rows='1'
+				id='textArea'
+				data-min-rows='1' 
+				className="input autoExpand"
 				placeholder="Create a new todo..."
-				onKeyPress={enterKey}
+				
 			></textarea>
 		</div>
 	);
