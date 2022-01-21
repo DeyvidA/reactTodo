@@ -3,6 +3,8 @@ import './TodoCounter.css';
 
 const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilterTodo }) => {
 	
+	const [filterStatePending, setFilterStatePending] = React.useState(false);
+
 	// Filter buttons
 	const filterBtns = (event) => {
 		const btns = document.querySelectorAll('.filter-btn');
@@ -19,20 +21,26 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 		if (target.contains('all-btn')) {
 			target.add('filter-btn-active');
 			setFilterTodo('all');
+			setFilterStatePending(false)
+
 		}
 
 		if (target.contains('active-btn')) {
 			target.add('filter-btn-active');
 			setFilterTodo('active');
+			setFilterStatePending(true)
 		}
 
 		if (target.contains('completed-btn')) {
 			target.add('filter-btn-active');
 			setFilterTodo('completed');
+			setFilterStatePending(false)
+
 		}
 	};
+	
 
-
+	
 
 	return (
 		<div className="todoCouter-container">
@@ -51,7 +59,10 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 				</button>
 			</div>
 			
-			<button onClick={deleteTodoCompleted} className="clear-btn">
+			<button 
+			onClick={deleteTodoCompleted} 
+			className={filterStatePending ? 
+			" disable " : "clear-btn"}>
 				Clear Completed
 			</button>
 		</div>

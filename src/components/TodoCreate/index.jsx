@@ -23,7 +23,6 @@ const TodoCreate = ({ addTodo }) => {
 	const addButton = () => {
 		let event = document.getElementById('textArea').value;
 		let validation = event.trim();
-		console.log(validation)
 
 		if (validation) {
 			addTodo(event);

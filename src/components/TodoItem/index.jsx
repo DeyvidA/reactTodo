@@ -28,7 +28,6 @@ const TodoItem = ({
 		} else {
 			newTodo[index].completed = true;
 		}
-		console.log(index)
 		newTodo = [...todos];
 		saveTodos(newTodo);
 	};
@@ -72,7 +71,7 @@ const TodoItem = ({
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</button>
 			</div>
-			<p
+			<div
 				key={todo.text}
 				className={`todoText ${todo.completed && 'todoText-check'}`}
 			>
@@ -89,7 +88,7 @@ const TodoItem = ({
 					newTextValue={newTextValue}
 					/>
 				}
-			</p>
+			</div>
 			<div className={'actionsButtons'}>
 				<button
 				className={editTodo ? `buttonList ` : `buttonList buttonEdit` }
