@@ -1,6 +1,7 @@
 import React from 'react';
 import { TodoElementEdit } from '../TodoElementEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCrown } from '@fortawesome/free-solid-svg-icons'
 import { faSave, faTrashAlt, faCheckCircle, faEdit} from '@fortawesome/free-regular-svg-icons'
 import './TodoItem.css';
 import '../TodoCreate/TodoCreate.css';
@@ -27,6 +28,17 @@ const TodoItem = ({
 			newTodo[index].completed = false;
 		} else {
 			newTodo[index].completed = true;
+		}
+		newTodo = [...todos];
+		saveTodos(newTodo);
+	};
+
+	const priorityTodo = () => {
+		let newTodo = todos.filter((todo) => todo.text);
+		if (newTodo[index].priority) {
+			newTodo[index].priority = false;
+		} else {
+			newTodo[index].priority = true;
 		}
 		newTodo = [...todos];
 		saveTodos(newTodo);
@@ -67,7 +79,9 @@ const TodoItem = ({
 	return (
 		<li className={todo.completed ? 'todoItem-complete' : "todoItem"}>
 			<div className={`circulo ${todo.completed}`}>
-				<button className={editTodo ? `displayNone ` : `buttonList` } onClick={() => checkTodo(index)}>
+				<button 
+				className={editTodo ? `displayNone ` : `buttonList` } 
+				onClick={() => checkTodo(index)}>
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</button>
 			</div>
@@ -100,6 +114,11 @@ const TodoItem = ({
 					onClick={() => deleteTodo(index)}
 					className={editTodo ? `displayNone buttonList` : `buttonList buttonDelete` }>
 					<FontAwesomeIcon icon={ faTrashAlt } />
+				</button>
+				<button
+					onClick={() => priorityTodo(index)}
+					className={todo.priority ? "buttonList priorityActive" : "buttonList priorityDesable"}>
+					<FontAwesomeIcon icon={ faCrown } />
 				</button>
 			</div>
 		</li>

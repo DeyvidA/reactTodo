@@ -62,3 +62,10 @@
 .displayNone{
 	display: none;
 }
+.priorityActive{
+	color: goldenrod;
+}
+
+.priorityDesable{
+	color:gray;
+}

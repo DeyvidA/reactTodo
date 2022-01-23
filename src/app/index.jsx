@@ -20,7 +20,7 @@ const App = () => {
 	// Todo Actions
 	const addTodo = (text) => {
 		const newTodo = [...todos];
-		newTodo.push({ text, completed: false });
+		newTodo.push({ text, completed: false, priority: false });
 		saveTodos(newTodo);
 	};
 
@@ -34,10 +34,14 @@ const App = () => {
 	let showTodos = [];
 	if (filterTodo === 'all') {
 		showTodos = todos;
+		showTodos.sort((a, b) => {
+			return (b.priority - a.priority)
+		})
 	} else if (filterTodo === 'active') {
 		showTodos = todos.filter((todo) => todo.completed !== true);
 	} else if (filterTodo === 'completed') {
-		showTodos = todos.filter((todo) => todo.completed !== false);
+		showTodos = todos.filter((todo) => todo.completed !== false)
+	
 	}
 
 	//  Local Storage State
