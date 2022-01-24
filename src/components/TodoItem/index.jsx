@@ -53,6 +53,8 @@ const TodoItem = ({
 	const editTodos = (text) => {
 		var catchText;
 
+		let element = document.getElementById("buttonEdit");
+		element.ariaDisabled = true
 		if(oldTextValue === undefined){
 			catchText = text;
 			
@@ -116,8 +118,10 @@ const TodoItem = ({
 					<FontAwesomeIcon icon={ faTrashAlt } />
 				</button>
 				<button
+					id='buttonEdit'
 					onClick={() => priorityTodo(index)}
-					className={todo.priority ? "buttonList priorityActive" : "buttonList priorityDesable"}>
+					className={todo.priority ? "  buttonList priorityActive" : "buttonList priorityDesable"} 
+					>
 					<FontAwesomeIcon icon={ faCrown } />
 				</button>
 			</div>

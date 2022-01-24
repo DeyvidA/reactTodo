@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoItem } from '../TodoItem';
-import { TodoCounter } from '../TodoCounter';
+import { TodoFilterButtons } from '../TodoFilterButtons';
 import './TodoList.css';
 
 const  TodoList = ({
@@ -27,7 +27,7 @@ const  TodoList = ({
 					/>
 				))}
 			</ul>
-			<TodoCounter
+			<TodoFilterButtons
 				totalTodos={totalTodos}
 				setFilterTodo={setFilterTodo}
 				completedTodos={completedTodos}

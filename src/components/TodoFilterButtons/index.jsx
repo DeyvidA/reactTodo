@@ -1,8 +1,8 @@
 import React from 'react';
 import './TodoCounter.css';
 
-const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilterTodo }) => {
-	
+const TodoFilterButtons = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilterTodo }) => {
+
 	const [filterStatePending, setFilterStatePending] = React.useState(false);
 
 	// Filter buttons
@@ -22,7 +22,6 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 			target.add('filter-btn-active');
 			setFilterTodo('all');
 			setFilterStatePending(false)
-
 		}
 
 		if (target.contains('active-btn')) {
@@ -35,16 +34,17 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 			target.add('filter-btn-active');
 			setFilterTodo('completed');
 			setFilterStatePending(false)
-
+		}
+		if (target.contains('priority-btn')) {
+			target.add('filter-btn-active');
+			setFilterTodo('priority');
+			setFilterStatePending(true)
 		}
 	};
-	
-
-	
 
 	return (
 		<div className="todoCouter-container">
-			<p className="items-left">You have {completedTodos} of {totalTodos} completed</p>
+			{/* <p className="items-left">You have {completedTodos} of {totalTodos} completed</p> */}
 
 
 			<div className="filterTodo-buttons-container">
@@ -56,6 +56,9 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 				</button>
 				<button className="filter-btn completed-btn" onClick={filterBtns}>
 					Completed
+				</button>
+				<button className="filter-btn priority-btn" onClick={filterBtns}>
+					Show Priorities
 				</button>
 			</div>
 			
@@ -69,4 +72,4 @@ const TodoCounter = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilte
 	);
 }
 
-export { TodoCounter };
+export { TodoFilterButtons };

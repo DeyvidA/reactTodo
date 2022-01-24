@@ -29,7 +29,6 @@ const App = () => {
 		saveTodos(newTodo);
 	};
 
-
 	// Filter Todos
 	let showTodos = [];
 	if (filterTodo === 'all') {
@@ -41,7 +40,8 @@ const App = () => {
 		showTodos = todos.filter((todo) => todo.completed !== true);
 	} else if (filterTodo === 'completed') {
 		showTodos = todos.filter((todo) => todo.completed !== false)
-	
+	} else if(filterTodo === 'priority') {
+		showTodos = todos.filter((todo) => todo.priority !== false)
 	}
 
 	//  Local Storage State

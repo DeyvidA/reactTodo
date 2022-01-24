@@ -4,30 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
 
 const TodoElementEdit = ({
-    todo,
     valueText,
     editState,
-    saveTodos,
     newTextValue, }) => {
 
     const [value, setValue] = React.useState(valueText)
 
 	const sendValue = (text) => {
         let newValue = text;
-
         return newTextValue(newValue)
     }
+  
     let originalValue = value
 
     const enterKey = (event) => {
         
         let catchValueText = event.target.value;
-
-        setValue(catchValueText)
+        setValue(catchValueText);
         let validation = event.target.value.trim().length > 0;
 
         if (event.charCode === 13 && validation) {
-            
+     
             sendValue(catchValueText)
 
 			event.target.value = '';
@@ -45,11 +42,10 @@ const TodoElementEdit = ({
         <div className="editContainer">    
             <input  
             className="inputEdit"
-            onKeyPress={enterKey}
-            placeholder={originalValue}
             value={value}
+            onKeyPress={enterKey}
             onChange={enterKey}
-            />
+            placeholder={originalValue} />
             <button 
             className="cancelEdit"
             onClick={closeEdit}>
