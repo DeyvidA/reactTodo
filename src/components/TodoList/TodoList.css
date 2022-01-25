@@ -1,7 +1,7 @@
 .list-element{
 	border-radius: 5px;
 	overflow: hidden;
-	max-width: 600px;
+	max-width: 1000px;
 	margin: 0 auto;
 	box-shadow: 0px 4px 7px #393736;
 }

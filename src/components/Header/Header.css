@@ -6,9 +6,8 @@
 
 .header-div{ 
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	max-width: 650px;
 	height: inherit;
 	margin: 0 auto;
 	padding-top: 10px;

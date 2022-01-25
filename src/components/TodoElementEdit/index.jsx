@@ -26,7 +26,7 @@ const TodoElementEdit = ({
         if (event.charCode === 13 && validation) {
      
             sendValue(catchValueText)
-
+            alert("has been successfully saved")
 			event.target.value = '';
 		} else if (event.charCode === 13 && validation) {
 			alert("You need write something");

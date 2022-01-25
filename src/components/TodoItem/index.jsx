@@ -52,14 +52,16 @@ const TodoItem = ({
 
 	const editTodos = (text) => {
 		var catchText;
-
+		
+		
 		let element = document.getElementById("buttonEdit");
 		element.ariaDisabled = true
 		if(oldTextValue === undefined){
 			catchText = text;
 			
 		} else {
-			 catchText = oldTextValue;
+			catchText = oldTextValue;
+			alert("has been successfully saved")
 		}
 		let todoEdit = todos.filter((todo) => todo.text === text);
 		if (todoEdit[0]) {
