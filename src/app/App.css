@@ -9,15 +9,13 @@ html {
 	font-size: 18px;
 }
 
-.main{
-	background-color: #F2F2F2 ;
-	height: 70vh;
-	
+main{
+	padding-top: 30px;
 }
 
 .main-container{
-	position: absolute;
-	top: 120px;
-	left: 0;
-	right: 1px;
+	display: flex;
+	width: 70%;
+	margin: 0 auto;
+
 }

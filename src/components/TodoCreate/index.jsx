@@ -58,10 +58,9 @@ const TodoCreate = ({ addTodo }) => {
 	  
 
 	return (
-		<div className="createTodo">
-			<div className="addIcon" onClick={addButton} key={addTodo}>
-				<FontAwesomeIcon icon={ faPlus } />
-			</div>
+		<section className="createTodo">
+			<h3>Add Here your new task</h3>
+			<h5>Task Name</h5>
 			<textarea
 				rows='1'
 				id='textArea'
@@ -70,7 +69,18 @@ const TodoCreate = ({ addTodo }) => {
 				placeholder="Create a new todo..."
 				
 			></textarea>
-		</div>
+			<button 
+			key={addTodo}
+			className="addButton" 
+			onClick={addButton} 
+			>
+				{/* <FontAwesomeIcon icon={ faPlus } /> */}
+				Create task
+			</button>
+			<div
+			className='todoImg'>
+			</div>
+		</section>
 	);
 }
 

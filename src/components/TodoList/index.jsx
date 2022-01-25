@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoItem } from '../TodoItem';
+import { TodoCounter } from '../TodoCounter';
 import { TodoFilterButtons } from '../TodoFilterButtons';
 import './TodoList.css';
 
@@ -15,6 +16,14 @@ const  TodoList = ({
 }) => {
 	return (
 		<section className="list-element">
+			<TodoCounter 
+				totalTodos={totalTodos}
+				completedTodos={completedTodos}
+			/>
+			<TodoFilterButtons
+					setFilterTodo={setFilterTodo}
+					deleteTodoCompleted={deleteTodoCompleted}
+			/>
 			<ul className='todoList-container'>
 				{showTodos.map((todo, index) => (
 					<TodoItem
@@ -27,12 +36,6 @@ const  TodoList = ({
 					/>
 				))}
 			</ul>
-			<TodoFilterButtons
-				totalTodos={totalTodos}
-				setFilterTodo={setFilterTodo}
-				completedTodos={completedTodos}
-				deleteTodoCompleted={deleteTodoCompleted}
-			/>
 		</section>
 	);
 }

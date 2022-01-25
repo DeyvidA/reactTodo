@@ -1,0 +1,10 @@
+
+p{
+    display: flex;
+    justify-content: flex-end;
+    color: rgba(94, 212, 80, .9);
+    font-size: 20px;
+    font-weight: 900;
+    padding: 10px 30px;
+    background-color: rgba(35, 35, 35, .8);
+}

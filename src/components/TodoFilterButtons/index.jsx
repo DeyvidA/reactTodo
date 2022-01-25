@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoCounter.css';
 
-const TodoFilterButtons = ({ completedTodos, totalTodos, deleteTodoCompleted, setFilterTodo }) => {
+const TodoFilterButtons = ({ deleteTodoCompleted, setFilterTodo }) => {
 
 	const [filterStatePending, setFilterStatePending] = React.useState(false);
 
@@ -35,6 +35,7 @@ const TodoFilterButtons = ({ completedTodos, totalTodos, deleteTodoCompleted, se
 			setFilterTodo('completed');
 			setFilterStatePending(false)
 		}
+		
 		if (target.contains('priority-btn')) {
 			target.add('filter-btn-active');
 			setFilterTodo('priority');
@@ -44,7 +45,6 @@ const TodoFilterButtons = ({ completedTodos, totalTodos, deleteTodoCompleted, se
 
 	return (
 		<div className="todoCouter-container">
-			{/* <p className="items-left">You have {completedTodos} of {totalTodos} completed</p> */}
 
 
 			<div className="filterTodo-buttons-container">

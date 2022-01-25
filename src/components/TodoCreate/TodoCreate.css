@@ -1,30 +1,27 @@
 .createTodo {
-	display: flex;
-	max-width: 600px;
+	height: 400px;
 	margin: 0 auto;
+	max-width: 600px;
 	padding: 20px 25px;
-	margin-bottom: 25px;
 	border-radius: 5px;
-	background: #fff;
-	height: auto;
-	max-height: 200px;
-	align-items: center;
+	box-shadow: 0px 4px 7px #393736;
+	background-color: rgba(245, 240, 240, 0.6);
 }
 
-.addIcon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 25px;
-	height: 25px;
-	margin-right: 25px;
+.addButton {
+	width: 50%;
+	height: 40px;
 	transition: .5s;
+	font-size: 18px;
+	border: 1px solid lightgray;
+	border-bottom: 4px solid gray;
+	border-radius: 6px;
+	margin-right: 25px;
 }
-.addIcon:hover{
-	font-size: 22px;
+.addButton:hover{
 	color: 	#58d632e0;
 	border-radius: 10px;
-	transform: scale(1.5);
+	transform: scale(1.1);
 	box-shadow: 0px 1px 4px rgba(49, 49, 49, 0.4);
 }
 
@@ -41,4 +38,20 @@ textarea{
 	min-height: 30px;
 	border-radius: 6px;
 	box-shadow: 2px 2px 8px rgba(black, .3);
+}
+
+h3{
+	text-align: center;
+}
+h5{
+	margin: 10px auto;
+}
+.todoImg{
+	border: none;
+	width: 300px;
+	height: 200px;
+	background-image: url('https://ouch-cdn2.icons8.com/Qh1DP6WUPDbjAmi1E4Fb_liUjnOVBIcnBxDDq5hDktM/rs:fit:1395:912/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzk0/L2IyNjc4YjY5LWZh/ZjgtNGYwMS04MjE4/LTZiY2I5OWFmZWRj/Yi5zdmc.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size :contain;
 }
