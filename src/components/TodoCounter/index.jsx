@@ -1,14 +1,14 @@
-import React from 'react';
-import './TodoCounter.css'
+import React from "react";
+import "./TodoCounter.css";
 
-const TodoCounter = ({completedTodos, totalTodos}) => {
+const TodoCounter = ({ completedTodos, totalTodos }) => {
+  return (
+    <div>
+      <p className="items">
+        You have {completedTodos} of {totalTodos} completed
+      </p>
+    </div>
+  );
+};
 
-    return(
-        <div>
-            <p className="items">You have {completedTodos} of {totalTodos} completed</p>
-        </div>
-    )
-
-}
-
-export { TodoCounter }
+export { TodoCounter };

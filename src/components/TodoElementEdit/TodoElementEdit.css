@@ -1,39 +1,39 @@
-.editContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
+.edit-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
-.cancelEdit{
-    border: none;
-	width: 30px;
-	height: 30px;
-	font-size: 20px;
-	transition: .5s;
-	font-weight: 900;
-	background-color: transparent;
+.cancel-edit {
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  transition: 0.5s;
+  font-weight: 900;
+  background-color: transparent;
 }
-.cancelEdit:hover{
-    color: red;
-    font-size: 22px;
-	border-radius: 10px;
-	transform: scale(1.2);
-    box-shadow: 0px 1px 4px #393736;
+.cancel-edit:hover {
+  color: red;
+  font-size: 22px;
+  border-radius: 10px;
+  transform: scale(1.2);
+  box-shadow: 0px 1px 4px #393736;
 }
-.inputEdit{
-    height: 30px;
-    width: 400px;
-    font-size: 16px;
-    min-width: 280px;
-    max-width: 600px;
-    font-weight: 500;
-    max-height: 200px;
-    padding: 10px 25px;
-    border-radius: 5px;
-    background: #fff;
-    align-items: center;
-    border: transparent;
-    border: 1px solid gray;
+.input-edit {
+  height: 30px;
+  width: 400px;
+  font-size: 16px;
+  min-width: 280px;
+  max-width: 600px;
+  font-weight: 500;
+  max-height: 200px;
+  padding: 10px 25px;
+  border-radius: 5px;
+  background: #fff;
+  align-items: center;
+  border: transparent;
+  border: 1px solid gray;
 }
-.inputEdit:focus {
-    color: green;
+.inpute-dit:focus {
+  color: green;
 }

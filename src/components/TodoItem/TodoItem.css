@@ -1,79 +1,75 @@
-.todoItem, .todoItem-complete {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 25px;
-	list-style: none;
-	width: 100%;
-	mix-width: 288px;
-	font-size: 20px;
-	margin-bottom: 2px;
-	border-radius: 20px;
-	margin: 10px 0;
-	background-color: aliceblue;
-
+.todo-item,
+.todo-item-complete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  mix-width: 288px;
+  list-style: none;
+  margin: 10px 0;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 20px 25px;
+  border-radius: 20px;
+  background-color: aliceblue;
 }
-.todoItem-complete{
-	background-color: #2A37A2;
-	color: white;
-}
-
-.todoItem:hover{
-	box-shadow: inset 0px 0px 15px lightgrey;
+.todo-item-complete {
+  background-color: #2a37a2;
+  color: white;
 }
 
-.todoText {
-	font-size: 18px;
-	font-weight: 400;
-}
-.todoText-check {
-	text-decoration: line-through;
+.todo-item:hover {
+  box-shadow: inset 0px 0px 15px lightgrey;
 }
 
-.buttonList{
-	border: none;
-	width: 30px;
-	height: 30px;
-	font-size: 20px;
-	font-weight: 900;
-	background-color: transparent;
-	transition: .5s;
-	margin-right: 7px;
-
+.todo-text {
+  font-size: 18px;
+  font-weight: 400;
 }
-.buttonList:hover {
-	font-size: 22px;
-	border-radius: 10px;
-	transform: scale(1.2);
-	box-shadow: 0px 1px 4px #393736;
+.todo-text-check {
+  text-decoration: line-through;
+}
 
+.button-list {
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 900;
+  background-color: transparent;
+  transition: 0.5s;
+  margin-right: 7px;
+}
+.button-list:hover {
+  font-size: 22px;
+  border-radius: 10px;
+  transform: scale(1.2);
+  box-shadow: 0px 1px 4px #393736;
 }
 .circulo button:hover {
-	color: 	#30B409;
-	background-color: transparent;
-
+  color: #30b409;
+  background-color: transparent;
 }
-.buttonDelete:hover{
-	color: red;
-
+.button-delete:hover {
+  color: red;
 }
-.bottonSaveEdit:hover{
-	color: #30B409;
+.button-save-edit:hover {
+  color: #30b409;
 }
 
-.buttonEdit:hover{
-	color:#109DC7 
+.button-edit:hover {
+  color: #109dc7;
 }
-.displayNone{
-	display: none;
+.display-none {
+  display: none;
 }
-.priorityActive{
-	color: goldenrod;
+.priority-active {
+  color: goldenrod;
 }
 
-.priorityDesable{
-	color:gray;
+.priority-desable {
+  color: gray;
 }
-#taskPriority{
-	border: 2px solid goldenrod;
+#task-priority {
+  border: 2px solid goldenrod;
 }

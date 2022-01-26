@@ -1,46 +1,46 @@
-.createTodo {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 0 auto;
-	margin-top: 20px;
-	padding: 20px 25px;
-	border-radius: 5px;
-	margin-bottom: 30px;
-	background-color: aliceblue;
-	box-shadow: 0px 4px 7px #393736;
+.create-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px 25px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  background-color: aliceblue;
+  box-shadow: 0px 4px 7px #393736;
 }
 
-.addButton {
-	width: 40px;
-	height: 40px;
-	transition: .5s;
-	font-size: 18px;
-	border-radius: 20%;
-	background-color: #2A37A2;
-	border: 1px solid transparent;
+.add-button {
+  width: 40px;
+  height: 40px;
+  transition: 0.5s;
+  font-size: 18px;
+  border-radius: 20%;
+  background-color: #2a37a2;
+  border: 1px solid transparent;
 }
-.addButton:hover{
-	color: 	#58d632e0;
-	border-radius: 10px;
-	transform: scale(1.1);
-	box-shadow: 0px 1px 4px rgba(49, 49, 49, 0.4);
-}
-
-textarea{  
-	display: block;
-	overflow: hidden;
-	box-sizing: padding-box;
-	border: 0;
-	width: 90%;
-	padding: 10px;
-	font-size: 16px;
-	max-height: 90px;
-	min-height: 30px;
-	border-radius: 6px;
-	box-shadow: 2px 2px 8px rgba(black, .3);
+.add-button:hover {
+  color: #58d632e0;
+  border-radius: 10px;
+  transform: scale(1.1);
+  box-shadow: 0px 1px 4px rgba(49, 49, 49, 0.4);
 }
 
-h3{
-	margin: 10px 0;
+textarea {
+  display: block;
+  overflow: hidden;
+  box-sizing: padding-box;
+  border: 0;
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  max-height: 90px;
+  min-height: 30px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(black, 0.3);
+}
+
+h3 {
+  margin: 10px 0;
 }

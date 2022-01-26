@@ -1,81 +1,63 @@
-import React from 'react';
-import './TodoCreate.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import "./TodoCreate.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const TodoCreate = ({ addTodo }) => {
+  // Add Todo con enter
 
-	// Add Todo con enter
+  const addButton = () => {
+    let inputValue = document.getElementById("textArea").value;
+    let validation = inputValue.trim();
 
-	// const enterKey = (event) => {
-	// 	let validation = event.target.value.trim();
+    if (validation) {
+      addTodo(inputValue);
+      document.getElementById("textArea").value = "";
+    } else if (inputValue === "") {
+      alert("You need write something");
+    } else if (validation.length === 0) {
+      alert("You can not add 'Blank Spaces'");
+    }
+  };
 
-	// 	if (event.charCode === 13 && validation) {
-	// 		addTodo(event.target.value);
-	// 		event.target.value = '';
-	// 	} else if (event.charCode === 13 && event.target.value === '') {
-	// 		alert("You need write something");			
-	// 	} else if(event.charCode === 13 && validation.length === 0){
-	// 		alert ("You can not add 'Blank Spaces'")
-	// 	}
-	// };
+  const getScrollHeight = (elm) => {
+    var savedValue = elm.value;
+    elm.value = "";
+    elm._baseScrollHeight = elm.scrollHeight;
+    elm.value = savedValue;
+  };
 
-	const addButton = () => {
-		let event = document.getElementById('textArea').value;
-		let validation = event.trim();
+  const onExpandableTextareaInput = ({ target: elm }) => {
+    // make sure the input event originated from a textarea and it"s desired to be auto-expandable
+    if (!elm.classList.contains("auto-expand") || !elm.nodeName === "TEXTAREA")
+      return;
 
-		if (validation) {
-			addTodo(event);
-			document.getElementById('textArea').value = '';
-		} else if (event === '') {
-			alert("You need write something");			
-		} else if(validation.length === 0){
-			alert ("You can not add 'Blank Spaces'")
-		}
-	}
+    var minRows = elm.getAttribute("data-min-rows") | 0,
+      rows;
+    !elm._baseScrollHeight && getScrollHeight(elm);
 
-	const getScrollHeight = (elm) =>{
-		var savedValue = elm.value
-		elm.value = ''
-		elm._baseScrollHeight = elm.scrollHeight
-		elm.value = savedValue
-	};
-	  
-	const onExpandableTextareaInput = ({ target:elm }) =>{
-		// make sure the input event originated from a textarea and it's desired to be auto-expandable
-		if( !elm.classList.contains('autoExpand') || !elm.nodeName === 'TEXTAREA' ) return
-		
-		var minRows = elm.getAttribute('data-min-rows')|0, rows;
-		!elm._baseScrollHeight && getScrollHeight(elm)
-	  
-		elm.rows = minRows
-		rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-		elm.rows = minRows + rows
-	};
-	    
-	  // global delegated event listener
-	  document.addEventListener('input', onExpandableTextareaInput)
-	  
+    elm.rows = minRows;
+    rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16);
+    elm.rows = minRows + rows;
+  };
 
-	return (
-		<section className="createTodo">
-			<textarea
-				rows='1'
-				id='textArea'
-				data-min-rows='1' 
-				className="input autoExpand"
-				placeholder="Create a new todo..."
-				
-			></textarea>
-			<button 
-			key={addTodo}
-			className="addButton" 
-			onClick={addButton} 
-			>
-				<FontAwesomeIcon icon={ faPlus } /> 
-			</button>
-		</section>
-	);
-}
+  // global delegated event listener
+  document.addEventListener("input", onExpandableTextareaInput);
+
+  return (
+    <section className="create-todo">
+      <textarea
+        rows="1"
+        id="textArea"
+        data-min-rows="1"
+        className="input auto-expand"
+        placeholder="Create a new todo..."
+      ></textarea>
+      <button key={addTodo} className="add-button" onClick={addButton}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
+    </section>
+  );
+};
 
 export { TodoCreate };
