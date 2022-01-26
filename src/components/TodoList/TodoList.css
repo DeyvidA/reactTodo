@@ -2,5 +2,9 @@
 	border-radius: 5px;
 	overflow: hidden;
 	margin: 0 auto;
+	min-width: 300px;
 }
-
+ul{
+	height: 400px;
+	overflow-y: auto;
+}

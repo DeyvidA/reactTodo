@@ -81,7 +81,9 @@ const TodoItem = ({
 
 
 	return (
-		<li className={todo.completed ? 'todoItem-complete' : "todoItem"}>
+		<li
+		id={todo.priority ? 'taskPriority' : 'todoItem' } 
+		className={todo.completed  ? 'todoItem todoItem-complete ' : "todoItem"}>
 			<div className={`circulo ${todo.completed}`}>
 				<button 
 				className={editTodo ? `displayNone ` : `buttonList` } 

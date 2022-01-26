@@ -110,8 +110,7 @@ td{
 
 .sectionPricipal{
 	width: 65vw;
-	max-height: 100vh;
-	overflow-y: auto;
+	
 	background-color: rgb(255, 255, 255);
 	padding: 40px 100px;
 }
@@ -212,8 +211,29 @@ td{
 	height: 30px;
 	background-color:#2A37A2;
 }
+@media (max-width: 1533px) {
+	.sectionPricipal{
+		height: 100vh;
+	}
+	.sectionDates{
+		padding: 40px 20px;
+	}
+	.reminderCalendar{
+		display: none;
+	}
+	.widget-info{
+		height: auto;
+		margin-bottom: 0;
+	}
+	.widget-info .info-more{
+		display: none;
+	}
+}
 
 @media(max-width: 1250px) {
+	.sectionPricipal{
+		width: 100vw;
+	}
 	.sectionDates, .sectionChill{
 		display: none;
 	}
@@ -221,3 +241,13 @@ td{
 		justify-content: center;
 	}
 } 
+@media (max-width: 768px){
+	main{
+		margin: 0 auto;
+	}
+	.sectionPricipal{
+		min-width: 320px;
+		padding: 0;
+		margin: 0 auto;
+	}
+}
