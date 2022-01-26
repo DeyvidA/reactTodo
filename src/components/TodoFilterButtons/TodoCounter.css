@@ -5,8 +5,9 @@
 	align-items: center;
 	height: 50px;
 	padding: 15px 25px;
-	background: #fff;
+	background: #adadad;
 	margin-top: 2px;
+	flex-wrap: wrap;
 }
 
 .items-left {	
@@ -48,4 +49,18 @@
 }
 .disable{
 	display: none;
+}
+
+@media (max-width: 1024px){
+	.todoCouter-container{
+		height: 200px;
+		align-items: center;
+	}
+	.filterTodo-buttons-container{
+		display: flex;
+		flex-direction: column;
+	}
+	.filterTodo-buttons-container button{
+		margin-bottom: 30px;
+	}
 }

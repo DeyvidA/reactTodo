@@ -1,25 +1,24 @@
 .createTodo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin: 0 auto;
-	max-width: 500px;
+	margin-top: 20px;
 	padding: 20px 25px;
 	border-radius: 5px;
-	box-shadow: 0px 4px 7px #393736;
-	background-color: rgba(245, 240, 240, 0.6);
 	margin-bottom: 30px;
+	background-color: aliceblue;
+	box-shadow: 0px 4px 7px #393736;
 }
 
 .addButton {
-	width: 50%;
+	width: 40px;
 	height: 40px;
 	transition: .5s;
 	font-size: 18px;
-	border: 1px solid lightgray;
-	border-bottom: 4px solid gray;
-	border-radius: 6px;
-	position: relative;
-	top: 10px;
-	right: 0;
-	left: 120px
+	border-radius: 20%;
+	background-color: #2A37A2;
+	border: 1px solid transparent;
 }
 .addButton:hover{
 	color: 	#58d632e0;
@@ -33,7 +32,7 @@ textarea{
 	overflow: hidden;
 	box-sizing: padding-box;
 	border: 0;
-	width: 100%;
+	width: 90%;
 	padding: 10px;
 	font-size: 16px;
 	max-height: 90px;
@@ -45,13 +44,3 @@ textarea{
 h3{
 	margin: 10px 0;
 }
-/* .todoImg{
-	border: none;
-	width: 300px;
-	height: 200px;
-	margin-top: 20px;
-	background-image: url('https://ouch-cdn2.icons8.com/Qh1DP6WUPDbjAmi1E4Fb_liUjnOVBIcnBxDDq5hDktM/rs:fit:1395:912/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzk0/L2IyNjc4YjY5LWZh/ZjgtNGYwMS04MjE4/LTZiY2I5OWFmZWRj/Yi5zdmc.png');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size :contain;
-} */

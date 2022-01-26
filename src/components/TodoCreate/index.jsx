@@ -59,7 +59,6 @@ const TodoCreate = ({ addTodo }) => {
 
 	return (
 		<section className="createTodo">
-			<h3>Add Here your new task</h3>
 			<textarea
 				rows='1'
 				id='textArea'
@@ -73,7 +72,7 @@ const TodoCreate = ({ addTodo }) => {
 			className="addButton" 
 			onClick={addButton} 
 			>
-				Create task
+				<FontAwesomeIcon icon={ faPlus } /> 
 			</button>
 		</section>
 	);

@@ -8,3 +8,9 @@ p{
     padding: 10px 30px;
     background-color: rgba(35, 35, 35, 0.8);
 }
+@media (max-width: 817px){
+	p{
+        text-align: center;
+        font-size: 15px;
+    }
+}
