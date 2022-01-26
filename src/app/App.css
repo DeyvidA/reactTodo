@@ -107,6 +107,11 @@ td{
 	border-radius: 50%;
 	background-color: #2A37A2;
 }
+.lastMonth{
+	color: gray;
+	font-weight: 100;
+	font-size: 15px;
+}
 
 .sectionPricipal{
 	width: 65vw;
