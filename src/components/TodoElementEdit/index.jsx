@@ -1,7 +1,7 @@
 import React from "react";
 import "./TodoElementEdit.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
   const [value, setValue] = React.useState(valueText);
@@ -40,9 +40,12 @@ const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
         onChange={enterKey}
         placeholder={originalValue}
       />
-      <button className="cancel-edit" onClick={closeEdit}>
-        <FontAwesomeIcon icon={faWindowClose} />
-      </button>
+      <div className="button-container">
+        <button className="cancel-edit tooltip" onClick={closeEdit}>
+          <span className="tooltip-text">Cancel</span>
+          <FontAwesomeIcon icon={faWindowClose} />
+        </button>
+      </div>
     </div>
   );
 };

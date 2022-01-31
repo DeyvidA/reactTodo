@@ -1,11 +1,10 @@
 p {
   display: flex;
   justify-content: flex-end;
-  color: rgba(91, 104, 223, 0.9);
+  color: #2a37a2;
   font-size: 20px;
   font-weight: 900;
   padding: 10px 30px;
-  background-color: rgba(35, 35, 35, 0.8);
 }
 @media (max-width: 817px) {
   p {

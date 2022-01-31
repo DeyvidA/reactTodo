@@ -5,6 +5,8 @@
   min-width: 300px;
 }
 ul {
-  height: 400px;
+  height: 460px;
   overflow-y: auto;
+  margin-top: 10px;
+  overflow-x: hidden;
 }

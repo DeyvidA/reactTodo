@@ -78,17 +78,27 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
       id={todo.priority ? "task-priority" : "todo-item"}
       className={todo.completed ? "todo-item todo-item-complete " : "todo-item"}
     >
-      <div className={`circulo ${todo.completed}`}>
+      <div
+        id={editTodo ? "disabled" : "n"}
+        className={`circulo ${todo.completed}`}
+      >
         <button
-          className={editTodo ? `display-none ` : `button-list`}
+          className={editTodo ? `display-none ` : `button-list tooltip`}
           onClick={() => checkTodo(index)}
         >
+          <span className="toooltip-text tooltip-text-right">
+            {todo.completed ? "uncheck" : "Complete"}
+          </span>
           <FontAwesomeIcon icon={faCheckCircle} />
         </button>
       </div>
       <div
         key={todo.text}
-        className={`todo-text ${todo.completed && "todo-text-check"}`}
+        className={
+          editTodo
+            ? `text-edit`
+            : `todo-text ${todo.completed && "todo-text-check"}`
+        }
       >
         {editTodo === false ? (
           todo.text
@@ -105,33 +115,37 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
       </div>
       <div className={"actions-buttons"}>
         <button
-          className={
-            editTodo
-              ? `button-list button-save-edit `
-              : `button-list button-edit`
-          }
+          // button-list button-save-edit tooltip
+          className={`button-list button-edit tooltip`}
           onClick={() => editTodos(todo.text)}
         >
+          <span className="toooltip-text">
+            {editTodo ? "Save Edit " : "Edit Task"}
+          </span>
           <FontAwesomeIcon icon={editTodo ? faSave : faEdit} />
         </button>
 
         <button
           onClick={() => deleteTodo(index)}
           className={
-            editTodo ? `display-none button-list` : `button-list button-delete`
+            editTodo
+              ? `display-none button-list`
+              : `button-list button-delete tooltip`
           }
         >
+          <span className="toooltip-text">Delete task</span>
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
         <button
-          id="buttonEdit"
+          id={editTodo ? "disabled" : "buttonEdit"}
           onClick={() => priorityTodo(index)}
           className={
             todo.priority
-              ? "  button-list priority-active"
-              : "button-list prioritydesable"
+              ? "  button-list priority-active tooltip"
+              : "button-list priority-desable tooltip"
           }
         >
+          <span className="toooltip-text">Set Priority</span>
           <FontAwesomeIcon icon={faCrown} />
         </button>
       </div>

@@ -4,8 +4,6 @@
   align-items: center;
   height: 50px;
   padding: 15px 25px;
-  background: #adadad;
-  margin-top: 2px;
   flex-wrap: wrap;
 }
 
@@ -35,11 +33,11 @@
   transition: 0.5s;
 }
 .filter-btn:hover {
-  color: #109dc7;
+  color: #2a37a2;
   height: 100%;
 }
 .filter-btn-active {
-  color: #109dc7;
+  color: #2a37a2;
 }
 
 .clear-btn:hover {

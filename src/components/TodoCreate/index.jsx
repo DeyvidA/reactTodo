@@ -27,21 +27,22 @@ const TodoCreate = ({ addTodo }) => {
     elm.value = savedValue;
   };
 
-  const onExpandableTextareaInput = ({ target: elm }) => {
-    // make sure the input event originated from a textarea and it"s desired to be auto-expandable
-    if (!elm.classList.contains("auto-expand") || !elm.nodeName === "TEXTAREA")
+  const onExpandableTextareaInput = ({ target }) => {
+    if (
+      !target.classList.contains("auto-expand") ||
+      !target.nodeName === "TEXTAREA"
+    )
       return;
 
-    var minRows = elm.getAttribute("data-min-rows") | 0,
+    var minRows = target.getAttribute("data-min-rows") | 0,
       rows;
-    !elm._baseScrollHeight && getScrollHeight(elm);
+    !target._baseScrollHeight && getScrollHeight(target);
 
-    elm.rows = minRows;
-    rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16);
-    elm.rows = minRows + rows;
+    target.rows = minRows;
+    rows = Math.ceil((target.scrollHeight - target._baseScrollHeight) / 16);
+    target.rows = minRows + rows;
   };
 
-  // global delegated event listener
   document.addEventListener("input", onExpandableTextareaInput);
 
   return (
@@ -53,8 +54,9 @@ const TodoCreate = ({ addTodo }) => {
         className="input auto-expand"
         placeholder="Create a new todo..."
       ></textarea>
-      <button key={addTodo} className="add-button" onClick={addButton}>
+      <button key={addTodo} className="add-button tooltip" onClick={addButton}>
         <FontAwesomeIcon icon={faPlus} />
+        <span className="toltip-text">Add Task</span>
       </button>
     </section>
   );
