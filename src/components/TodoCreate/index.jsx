@@ -3,7 +3,7 @@ import "./TodoCreate.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const TodoCreate = ({ addTodo }) => {
+const TodoCreate = ({ addTodo, color }) => {
   // Add Todo con enter
 
   const addButton = () => {
@@ -46,7 +46,7 @@ const TodoCreate = ({ addTodo }) => {
   document.addEventListener("input", onExpandableTextareaInput);
 
   return (
-    <section className="create-todo">
+    <section className={`create-todo ${color}-background`}>
       <textarea
         rows="1"
         id="textArea"

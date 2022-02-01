@@ -8,7 +8,7 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SectionRight = () => {
+const SectionRight = ({ color }) => {
   return (
     <section className="section-chill">
       <div className="login-info">
@@ -19,7 +19,7 @@ const SectionRight = () => {
         <div className="user-profile"></div>
       </div>
       <div className="widgets">
-        <div className="widget widget-music">
+        <div className={`widget widget-music ${color}-background`}>
           <div className="music">
             <div className="music-img"></div>
             <div className="music-name">
@@ -28,7 +28,7 @@ const SectionRight = () => {
             </div>
           </div>
           <div className="music-progress">
-            <div className="music-progress-bar"></div>
+            <div className={`music-progress-bar ${color}`}></div>
           </div>
           <div className="reproductor-controls">
             <FontAwesomeIcon className="buttons" icon={faBackward} />
@@ -36,11 +36,11 @@ const SectionRight = () => {
             <FontAwesomeIcon className="buttons" icon={faForward} />
           </div>
         </div>
-        <div className="widget widge-time">
+        <div className={`widget widge-time ${color}-background`}>
           <h3>8:48 AM</h3>
           <span>Now is almost Sunny</span>
         </div>
-        <div className="widget widget-info">
+        <div className={`widget widget-info ${color}-background`}>
           <div className="wiget-info-text">
             <h2>
               Unslash <br />

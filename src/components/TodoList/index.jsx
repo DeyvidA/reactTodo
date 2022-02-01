@@ -5,6 +5,7 @@ import { TodoFilterButtons } from "../TodoFilterButtons";
 import "./TodoList.css";
 
 const TodoList = ({
+  color,
   todos,
   showTodos,
   saveTodos,
@@ -16,7 +17,11 @@ const TodoList = ({
 }) => {
   return (
     <section className="list-element">
-      <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
+      <TodoCounter
+        color={color}
+        totalTodos={totalTodos}
+        completedTodos={completedTodos}
+      />
       <TodoFilterButtons
         setFilterTodo={setFilterTodo}
         deleteTodoCompleted={deleteTodoCompleted}
@@ -27,9 +32,10 @@ const TodoList = ({
             key={index}
             todo={todo}
             todos={todos}
+            color={color}
+            index={index}
             checkTodo={checkTodo}
             saveTodos={saveTodos}
-            index={index}
           />
         ))}
       </ul>

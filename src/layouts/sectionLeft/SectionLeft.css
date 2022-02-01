@@ -1,7 +1,6 @@
 .section-dates {
   width: 25vw;
   height: 100vh;
-  background-color: aliceblue;
   padding: 40px 70px;
 }
 .section-dates-header {
@@ -12,7 +11,6 @@
 .section-dates .header-logo {
   width: 25px;
   height: 25px;
-  background-color: #2a37a2;
 }
 .section-dates-header h3 {
   margin-left: 15px;
@@ -28,7 +26,6 @@
 }
 .reminders-title button {
   border: none;
-  color: #2a37a2;
   font-weight: bold;
   background-color: transparent;
 }
@@ -49,7 +46,6 @@
   gap: 15px;
 }
 .reminder-info button {
-  background-color: #2a37a2;
   color: #fff;
   margin-top: 10px;
   font-weight: 600;
@@ -73,14 +69,13 @@
   width: 25px;
   height: 25px;
   border-radius: 30%;
-  background-color: #2a37a2;
 }
 .reminder-calendar {
   padding: 20px 0;
   box-sizing: border-box;
 }
 th {
-  color: #2a37a2;
+  color: var(--principal-color--);
   text-align: center;
   padding-left: 7px;
 }
@@ -92,7 +87,6 @@ td {
   color: #fff;
   font-weight: 800;
   border-radius: 50%;
-  background-color: #2a37a2;
 }
 .last-month {
   color: gray;

@@ -1,21 +1,21 @@
 import "./SectionLeft.css";
 
-const SectionLeft = () => {
+const SectionLeft = ({ color }) => {
   return (
-    <section className="section-dates">
+    <section className={`section-dates ${color}-background`}>
       <div className="section-dates-header">
-        <div className="header-logo"></div>
+        <div className={`header-logo ${color}`}></div>
         <h3>Nicarao Agency</h3>
       </div>
       <div className="section-reminders">
         <div className="reminders-title">
           <h4>Weekly Pinned</h4>
-          <button>View All</button>
+          <button className={`${color}-text`}>View All</button>
         </div>
         <div className="reminders-container">
           <div className="reminder reminder1">
             <div className="reminder-icon">
-              <div className="icon"></div>
+              <div className={`icon ${color}`}></div>
             </div>
             <div className="reminder-text">
               <div className="reminder-title">
@@ -23,7 +23,7 @@ const SectionLeft = () => {
                 <span className="reminder-date">15 Mar 2022 - 9:00 AM</span>
               </div>
               <div className="reminder-info">
-                <button>Personal</button>
+                <button className={color}>Personal</button>
                 <p>Ask for blood test and GYM certificate.</p>
               </div>
             </div>
@@ -31,7 +31,7 @@ const SectionLeft = () => {
 
           <div className="reminder reminder2">
             <div className="reminder-icon">
-              <div className="icon"></div>
+              <div className={`icon ${color}`}></div>
             </div>
             <div className="reminder-text">
               <div className="reminder-title">
@@ -43,7 +43,7 @@ const SectionLeft = () => {
 
           <div className="reminder add-reminder">
             <div className="reminder-icon">
-              <div className="icon"></div>
+              <div className={`icon ${color}`}></div>
             </div>
             <div className="reminder-text">
               <h4>Add New weekly pin</h4>
@@ -55,19 +55,19 @@ const SectionLeft = () => {
           <table>
             <thead>
               <tr>
-                <th>Mon</th>
-                <th>Tue</th>
-                <th>Wed</th>
-                <th>Thu</th>
-                <th>Fri</th>
-                <th>Sat</th>
-                <th>Sun</th>
+                <th className={`${color}-text`}>Mon</th>
+                <th className={`${color}-text`}>Tue</th>
+                <th className={`${color}-text`}>Wed</th>
+                <th className={`${color}-text`}>Thu</th>
+                <th className={`${color}-text`}>Fri</th>
+                <th className={`${color}-text`}>Sat</th>
+                <th className={`${color}-text`}>Sun</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="day">31</td>
-                <td>1</td>
+                <td>31</td>
+                <td className={`day ${color}`}>1</td>
                 <td>2</td>
                 <td>3</td>
                 <td>4</td>

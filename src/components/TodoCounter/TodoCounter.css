@@ -1,7 +1,7 @@
 p {
   display: flex;
   justify-content: flex-end;
-  color: #2a37a2;
+  color: var(--principal-color--);
   font-size: 20px;
   font-weight: 900;
   padding: 10px 30px;

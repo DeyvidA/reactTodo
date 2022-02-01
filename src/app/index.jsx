@@ -19,6 +19,9 @@ const App = () => {
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
+  const [color, setColor] = useState("blue");
+  const colors = ["blue", "yellow"];
+
   // Todo Actions
   const addTodo = (text) => {
     const newTodo = [...todos];
@@ -55,22 +58,41 @@ const App = () => {
     }
   }, [todos, initialTodos]);
 
+  // Color triggers
+  const renderButtons = (colors) => {
+    return colors.map((color, index) => {
+      return (
+        <li
+          key={index}
+          className={"color-selector " + color}
+          onClick={() => setColor(color)}
+        ></li>
+      );
+    });
+  };
+
   // App UI
   return (
     <Fragment>
       <main className="main">
-        <SectionLeft />
+        <SectionLeft color={color} />
         <section className="section-main">
           <div className="section">
             <div className="header-main">
-              <div>
-                <h2>To Do List</h2>
-                <h2 className="days">Monday 31</h2>
+              <div className="header-main-options">
+                <div className="header-title">
+                  <h2>To Do List</h2>
+                  <h2 className={`${color}-text`}>Monday 31</h2>
+                </div>
+                <div className="dinamic-buttons">
+                  <div id="toolbox">{renderButtons(colors)}</div>
+                </div>
               </div>
-              <TodoCreate addTodo={addTodo} />
+              <TodoCreate a ddTodo={addTodo} color={color} />
             </div>
             <TodoList
               todos={todos}
+              color={color}
               saveTodos={saveTodos}
               showTodos={showTodos}
               totalTodos={totalTodos}
@@ -81,7 +103,7 @@ const App = () => {
           </div>
         </section>
 
-        <SectionRight />
+        <SectionRight color={color} />
       </main>
     </Fragment>
   );

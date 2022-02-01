@@ -7,18 +7,19 @@
   padding: 20px 25px;
   border-radius: 5px;
   margin-bottom: 30px;
-  background-color: aliceblue;
 }
 
 .add-button {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   transition: 0.5s;
   font-size: 18px;
   border-radius: 20%;
-  color: darkgray;
-  background-color: #2a37a2;
-  border: 1px solid transparent;
+  justify-self: center;
+  align-self: center;
+  color: gray;
+  border: 2px solid rgb(41, 40, 40);
+  background-color: transparent;
 }
 .add-button:hover {
   color: #58d632e0;

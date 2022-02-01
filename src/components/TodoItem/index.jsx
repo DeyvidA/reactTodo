@@ -11,7 +11,7 @@ import {
 import "./TodoItem.css";
 import "../TodoCreate/TodoCreate.css";
 
-const TodoItem = ({ todo, todos, index, saveTodos }) => {
+const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
   const [editTodo, setEditTodo] = React.useState(false);
 
   var oldTextValue;
@@ -76,7 +76,11 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
   return (
     <li
       id={todo.priority ? "task-priority" : "todo-item"}
-      className={todo.completed ? "todo-item todo-item-complete " : "todo-item"}
+      className={
+        todo.completed
+          ? `todo-item todo-item-complete ${color}-background-complete`
+          : `todo-item ${color}-background`
+      }
     >
       <div
         id={editTodo ? "disabled" : "n"}
