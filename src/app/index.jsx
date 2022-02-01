@@ -64,9 +64,13 @@ const App = () => {
       return (
         <li
           key={index}
-          className={"color-selector " + color}
+          className={"tooltip-theme color-selector " + color}
           onClick={() => setColor(color)}
-        ></li>
+        >
+          <span className="tooltip-theme-text tooltip-theme-text">
+            change theme
+          </span>
+        </li>
       );
     });
   };
@@ -76,6 +80,7 @@ const App = () => {
     <Fragment>
       <main className="main">
         <SectionLeft color={color} />
+
         <section className="section-main">
           <div className="section">
             <div className="header-main">
@@ -88,7 +93,7 @@ const App = () => {
                   <div id="toolbox">{renderButtons(colors)}</div>
                 </div>
               </div>
-              <TodoCreate a ddTodo={addTodo} color={color} />
+              <TodoCreate addTodo={addTodo} color={color} />
             </div>
             <TodoList
               todos={todos}
