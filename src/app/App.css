@@ -52,16 +52,16 @@ main {
   height: 10px;
   background-color: var(--main-color--);
 }
-.blue {
+.theme {
   background-color: var(--main-color--);
 }
-.blue-text {
+.theme-text {
   color: var(--main-color--);
 }
-.blue-background {
+.theme-background {
   background-color: var(--secundary-color--);
 }
-.blue-background-complete {
+.theme-background-complete {
   background-color: var(--main-color--);
 }
 

@@ -22,6 +22,28 @@ const App = () => {
   const [color, setColor] = useState("blue");
   const colors = ["blue", "yellow"];
 
+  const colorChange = {
+    yellow: {
+      title: "yellow",
+      primary: "gold",
+      secundary: "green",
+    },
+    blue: {
+      title: "blue",
+      primary: "#2a37a2",
+      secundary: "aliceblue",
+    },
+  };
+
+  useEffect(() => {
+    if (color == colorChange.blue.title) {
+      console.log(color);
+    } else {
+      console.log("nell");
+    }
+    setColor(color);
+  }, [color]);
+
   // Todo Actions
   const addTodo = (text) => {
     const newTodo = [...todos];
@@ -58,7 +80,7 @@ const App = () => {
     }
   }, [todos, initialTodos]);
 
-  var root = document.querySelector(":root");
+  const root = document.querySelector(":root");
 
   const setPrimaryColorTheme = (color) => {
     root.style.setProperty("--main-color--", color);
@@ -71,7 +93,6 @@ const App = () => {
   const setSecundaryColorTheme = (color) => {
     root.style.setProperty("--secundary-color--", color);
   };
-
   const catchNewSecundaryColor = () => {
     let secundary = document.getElementById("secundaryColor").value;
     setSecundaryColorTheme(secundary);
