@@ -58,6 +58,25 @@ const App = () => {
     }
   }, [todos, initialTodos]);
 
+  var root = document.querySelector(":root");
+
+  const setPrimaryColorTheme = (color) => {
+    root.style.setProperty("--main-color--", color);
+  };
+  const catchNewPrimaryColor = () => {
+    let color = document.getElementById("colorValue").value;
+    setPrimaryColorTheme(color);
+  };
+
+  const setSecundaryColorTheme = (color) => {
+    root.style.setProperty("--secundary-color--", color);
+  };
+
+  const catchNewSecundaryColor = () => {
+    let secundary = document.getElementById("secundaryColor").value;
+    setSecundaryColorTheme(secundary);
+  };
+
   // Color triggers
   const renderButtons = (colors) => {
     return colors.map((color, index) => {
@@ -87,10 +106,26 @@ const App = () => {
               <div className="header-main-options">
                 <div className="header-title">
                   <h2>To Do List</h2>
-                  <h2 className={`${color}-text`}>Monday 31</h2>
+                  <h2 className={`theme-text`}>Monday 31</h2>
                 </div>
                 <div className="dinamic-buttons">
                   <div id="toolbox">{renderButtons(colors)}</div>
+                </div>
+
+                <div>
+                  <input
+                    type="color"
+                    name=""
+                    id="colorValue"
+                    onChange={catchNewPrimaryColor}
+                  />
+                  <input
+                    type="color"
+                    name=""
+                    id="secundaryColor"
+                    onChange={catchNewSecundaryColor}
+                  />
+                  <p></p>
                 </div>
               </div>
               <TodoCreate addTodo={addTodo} color={color} />

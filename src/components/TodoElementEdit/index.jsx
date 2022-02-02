@@ -1,7 +1,7 @@
 import React from "react";
 import "./TodoElementEdit.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
+import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
 
 const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
   const [value, setValue] = React.useState(valueText);

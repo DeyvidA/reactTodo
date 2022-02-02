@@ -1,7 +1,6 @@
 :root {
-  --principal-color--: #2a37a2;
+  --main-color--: #2a37a2;
   --secundary-color--: aliceblue;
-  --secudary-background--: #fbfbfb;
 }
 * {
   padding: 0;
@@ -24,7 +23,7 @@ main {
   font-size: 40px;
 }
 .section-main .days {
-  color: var(--principal-color--);
+  color: var(--main-color--);
 }
 .header-main-options {
   display: flex;
@@ -48,31 +47,36 @@ main {
   width: 24px;
 }
 
+.color-selector {
+  width: 10px;
+  height: 10px;
+  background-color: var(--main-color--);
+}
 .blue {
-  background-color: var(--principal-color--);
+  background-color: var(--main-color--);
 }
 .blue-text {
-  color: var(--principal-color--);
+  color: var(--main-color--);
 }
 .blue-background {
   background-color: var(--secundary-color--);
 }
 .blue-background-complete {
-  background-color: var(--principal-color--);
+  background-color: var(--main-color--);
 }
 
-.yellow {
+/* .yellow {
   background-color: gold;
 }
 .yellow-text {
   color: Gold;
 }
 .yellow-background {
-  background-color: var(--secudary-background--);
+  background-color: #fbfbfb;
 }
 .yellow-background-complete {
   background-color: #cdcaa8;
-}
+} */
 
 .tooltip-theme {
   position: relative;
