@@ -46,7 +46,7 @@ const TodoCreate = ({ addTodo, color }) => {
   document.addEventListener("input", onExpandableTextareaInput);
 
   return (
-    <section className={`create-todo ${color}-background`}>
+    <section className={`create-todo theme-background`}>
       <textarea
         rows="1"
         id="textArea"

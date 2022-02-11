@@ -52,6 +52,9 @@ main {
   height: 10px;
   background-color: var(--main-color--);
 }
+h1 {
+  color: var(--main-color--);
+}
 .theme {
   background-color: var(--main-color--);
 }
@@ -64,19 +67,6 @@ main {
 .theme-background-complete {
   background-color: var(--main-color--);
 }
-
-/* .yellow {
-  background-color: gold;
-}
-.yellow-text {
-  color: Gold;
-}
-.yellow-background {
-  background-color: #fbfbfb;
-}
-.yellow-background-complete {
-  background-color: #cdcaa8;
-} */
 
 .tooltip-theme {
   position: relative;
@@ -103,6 +93,56 @@ main {
   visibility: visible;
 }
 
+.open-modal-theme {
+  width: auto;
+  align-items: center;
+  height: 25px;
+  border-radius: 10px;
+  border: 2px solid var(--main-color--);
+  padding: 0 5px;
+}
+
+.add-theme-container {
+  min-width: 280px;
+  width: 600px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px 40px;
+}
+.add-theme-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.add-theme-container form {
+  color: rgba(49, 49, 49, 0.8);
+  font-weight: 900;
+}
+.add-theme-container .save-theme {
+  align-self: flex-end;
+}
+.add-theme-container form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+}
+.add-theme-container form .buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form-theme {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+}
+.form-theme label {
+  width: 150px;
+}
+.form-theme input {
+  margin-left: 50px;
+}
 @media (max-width: 1533px) {
   .section-main {
     height: 100vh;
@@ -121,7 +161,22 @@ main {
     display: none;
   }
 }
-
+.modal-button {
+  padding: 1px;
+  font-size: 24px;
+  border-color: transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: 0.4s;
+}
+.modal-button:hover {
+  transform: scale(1.2);
+  color: rgb(96, 192, 0);
+  background-color: rgba(221, 221, 215, 0.3);
+}
+.modal-button-cancel:hover {
+  color: red;
+}
 @media (max-width: 1250px) {
   .section-main {
     width: 100vw;

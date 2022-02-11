@@ -3,6 +3,10 @@ import { SectionRight } from "../layouts/sectionRight";
 import { SectionLeft } from "../layouts/sectionLeft";
 import { TodoCreate } from "../components/TodoCreate";
 import { TodoList } from "../components/TodoList/";
+import { Modal } from "../components/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 import "./App.css";
 
@@ -12,33 +16,36 @@ const App = () => {
   if (!initialTodos) {
     initialTodos = [];
   }
+  // localStorege color
+  let initialThemes = JSON.parse(localStorage.getItem("themes"));
+  if (!initialThemes) {
+    initialThemes = [];
+  }
 
   const [todos, saveTodos] = useState(initialTodos);
+  const [themes, saveThemes] = useState(initialThemes);
+
+  const [openModal, setOpenModal] = useState(true);
   const [filterTodo, setFilterTodo] = useState("all");
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
   const [color, setColor] = useState("blue");
-  const colors = [
-    {
-      title: "yellow",
-      primary: "gold",
-      secundary: "green",
-    },
-    {
-      title: "blue",
-      primary: "#2a37a2",
-      secundary: "aliceblue",
-    },
-  ];
 
-  useEffect(() => {
-    if (color.title) {
-      console.log(color.title);
-    }
-    setColor(color);
-  }, [color]);
+  const themeValues = (valor) => {
+    themes.forEach((colors) => {
+      if (colors.title === valor) {
+        setColor(colors.title);
+        setPrimaryColorTheme(colors.primaryColor);
+        setSecundaryColorTheme(colors.secundaryColor);
+        // console.log(colors.title);
+        return null;
+      } else {
+        return null;
+      }
+    });
+  };
 
   // Todo Actions
   const addTodo = (text) => {
@@ -50,6 +57,23 @@ const App = () => {
   const deleteTodoCompleted = () => {
     const newTodo = todos.filter((todo) => todo.completed !== true);
     saveTodos(newTodo);
+  };
+
+  const addTheme = (title, primaryColor, secundaryColor) => {
+    const newTheme = [...themes];
+    newTheme.push({ title, primaryColor, secundaryColor });
+    saveThemes(newTheme);
+  };
+
+  const addThemeValue = () => {
+    let titleTheme = document.getElementById("themeName").value;
+    let mainColor = document.getElementById("primaryColor").value;
+    let secondColor = document.getElementById("secundaryColor").value;
+    if (titleTheme === "") {
+      alert("You need to write the Theme Name");
+    } else {
+      addTheme(titleTheme, mainColor, secondColor);
+    }
   };
 
   // Filter Todos
@@ -76,41 +100,45 @@ const App = () => {
     }
   }, [todos, initialTodos]);
 
+  useEffect(() => {
+    if (initialThemes) {
+      localStorage.setItem("themes", JSON.stringify(themes));
+    } else {
+      localStorage.setItem("themes", JSON.stringify([]));
+    }
+  }, [themes, initialThemes]);
+
+  // Dinamic Color
   const root = document.querySelector(":root");
 
   const setPrimaryColorTheme = (color) => {
     root.style.setProperty("--main-color--", color);
   };
-  const catchNewPrimaryColor = () => {
-    let color = document.getElementById("colorValue").value;
-    setPrimaryColorTheme(color);
-  };
 
   const setSecundaryColorTheme = (color) => {
     root.style.setProperty("--secundary-color--", color);
   };
-  const catchNewSecundaryColor = () => {
-    let secundary = document.getElementById("secundaryColor").value;
-    setSecundaryColorTheme(secundary);
-  };
 
   // Color triggers
-  const renderButtons = (colors) => {
-    return colors.map((color, index) => {
+  const renderButtons = () => {
+    return themes.map((color, index) => {
       return (
         <li
           key={index}
           className={"tooltip-theme color-selector " + color.title}
-          onClick={() => setColor(color)}
+          style={{ background: color.primaryColor }}
+          onClick={() => themeValues(color.title)}
         >
           <span className="tooltip-theme-text tooltip-theme-text">
-            change theme
+            {color.title}
           </span>
         </li>
       );
     });
   };
-
+  const opModal = () => {
+    setOpenModal(!openModal);
+  };
   // App UI
   return (
     <Fragment>
@@ -123,27 +151,14 @@ const App = () => {
               <div className="header-main-options">
                 <div className="header-title">
                   <h2>To Do List</h2>
-                  <h2 className={`theme-text`}>Monday 31</h2>
+                  <h1>Monday 31</h1>
                 </div>
                 <div className="dinamic-buttons">
-                  <div id="toolbox">{renderButtons(colors)}</div>
+                  <div id="toolbox">{renderButtons()}</div>
                 </div>
-
-                <div>
-                  <input
-                    type="color"
-                    name=""
-                    id="colorValue"
-                    onChange={catchNewPrimaryColor}
-                  />
-                  <input
-                    type="color"
-                    name=""
-                    id="secundaryColor"
-                    onChange={catchNewSecundaryColor}
-                  />
-                  <p></p>
-                </div>
+                <button className="open-modal-theme" onClick={() => opModal()}>
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
               </div>
               <TodoCreate addTodo={addTodo} color={color} />
             </div>
@@ -161,6 +176,44 @@ const App = () => {
         </section>
 
         <SectionRight color={color} />
+
+        {openModal && (
+          <Modal>
+            <div className="add-theme-container">
+              <h1>Make your own theme</h1>
+              <form action="">
+                <div className="form">
+                  <div className="form-theme form-theme-name">
+                    <label className="label-modal">Theme Name:</label>
+                    <input type="text" required id="themeName" />
+                  </div>
+
+                  <div className="form-theme form-theme-primary-color">
+                    <label className="label-modal">Primary Color:</label>
+                    <input type="color" name="" id="primaryColor" />
+                  </div>
+
+                  <div className="form-theme form-theme-secundary-color">
+                    <label className="label-modal">Secundary color:</label>
+                    <input type="color" name="" id="secundaryColor" />
+                  </div>
+                </div>
+                <div className="buttons">
+                  <button
+                    type="button"
+                    className="modal-button modal-button-cancel"
+                    onClick={opModal}
+                  >
+                    <FontAwesomeIcon icon={faWindowClose} />
+                  </button>
+                  <button onClick={addThemeValue} className="modal-button">
+                    <FontAwesomeIcon icon={faSave} />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </Modal>
+        )}
       </main>
     </Fragment>
   );

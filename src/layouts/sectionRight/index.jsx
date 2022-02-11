@@ -19,7 +19,7 @@ const SectionRight = ({ color }) => {
         <div className="user-profile"></div>
       </div>
       <div className="widgets">
-        <div className={`widget widget-music ${color}-background`}>
+        <div className={`widget widget-music theme-background`}>
           <div className="music">
             <div className="music-img"></div>
             <div className="music-name">
@@ -28,7 +28,7 @@ const SectionRight = ({ color }) => {
             </div>
           </div>
           <div className="music-progress">
-            <div className={`music-progress-bar ${color}`}></div>
+            <div className={`music-progress-bar theme`}></div>
           </div>
           <div className="reproductor-controls">
             <FontAwesomeIcon className="buttons" icon={faBackward} />
@@ -36,11 +36,11 @@ const SectionRight = ({ color }) => {
             <FontAwesomeIcon className="buttons" icon={faForward} />
           </div>
         </div>
-        <div className={`widget widge-time ${color}-background`}>
+        <div className={`widget widge-time theme-background`}>
           <h3>8:48 AM</h3>
           <span>Now is almost Sunny</span>
         </div>
-        <div className={`widget widget-info ${color}-background`}>
+        <div className={`widget widget-info theme-background`}>
           <div className="wiget-info-text">
             <h2>
               Unslash <br />
