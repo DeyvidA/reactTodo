@@ -20,26 +20,22 @@ const App = () => {
   const totalTodos = todos.length;
 
   const [color, setColor] = useState("blue");
-  const colors = ["blue", "yellow"];
-
-  const colorChange = {
-    yellow: {
+  const colors = [
+    {
       title: "yellow",
       primary: "gold",
       secundary: "green",
     },
-    blue: {
+    {
       title: "blue",
       primary: "#2a37a2",
       secundary: "aliceblue",
     },
-  };
+  ];
 
   useEffect(() => {
-    if (color == colorChange.blue.title) {
-      console.log(color);
-    } else {
-      console.log("nell");
+    if (color.title) {
+      console.log(color.title);
     }
     setColor(color);
   }, [color]);
@@ -104,7 +100,7 @@ const App = () => {
       return (
         <li
           key={index}
-          className={"tooltip-theme color-selector " + color}
+          className={"tooltip-theme color-selector " + color.title}
           onClick={() => setColor(color)}
         >
           <span className="tooltip-theme-text tooltip-theme-text">
