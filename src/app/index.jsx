@@ -25,7 +25,7 @@ const App = () => {
   const [todos, saveTodos] = useState(initialTodos);
   const [themes, saveThemes] = useState(initialThemes);
 
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [filterTodo, setFilterTodo] = useState("all");
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -50,7 +50,7 @@ const App = () => {
   // Todo Actions
   const addTodo = (text) => {
     const newTodo = [...todos];
-    newTodo.push({ text, completed: false, priority: false });
+    newTodo.push({ text, completed: false, priority: false, priorityLevel: 1 });
     saveTodos(newTodo);
   };
 
@@ -82,6 +82,9 @@ const App = () => {
     showTodos = todos;
     showTodos.sort((a, b) => {
       return b.priority - a.priority;
+    });
+    showTodos.sort((a, b) => {
+      return b.priorityLevel - a.priorityLevel;
     });
   } else if (filterTodo === "active") {
     showTodos = todos.filter((todo) => todo.completed !== true);

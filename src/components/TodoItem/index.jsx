@@ -11,8 +11,9 @@ import {
 import "./TodoItem.css";
 import "../TodoCreate/TodoCreate.css";
 
-const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
+const TodoItem = ({ todo, todos, index, saveTodos }) => {
   const [editTodo, setEditTodo] = React.useState(false);
+  const [priorityLevel, setPriorityLevel] = React.useState(false);
 
   var oldTextValue;
 
@@ -68,9 +69,26 @@ const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
     saveTodos(todoEdit);
   };
 
-  const sendValue = (text) => {
-    let sendValue = text;
-    return sendValue;
+  const sendValue = (priorityLeves) => {
+    let newValue = priorityLevel;
+    return newTextValue(newValue);
+  };
+
+  const enterKey = (event) => {
+    let catchValue = event.target.value;
+    let validation = event.target.value.trim().length > 0;
+
+    if (event.charCode === 13) {
+      sendValue(catchValue);
+      console.log(catchValue);
+      asignPriorityLevel();
+    } else if (event.charCode === 13 && validation) {
+      alert("You need write something");
+    }
+  };
+
+  const asignPriorityLevel = () => {
+    setPriorityLevel(!priorityLevel);
   };
 
   return (
@@ -118,6 +136,21 @@ const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
         )}
       </div>
       <div className={"actions-buttons"}>
+        {todo.priority && (
+          <div className="priority-level" onDoubleClick={asignPriorityLevel}>
+            {priorityLevel ? (
+              <input
+                id="priorityLevelValue"
+                className="priority-level"
+                onKeyPress={enterKey}
+                onChange={enterKey}
+                type="number"
+              />
+            ) : (
+              todo.priorityLevel
+            )}
+          </div>
+        )}
         <button
           // button-list button-save-edit tooltip
           className={`button-list button-edit tooltip`}
@@ -142,7 +175,7 @@ const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
         </button>
         <button
           id={editTodo ? "disabled" : "buttonEdit"}
-          onClick={() => priorityTodo(index)}
+          onClick={() => priorityTodo()}
           className={
             todo.priority
               ? "  button-list priority-active tooltip"

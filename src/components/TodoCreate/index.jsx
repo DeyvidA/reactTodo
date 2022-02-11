@@ -3,7 +3,7 @@ import "./TodoCreate.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const TodoCreate = ({ addTodo, color }) => {
+const TodoCreate = ({ addTodo }) => {
   // Add Todo con enter
 
   const addButton = () => {
