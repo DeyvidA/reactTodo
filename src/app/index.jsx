@@ -3,6 +3,7 @@ import { SectionRight } from "../layouts/sectionRight";
 import { SectionLeft } from "../layouts/sectionLeft";
 import { TodoCreate } from "../components/TodoCreate";
 import { TodoList } from "../components/TodoList/";
+import styled from "styled-components";
 
 import "./App.css";
 
@@ -22,27 +23,24 @@ const App = () => {
   const [color, setColor] = useState("blue");
   const colors = ["blue", "yellow"];
 
-  const colorChange = {
-    yellow: {
-      title: "yellow",
-      primary: "gold",
-      secundary: "green",
-    },
-    blue: {
-      title: "blue",
-      primary: "#2a37a2",
-      secundary: "aliceblue",
-    },
-  };
+  const colores = [
+    { title: "blue", color: "#2a37a2", secondColor: "aliceblue" },
+    { title: "red", color: "red", secondColor: "#ab31b1" },
+    { title: "yellow", color: "gold", secondColor: "yellow" },
+  ];
 
-  useEffect(() => {
-    if (color == colorChange.blue.title) {
-      console.log(color);
-    } else {
-      console.log("nell");
-    }
-    setColor(color);
-  }, [color]);
+  const themeValues = (valor) => {
+    colores.forEach((colore) => {
+      if (colore.title == valor) {
+        setColor(colore.title);
+        setPrimaryColorTheme(colore.color);
+        setSecundaryColorTheme(colore.secondColor);
+        return null;
+      } else {
+        return null;
+      }
+    });
+  };
 
   // Todo Actions
   const addTodo = (text) => {
@@ -85,6 +83,7 @@ const App = () => {
   const setPrimaryColorTheme = (color) => {
     root.style.setProperty("--main-color--", color);
   };
+
   const catchNewPrimaryColor = () => {
     let color = document.getElementById("colorValue").value;
     setPrimaryColorTheme(color);
@@ -97,15 +96,15 @@ const App = () => {
     let secundary = document.getElementById("secundaryColor").value;
     setSecundaryColorTheme(secundary);
   };
-
   // Color triggers
   const renderButtons = (colors) => {
     return colors.map((color, index) => {
       return (
         <li
           key={index}
-          className={"tooltip-theme color-selector " + color}
-          onClick={() => setColor(color)}
+          className={"tooltip-theme color-selector " + color.title}
+          style={{ background: color.color }}
+          onClick={() => themeValues(color.title)}
         >
           <span className="tooltip-theme-text tooltip-theme-text">
             change theme
@@ -127,10 +126,10 @@ const App = () => {
               <div className="header-main-options">
                 <div className="header-title">
                   <h2>To Do List</h2>
-                  <h2 className={`theme-text`}>Monday 31</h2>
+                  <h1>Monday 31</h1>
                 </div>
                 <div className="dinamic-buttons">
-                  <div id="toolbox">{renderButtons(colors)}</div>
+                  <div id="toolbox">{renderButtons(colores)}</div>
                 </div>
 
                 <div>

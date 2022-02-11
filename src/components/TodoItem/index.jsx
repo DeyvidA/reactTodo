@@ -78,8 +78,8 @@ const TodoItem = ({ todo, todos, index, saveTodos, color }) => {
       id={todo.priority ? "task-priority" : "todo-item"}
       className={
         todo.completed
-          ? `todo-item todo-item-complete ${color}-background-complete`
-          : `todo-item ${color}-background`
+          ? `todo-item todo-item-complete theme-background-complete`
+          : `todo-item theme-background`
       }
     >
       <div

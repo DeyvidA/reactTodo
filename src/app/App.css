@@ -52,6 +52,9 @@ main {
   height: 10px;
   background-color: var(--main-color--);
 }
+h1{
+  color: var(--main-color--);
+}
 .theme {
   background-color: var(--main-color--);
 }
