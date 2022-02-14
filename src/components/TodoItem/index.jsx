@@ -1,7 +1,12 @@
 import React from "react";
 import { TodoElementEdit } from "../TodoElementEdit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCrown,
+  faAngleUp,
+  faAngleDoubleUp,
+  faExclamationCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faSave,
   faTrashAlt,
@@ -36,8 +41,10 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
     let newTodo = todos.filter((todo) => todo.text);
     if (newTodo[index].priority) {
       newTodo[index].priority = false;
+      newTodo[index].priorityLevel = 1;
     } else {
       newTodo[index].priority = true;
+      newTodo[index].priorityLevel = 1;
     }
     newTodo = [...todos];
     saveTodos(newTodo);
@@ -68,27 +75,29 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
     todoEdit = [...todos];
     saveTodos(todoEdit);
   };
-
-  const sendValue = (priorityLeves) => {
-    let newValue = priorityLevel;
-    return newTextValue(newValue);
+  const editPriorityLevel = (priorityLevel, index) => {
+    let todoEdit = todos.filter((todo) => todo.text);
+    if (todoEdit[0]) {
+      console.log(priorityLevel);
+      todoEdit[index].priorityLevel = priorityLevel;
+    }
+    todoEdit = [...todos];
+    saveTodos(todoEdit);
   };
 
   const enterKey = (event) => {
     let catchValue = event.target.value;
     let validation = event.target.value.trim().length > 0;
-
     if (event.charCode === 13) {
-      sendValue(catchValue);
-      console.log(catchValue);
-      asignPriorityLevel();
+      setPriorityLevel(false);
+      editPriorityLevel(catchValue, index);
     } else if (event.charCode === 13 && validation) {
       alert("You need write something");
     }
   };
 
   const asignPriorityLevel = () => {
-    setPriorityLevel(!priorityLevel);
+    setPriorityLevel(true);
   };
 
   return (
@@ -126,10 +135,7 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
           todo.text
         ) : (
           <TodoElementEdit
-            todo={todo}
             valueText={todo.text}
-            saveTodos={saveTodos}
-            sendValue={sendValue}
             editState={setEditTodo}
             newTextValue={newTextValue}
           />
@@ -145,6 +151,8 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
                 onKeyPress={enterKey}
                 onChange={enterKey}
                 type="number"
+                max="3"
+                min="1"
               />
             ) : (
               todo.priorityLevel

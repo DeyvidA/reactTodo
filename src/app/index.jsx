@@ -39,7 +39,6 @@ const App = () => {
         setColor(colors.title);
         setPrimaryColorTheme(colors.primaryColor);
         setSecundaryColorTheme(colors.secundaryColor);
-        // console.log(colors.title);
         return null;
       } else {
         return null;
