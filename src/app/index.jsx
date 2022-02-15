@@ -5,13 +5,29 @@ import { TodoCreate } from "../components/TodoCreate";
 import { TodoList } from "../components/TodoList/";
 import { Modal } from "../components/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 import "./App.css";
 
 const App = () => {
-  // localStorage
+  //  API
+  const API_URL = "http://localhost:8080/quotes";
+  const HTMLresponse = document.querySelector("#app");
+
+  async function data(API_URL) {
+    return fetch(API_URL)
+      .then((response) => response.json())
+      .then((response) => {
+        const quoteText = response[0].quote;
+        const quoteAuthor = response[0].author;
+        HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`;
+      })
+      .catch((error) => error);
+  }
+  data(API_URL);
+
+  // localStoragE
   let initialTodos = JSON.parse(localStorage.getItem("todos"));
   if (!initialTodos) {
     initialTodos = [];
@@ -159,7 +175,7 @@ const App = () => {
                   <div id="toolbox">{renderButtons()}</div>
                 </div>
                 <button className="open-modal-theme" onClick={() => opModal()}>
-                  <FontAwesomeIcon icon={faPlus} />
+                  <FontAwesomeIcon icon={faPalette} />
                 </button>
               </div>
               <TodoCreate addTodo={addTodo} color={color} />

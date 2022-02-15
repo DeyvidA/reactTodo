@@ -1,12 +1,7 @@
 import React from "react";
 import { TodoElementEdit } from "../TodoElementEdit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCrown,
-  faAngleUp,
-  faAngleDoubleUp,
-  faExclamationCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import {
   faSave,
   faTrashAlt,
@@ -18,7 +13,6 @@ import "../TodoCreate/TodoCreate.css";
 
 const TodoItem = ({ todo, todos, index, saveTodos }) => {
   const [editTodo, setEditTodo] = React.useState(false);
-  const [priorityLevel, setPriorityLevel] = React.useState(false);
 
   var oldTextValue;
 
@@ -39,13 +33,19 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
 
   const priorityTodo = () => {
     let newTodo = todos.filter((todo) => todo.text);
+    // console.log(newTodo[index].priorityLevel);
     if (newTodo[index].priority) {
-      newTodo[index].priority = false;
-      newTodo[index].priorityLevel = 1;
+      if (newTodo[index].priorityLevel < 3) {
+        newTodo[index].priorityLevel += 1;
+      } else {
+        newTodo[index].priority = false;
+        newTodo[index].priorityLevel = 1;
+      }
     } else {
       newTodo[index].priority = true;
       newTodo[index].priorityLevel = 1;
     }
+    console.log(newTodo[index].priorityLevel);
     newTodo = [...todos];
     saveTodos(newTodo);
   };
@@ -75,34 +75,17 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
     todoEdit = [...todos];
     saveTodos(todoEdit);
   };
-  const editPriorityLevel = (priorityLevel, index) => {
-    let todoEdit = todos.filter((todo) => todo.text);
-    if (todoEdit[0]) {
-      console.log(priorityLevel);
-      todoEdit[index].priorityLevel = priorityLevel;
-    }
-    todoEdit = [...todos];
-    saveTodos(todoEdit);
-  };
-
-  const enterKey = (event) => {
-    let catchValue = event.target.value;
-    let validation = event.target.value.trim().length > 0;
-    if (event.charCode === 13) {
-      setPriorityLevel(false);
-      editPriorityLevel(catchValue, index);
-    } else if (event.charCode === 13 && validation) {
-      alert("You need write something");
-    }
-  };
-
-  const asignPriorityLevel = () => {
-    setPriorityLevel(true);
-  };
-
   return (
     <li
-      id={todo.priority ? "task-priority" : "todo-item"}
+      id={
+        todo.priority
+          ? todo.priorityLevel == "1"
+            ? "bronze"
+            : todo.priorityLevel == "2"
+            ? "silver"
+            : "gold"
+          : "default"
+      }
       className={
         todo.completed
           ? `todo-item todo-item-complete theme-background-complete`
@@ -142,23 +125,6 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
         )}
       </div>
       <div className={"actions-buttons"}>
-        {todo.priority && (
-          <div className="priority-level" onDoubleClick={asignPriorityLevel}>
-            {priorityLevel ? (
-              <input
-                id="priorityLevelValue"
-                className="priority-level"
-                onKeyPress={enterKey}
-                onChange={enterKey}
-                type="number"
-                max="3"
-                min="1"
-              />
-            ) : (
-              todo.priorityLevel
-            )}
-          </div>
-        )}
         <button
           // button-list button-save-edit tooltip
           className={`button-list button-edit tooltip`}
@@ -186,7 +152,11 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
           onClick={() => priorityTodo()}
           className={
             todo.priority
-              ? "  button-list priority-active tooltip"
+              ? todo.priorityLevel == "1"
+                ? "button-list tooltip bronze"
+                : todo.priorityLevel == "2"
+                ? "button-list tooltip silver"
+                : "button-list tooltip gold"
               : "button-list priority-desable tooltip"
           }
         >

@@ -8,6 +8,32 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
+//  API
+const API_URL =
+  "http://api.weatherstack.com/current?access_key=4a28051a847bc19f66da61b0cd9cff74&query=Managua";
+
+const HTMLresponse = document.querySelector("#wheather-time");
+
+const data = (API_URL) => {
+  return fetch(API_URL)
+    .then((response) => response.json())
+    .then((response) => {
+      // console.log(response);
+      const current = response.current.observation_time;
+      const wheatherDesc = response.current.weather_descriptions;
+      const wheatherImg = response.current.weather_icons;
+      HTMLresponse.innerHTML = `<h3>${current}</h3>
+      <span><img src='${wheatherImg}'/> ${wheatherDesc}</span>`;
+    })
+    .catch((error) => error);
+};
+data(API_URL);
+
+// const current = data(API_URL).current.observation_time;
+// console.log(current);
+// const wheatherDesc = data(API_URL).current.weather_descriptions;
+// const wheatherImg = data(API_URL).current.weather_icons;
+
 const SectionRight = ({ color }) => {
   return (
     <section className="section-chill">
@@ -36,18 +62,16 @@ const SectionRight = ({ color }) => {
             <FontAwesomeIcon className="buttons" icon={faForward} />
           </div>
         </div>
-        <div className={`widget widge-time theme-background`}>
-          <h3>8:48 AM</h3>
-          <span>Now is almost Sunny</span>
-        </div>
+        <div
+          id="wheather-time"
+          className={`widget widge-time theme-background`}
+        ></div>
         <div className={`widget widget-info theme-background`}>
           <div className="wiget-info-text">
             <h2>
-              Unslash <br />
-              the freelance <br />
-              super power
+              Everyday quote: <br />
             </h2>
-            <span>Un limited task, premium features and much more</span>
+            <span id="app"></span>
           </div>
           <div className="info-more">
             <SvgImg />

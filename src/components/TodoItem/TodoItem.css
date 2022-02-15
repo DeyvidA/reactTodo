@@ -61,16 +61,35 @@
 .display-none {
   display: none;
 }
-.priority-active {
+/* .priority-active {
   color: goldenrod;
-}
+} */
 
 .priority-desable {
   color: gray;
 }
-#task-priority {
-  border: 2px solid goldenrod;
+
+.gold {
+  color: #FFDF00;
 }
+#gold {
+  border: 2px solid #FFDF00;
+}
+
+.silver {
+  color: silver;
+}
+#silver {
+  border: 2px solid #C0C0C0;
+}
+
+.bronze {
+  color: #CD7F32;
+}
+#bronze {
+  border: 2px solid #CD7F32;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
