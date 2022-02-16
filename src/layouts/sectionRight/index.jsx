@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./sectionRight.css";
 import { SvgImg } from "../../components/svg/SvgImg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,33 +8,26 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-//  API
-const API_URL =
-  "http://api.weatherstack.com/current?access_key=4a28051a847bc19f66da61b0cd9cff74&query=Managua";
-
-const HTMLresponse = document.querySelector("#wheather-time");
-
-const data = (API_URL) => {
-  return fetch(API_URL)
-    .then((response) => response.json())
-    .then((response) => {
-      // console.log(response);
-      const current = response.current.observation_time;
-      const wheatherDesc = response.current.weather_descriptions;
-      const wheatherImg = response.current.weather_icons;
-      HTMLresponse.innerHTML = `<h3>${current}</h3>
-      <span><img src='${wheatherImg}'/> ${wheatherDesc}</span>`;
-    })
-    .catch((error) => error);
-};
-data(API_URL);
-
-// const current = data(API_URL).current.observation_time;
-// console.log(current);
-// const wheatherDesc = data(API_URL).current.weather_descriptions;
-// const wheatherImg = data(API_URL).current.weather_icons;
-
 const SectionRight = ({ color }) => {
+  //  API
+  useEffect(() => {
+    const API_URL =
+      "http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+
+    const HTMLresponse = document.querySelector("#wheather-time");
+
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        const current = response.current.observation_time;
+        const wheatherDesc = response.current.weather_descriptions;
+        const wheatherImg = response.current.weather_icons;
+        HTMLresponse.innerHTML = `<h3 class="observation-time">${current}</h3>
+        <span class="weather_descriptions"><img class="wheather-img" src='${wheatherImg}'/> ${wheatherDesc}</span>`;
+      })
+      .catch((error) => error);
+  });
   return (
     <section className="section-chill">
       <div className="login-info">

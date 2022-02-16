@@ -106,3 +106,16 @@
 svg {
   height: 150px;
 }
+.observation-time {
+  font-size: 15px;
+}
+.wheather-img {
+  width: 30px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+.weather_descriptions {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}

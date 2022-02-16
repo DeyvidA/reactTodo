@@ -13,21 +13,19 @@ import "./App.css";
 const App = () => {
   //  API
   const API_URL = "http://localhost:8080/quotes";
-  const HTMLresponse = document.querySelector("#app");
 
-  async function data(API_URL) {
-    return fetch(API_URL)
+  useEffect(() => {
+    fetch(API_URL)
       .then((response) => response.json())
       .then((response) => {
+        const HTMLresponse = document.querySelector("#app");
         const quoteText = response[0].quote;
         const quoteAuthor = response[0].author;
-        HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`;
+        console.log(quoteAuthor);
+        return (HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
       })
       .catch((error) => error);
-  }
-  data(API_URL);
-
-  // localStoragE
+  }, []);
   let initialTodos = JSON.parse(localStorage.getItem("todos"));
   if (!initialTodos) {
     initialTodos = [];
@@ -37,6 +35,7 @@ const App = () => {
   if (!initialThemes) {
     initialThemes = [];
   }
+  // localStorag
 
   const [todos, saveTodos] = useState(initialTodos);
   const [themes, saveThemes] = useState(initialThemes);
