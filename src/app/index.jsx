@@ -26,6 +26,7 @@ const App = () => {
       })
       .catch((error) => error);
   }, []);
+
   let initialTodos = JSON.parse(localStorage.getItem("todos"));
   if (!initialTodos) {
     initialTodos = [];

@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 import "./sectionRight.css";
+import { Zoom } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
 import { SvgImg } from "../../components/svg/SvgImg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faForward,
-  faBackward,
-  faPause,
-} from "@fortawesome/free-solid-svg-icons";
 
-const SectionRight = ({ color }) => {
+const SectionRight = () => {
   //  API
   useEffect(() => {
     const API_URL =
-      "http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+      "..,http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
@@ -28,6 +24,12 @@ const SectionRight = ({ color }) => {
       })
       .catch((error) => error);
   });
+
+  const images = [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBZgpadvnLQBPqEzSM5yQ32yOUqH5tGtEFKpGIiqQ8ReSGPQHn-N8XvxAjHoZ9lBFu_g&usqp=CAU",
+    "http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg",
+  ];
+
   return (
     <section className="section-chill">
       <div className="login-info">
@@ -39,21 +41,11 @@ const SectionRight = ({ color }) => {
       </div>
       <div className="widgets">
         <div className={`widget widget-music theme-background`}>
-          <div className="music">
-            <div className="music-img"></div>
-            <div className="music-name">
-              <h5>Toys Soldier</h5>
-              <span>Eminem</span>
-            </div>
-          </div>
-          <div className="music-progress">
-            <div className={`music-progress-bar theme`}></div>
-          </div>
-          <div className="reproductor-controls">
-            <FontAwesomeIcon className="buttons" icon={faBackward} />
-            <FontAwesomeIcon className="buttons" icon={faPause} />
-            <FontAwesomeIcon className="buttons" icon={faForward} />
-          </div>
+          <Zoom scale={0.4} duration={1000} arrows={false}>
+            {images.map((each, index) => (
+              <img key={index} src={each} style={{ width: "100%" }} />
+            ))}
+          </Zoom>
         </div>
         <div
           id="wheather-time"
