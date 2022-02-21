@@ -5,14 +5,16 @@ import "react-slideshow-image/dist/styles.css";
 import { SvgImg } from "../../components/svg/SvgImg";
 
 const SectionRight = () => {
-  //  API
+  //  API CONNECTIONS
+
+  // Wheather API
   useEffect(() => {
-    const API_URL =
+    const API_URL_WHEATHER =
       "..,http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
-    fetch(API_URL)
+    fetch(API_URL_WHEATHER)
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
@@ -25,6 +27,23 @@ const SectionRight = () => {
       .catch((error) => error);
   });
 
+  // Quotes API
+  useEffect(() => {
+    const API_URL_QUOTES = "http://localhost:8080/quotes";
+
+    fetch(API_URL_QUOTES)
+      .then((response) => response.json())
+      .then((response) => {
+        const HTMLresponse = document.querySelector("#app");
+        const quoteText = response[0].quote;
+        const quoteAuthor = response[0].author;
+        console.log(quoteAuthor);
+        return (HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
+      })
+      .catch((error) => error);
+  }, []);
+
+  // SLIDER IMAGES
   const images = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBZgpadvnLQBPqEzSM5yQ32yOUqH5tGtEFKpGIiqQ8ReSGPQHn-N8XvxAjHoZ9lBFu_g&usqp=CAU",
     "http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg",
@@ -43,7 +62,12 @@ const SectionRight = () => {
         <div className={`widget widget-music theme-background`}>
           <Zoom scale={0.4} duration={1000} arrows={false}>
             {images.map((each, index) => (
-              <img key={index} src={each} style={{ width: "100%" }} />
+              <img
+                key={index}
+                src={each}
+                style={{ width: "100%" }}
+                alt="time"
+              />
             ))}
           </Zoom>
         </div>

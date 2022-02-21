@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SectionRight } from "../layouts/sectionRight";
 import { SectionLeft } from "../layouts/sectionLeft";
 import { TodoCreate } from "../components/TodoCreate";
@@ -11,22 +11,6 @@ import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 import "./App.css";
 
 const App = () => {
-  //  API
-  const API_URL = "http://localhost:8080/quotes";
-
-  useEffect(() => {
-    fetch(API_URL)
-      .then((response) => response.json())
-      .then((response) => {
-        const HTMLresponse = document.querySelector("#app");
-        const quoteText = response[0].quote;
-        const quoteAuthor = response[0].author;
-        console.log(quoteAuthor);
-        return (HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
-      })
-      .catch((error) => error);
-  }, []);
-
   let initialTodos = JSON.parse(localStorage.getItem("todos"));
   if (!initialTodos) {
     initialTodos = [];
@@ -159,81 +143,79 @@ const App = () => {
   };
   // App UI
   return (
-    <Fragment>
-      <main className="main">
-        <SectionLeft color={color} />
+    <main className="main">
+      <SectionLeft color={color} />
 
-        <section className="section-main">
-          <div className="section">
-            <div className="header-main">
-              <div className="header-main-options">
-                <div className="header-title">
-                  <h2>To Do List</h2>
-                  <h1>Monday 31</h1>
+      <section className="section-main">
+        <div className="section">
+          <div className="header-main">
+            <div className="header-main-options">
+              <div className="header-title">
+                <h2>To Do List</h2>
+                <h1>Monday 31</h1>
+              </div>
+              <div className="dinamic-buttons">
+                <div id="toolbox">{renderButtons()}</div>
+              </div>
+              <button className="open-modal-theme" onClick={() => opModal()}>
+                <FontAwesomeIcon icon={faPalette} />
+              </button>
+            </div>
+            <TodoCreate addTodo={addTodo} color={color} />
+          </div>
+          <TodoList
+            todos={todos}
+            color={color}
+            saveTodos={saveTodos}
+            showTodos={showTodos}
+            totalTodos={totalTodos}
+            setFilterTodo={setFilterTodo}
+            completedTodos={completedTodos}
+            deleteTodoCompleted={deleteTodoCompleted}
+          />
+        </div>
+      </section>
+
+      <SectionRight color={color} />
+
+      {openModal && (
+        <Modal>
+          <div className="add-theme-container">
+            <h1>Make your own theme</h1>
+            <form action="">
+              <div className="form">
+                <div className="form-theme form-theme-name">
+                  <label className="label-modal">Theme Name:</label>
+                  <input type="text" required id="themeName" />
                 </div>
-                <div className="dinamic-buttons">
-                  <div id="toolbox">{renderButtons()}</div>
+
+                <div className="form-theme form-theme-primary-color">
+                  <label className="label-modal">Primary Color:</label>
+                  <input type="color" name="" id="primaryColor" />
                 </div>
-                <button className="open-modal-theme" onClick={() => opModal()}>
-                  <FontAwesomeIcon icon={faPalette} />
+
+                <div className="form-theme form-theme-secundary-color">
+                  <label className="label-modal">Secundary color:</label>
+                  <input type="color" name="" id="secundaryColor" />
+                </div>
+              </div>
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="modal-button modal-button-cancel"
+                  onClick={opModal}
+                >
+                  <FontAwesomeIcon icon={faWindowClose} />
+                </button>
+                <button onClick={addThemeValue} className="modal-button">
+                  <FontAwesomeIcon icon={faSave} />
                 </button>
               </div>
-              <TodoCreate addTodo={addTodo} color={color} />
-            </div>
-            <TodoList
-              todos={todos}
-              color={color}
-              saveTodos={saveTodos}
-              showTodos={showTodos}
-              totalTodos={totalTodos}
-              setFilterTodo={setFilterTodo}
-              completedTodos={completedTodos}
-              deleteTodoCompleted={deleteTodoCompleted}
-            />
+            </form>
           </div>
-        </section>
-
-        <SectionRight color={color} />
-
-        {openModal && (
-          <Modal>
-            <div className="add-theme-container">
-              <h1>Make your own theme</h1>
-              <form action="">
-                <div className="form">
-                  <div className="form-theme form-theme-name">
-                    <label className="label-modal">Theme Name:</label>
-                    <input type="text" required id="themeName" />
-                  </div>
-
-                  <div className="form-theme form-theme-primary-color">
-                    <label className="label-modal">Primary Color:</label>
-                    <input type="color" name="" id="primaryColor" />
-                  </div>
-
-                  <div className="form-theme form-theme-secundary-color">
-                    <label className="label-modal">Secundary color:</label>
-                    <input type="color" name="" id="secundaryColor" />
-                  </div>
-                </div>
-                <div className="buttons">
-                  <button
-                    type="button"
-                    className="modal-button modal-button-cancel"
-                    onClick={opModal}
-                  >
-                    <FontAwesomeIcon icon={faWindowClose} />
-                  </button>
-                  <button onClick={addThemeValue} className="modal-button">
-                    <FontAwesomeIcon icon={faSave} />
-                  </button>
-                </div>
-              </form>
-            </div>
-          </Modal>
-        )}
-      </main>
-    </Fragment>
+        </Modal>
+      )}
+    </main>
   );
 };
 

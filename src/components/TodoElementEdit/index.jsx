@@ -1,48 +1,44 @@
 import React from "react";
 import "./TodoElementEdit.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
   const [value, setValue] = React.useState(valueText);
 
-  const sendValue = (text) => {
-    let newValue = text;
-    return newTextValue(newValue);
-  };
-
-  let originalValue = value;
-
-  const enterKey = (event) => {
-    let catchValueText = event.target.value;
+  const saveEdit = (state) => {
+    let catchValueText = document.getElementById("inputEdit").value;
     setValue(catchValueText);
-    let validation = event.target.value.trim().length > 0;
-
-    if (event.charCode === 13 && validation) {
-      sendValue(catchValueText);
-      alert("has been successfully saved");
-    } else if (event.charCode === 13 && validation) {
-      alert("You need write something");
+    let validation = catchValueText.trim().length > 0;
+    if (validation && state) {
+      newTextValue(catchValueText);
+      alert("Save");
+      editState(false);
+    } else if (validation === false && state) {
+      alert("you Need write Something");
     }
-  };
-
-  const closeEdit = () => {
-    editState(false);
   };
 
   return (
     <div className="edit-container">
       <input
+        id="inputEdit"
         className="input-edit"
         value={value}
-        onKeyPress={enterKey}
-        onChange={enterKey}
-        placeholder={originalValue}
+        placeholder={valueText}
+        onChange={() => saveEdit(false)}
       />
       <div className="button-container">
-        <button className="cancel-edit tooltip" onClick={closeEdit}>
+        <button
+          className="cancel-edit tooltip"
+          onClick={() => editState(false)}
+        >
           <span className="tooltip-text">Cancel</span>
           <FontAwesomeIcon icon={faWindowClose} />
+        </button>
+        <button className="cancel-edit tooltip" onClick={() => saveEdit(true)}>
+          <span className="tooltip-text">Save</span>
+          <FontAwesomeIcon icon={faSave} />
         </button>
       </div>
     </div>

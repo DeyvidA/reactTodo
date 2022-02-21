@@ -27,7 +27,7 @@ const TodoList = ({
         deleteTodoCompleted={deleteTodoCompleted}
       />
       <ul className="todo-list-container">
-        {showTodos.map((todo, index = crypto.UUID()) => (
+        {showTodos.map((todo, index) => (
           <TodoItem
             key={index}
             todo={todo}
