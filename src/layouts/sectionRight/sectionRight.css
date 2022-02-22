@@ -28,7 +28,8 @@
   padding: 10px;
 }
 .widget-music {
-  height: 120px;
+  height: auto;
+
 }
 .widget-music .img-slider {
   border-radius: 10%;

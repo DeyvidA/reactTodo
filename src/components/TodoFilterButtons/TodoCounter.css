@@ -1,3 +1,5 @@
+@import "../../app/App.css";
+
 .todo-couter-container {
   display: flex;
   justify-content: space-between;
@@ -33,11 +35,11 @@
   transition: 0.5s;
 }
 .filter-btn:hover {
-  color: #2a37a2;
+  color: var(--main-color--);
   height: 100%;
 }
 .filter-btn-active {
-  color: #2a37a2;
+  color: var(--main-color--);
 }
 
 .clear-btn:hover {

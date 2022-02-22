@@ -1,0 +1,68 @@
+@import "../../app/App.css";
+
+.weekly-pin-list {
+  height: 35vh;
+  overflow-y: auto;
+}
+.weekly-pin-list li {
+  margin-bottom: 20px;
+  background: rgb(255, 255, 255);
+  height: auto;
+  padding: 15px 10px;
+  border-radius: 14px;
+  list-style: none;
+}
+.weekly-pin-add {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin: 20px 0;
+  margin-right: 10px;
+  background-color: var(--main-color--);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.weekly-pin-add button {
+  width: 25px;
+  height: 25px;
+  margin: 5px 10px;
+  border-radius: 10px;
+  border-color: transparent;
+  font-size: 15px;
+  background-color: #fff;
+  color: var(--main-color--);
+}
+.weekly-pin-add h3 {
+  color: white;
+}
+.disabled {
+  display: none;
+}
+.pin-element {
+  display: flex;
+}
+.pin-header {
+  font-size: 16px;
+  font-weight: 600;
+}
+.pin-date{
+    font-size: 14px;
+}
+.pin-data {
+  font-size: 18px;
+}
+.pin-delete{
+  background-color: transparent;
+  display: none;
+}
+.pin-icon {
+  width: 20px;
+  height: 20px;
+  background: var(--main-color--);
+  margin: 0px 8px;
+  border-radius: 4px;
+  border-color: transparent;
+}
+.pin-element:hover .pin-delete{
+  display: inline-block;
+}

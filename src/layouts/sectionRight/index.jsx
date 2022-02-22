@@ -4,24 +4,36 @@ import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { SvgImg } from "../../components/svg/SvgImg";
 
+// Provitional Img Imports
+import logo from "../../img/Nicarao-Agency---Vertical-Logo---Full-Color.png";
+import logo1 from "../../img/Nicarao-Agency-Horizontal-Black.png";
+import logo2 from "../../img/Nicarao-Agency-Horizontal-Blue-and-White.png";
+import logo3 from "../../img/Nicarao-Agency-Horizontal-Logo-Full-Color.png";
+import logo4 from "../../img/Nicarao-Agency-Horizontal-White-and-gray.png";
+import logo5 from "../../img/Nicarao-Agency-Horizontal-White.png";
+import logo6 from "../../img/Nicarao-Agency-Vertical-Black.png";
+import logo7 from "../../img/Nicarao-Agency-Vertical-Black.png";
+import logo8 from "../../img/Nicarao-Agency-Vertical-Black.png";
+import logo9 from "../../img/Nicarao-Agency-Vertical-Black.png";
+
 const SectionRight = () => {
   //  API CONNECTIONS
 
   // Wheather API
   useEffect(() => {
     const API_URL_WHEATHER =
-      "..,http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+      ",.http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
     fetch(API_URL_WHEATHER)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        const current = response.current.observation_time;
+        const locatition = response.location.country;
+        const current = response.location.region;
         const wheatherDesc = response.current.weather_descriptions;
         const wheatherImg = response.current.weather_icons;
-        HTMLresponse.innerHTML = `<h3 class="observation-time">${current}</h3>
+        HTMLresponse.innerHTML = `<h3 class="observation-time">${current}-${locatition} </h3>
         <span class="weather_descriptions"><img class="wheather-img" src='${wheatherImg}'/> ${wheatherDesc}</span>`;
       })
       .catch((error) => error);
@@ -37,7 +49,6 @@ const SectionRight = () => {
         const HTMLresponse = document.querySelector("#app");
         const quoteText = response[0].quote;
         const quoteAuthor = response[0].author;
-        console.log(quoteAuthor);
         return (HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
       })
       .catch((error) => error);
@@ -45,8 +56,16 @@ const SectionRight = () => {
 
   // SLIDER IMAGES
   const images = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBZgpadvnLQBPqEzSM5yQ32yOUqH5tGtEFKpGIiqQ8ReSGPQHn-N8XvxAjHoZ9lBFu_g&usqp=CAU",
-    "http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg",
+    logo,
+    logo1,
+    logo2,
+    logo3,
+    logo4,
+    logo5,
+    logo6,
+    logo7,
+    logo8,
+    logo9,
   ];
 
   return (

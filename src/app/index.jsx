@@ -7,6 +7,7 @@ import { Modal } from "../components/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
+import moment from "moment";
 
 import "./App.css";
 
@@ -141,6 +142,35 @@ const App = () => {
   const opModal = () => {
     setOpenModal(!openModal);
   };
+
+  // DateTime
+  let dateOfMoth = moment().date();
+  let dayOfWeek = moment().day();
+
+  switch (dayOfWeek) {
+    case 1:
+      dayOfWeek = "Monday";
+      break;
+    case 2:
+      dayOfWeek = "Tuestday";
+      break;
+    case 3:
+      dayOfWeek = "Wednessday";
+      break;
+    case 4:
+      dayOfWeek = "Thurstday";
+      break;
+    case 5:
+      dayOfWeek = "Friday";
+      break;
+    case 6:
+      dayOfWeek = "Saturday";
+      break;
+    default:
+      dayOfWeek = "Sunday";
+      break;
+  }
+
   // App UI
   return (
     <main className="main">
@@ -152,7 +182,9 @@ const App = () => {
             <div className="header-main-options">
               <div className="header-title">
                 <h2>To Do List</h2>
-                <h1>Monday 31</h1>
+                <h1>
+                  {dayOfWeek} {dateOfMoth}
+                </h1>
               </div>
               <div className="dinamic-buttons">
                 <div id="toolbox">{renderButtons()}</div>
