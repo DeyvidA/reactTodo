@@ -1,44 +1,15 @@
-
-.todoCouter-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 25px;
-	background: #fff;
-	margin-top: 2px;
+p {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: var(--principal-color--);
+  font-size: 20px;
+  font-weight: 900;
+  padding: 10px 30px;
 }
-
-.items-left {	
-	font-weight: 400;
-	font-size: 12px;
+@media (max-width: 817px) {
+  p {
+    text-align: center;
+    font-size: 15px;
+  }
 }
-
-.clear-btn {
-	cursor: pointer;
-	font-family: inherit;
-	font-size: 15px;
-	border: none;
-	margin-left: 10px;
-	background: transparent;
-	font-weight: 400;
-}
-.filter-btn{
-	border: none;
-	font-size: 13px;
-	color: black;
-	margin-left: 50px;
-	height: inherit;
-	background-color: transparent;
-	font-weight: 900;
-}
-.filter-btn:hover{
-	color: blue;
-}
-.filter-btn-active{
-	color: blue;
-}
-
-.clear-btn:hover {
-	color: lightseagreen;
-}
-

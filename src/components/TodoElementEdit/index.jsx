@@ -1,35 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import "./TodoElementEdit.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
-const TodoElementEdit = ({newValue, valueText, sendValue}) => {
+const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
+  const [value, setValue] = useState(valueText);
 
+  const saveEdit = (state) => {
+    let catchValueText = document.getElementById("inputEdit").value;
+    setValue(catchValueText);
+    let validation = catchValueText.trim().length > 0;
+    if (validation && state) {
+      newTextValue(catchValueText);
+      alert("Save");
+      editState(false);
+    } else if (validation === false && state) {
+      alert("you Need write Something");
+    }
+  };
 
-    
-    
-    const enterKey = (event) => {
-        
-        newValue = event.target.value;
-        console.log(newValue);
-
-        let valor = newValue
-		
-        if (event.charCode === 13 && event.target.value !== '') {
-            newValue = newValue = event.target.value
-            newValue(event.target.value);
-
-            sendValue = valor;
-
-			event.target.value = '';
-		} else if (event.charCode === 13 && event.target.value === '') {
-			alert("You need write something");
-		}
-
-	};
-
-    return (
-        <input  
-        onKeyPress={enterKey}
+  return (
+    <div className="edit-container">
+      <input
+        id="inputEdit"
+        className="input-edit"
+        value={value}
         placeholder={valueText}
-         />
-    )
-}
-export { TodoElementEdit }
+        onChange={() => saveEdit(false)}
+      />
+      <div className="button-container">
+        <button
+          className="cancel-edit tooltip"
+          onClick={() => editState(false)}
+        >
+          <span className="tooltip-text">Cancel</span>
+          <FontAwesomeIcon icon={faWindowClose} />
+        </button>
+        <button className="cancel-edit tooltip" onClick={() => saveEdit(true)}>
+          <span className="tooltip-text">Save</span>
+          <FontAwesomeIcon icon={faSave} />
+        </button>
+      </div>
+    </div>
+  );
+};
+export { TodoElementEdit };

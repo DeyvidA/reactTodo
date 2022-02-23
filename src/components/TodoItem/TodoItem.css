@@ -1,51 +1,136 @@
-.TodoItem {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 25px;
-	border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
-	list-style: none;
-	width: 100%;
-	font-size: 20px;
-	background-color: #fff;
+.todo-item,
+.todo-item-complete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  mix-width: 288px;
+  list-style: none;
+  margin: 10px 0;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 20px 25px;
+  border-radius: 20px;
+}
+.todo-item-complete {
+  color: white;
 }
 
-.todoText {
-	font-size: 18px;
-	font-weight: 400;
+.todo-item:hover {
+  box-shadow: inset 0px 0px 15px lightgrey;
 }
 
-.todoText-check {
-	text-decoration: line-through;
+.todo-text {
+  font-size: 18px;
+  font-weight: 400;
+}
+.todo-text-check {
+  text-decoration: line-through;
 }
 
-.buttonList{
-	border: none;
-	width: 30px;
-	height: 30px;
-	font-size: 20px;
-	font-weight: 900;
-	background-color: transparent;
-	transition: .5s;
-
+.button-list {
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 900;
+  background-color: transparent;
+  transition: 0.5s;
+  margin-right: 7px;
 }
-
+.button-list:hover {
+  font-size: 22px;
+  border-radius: 10px;
+  transform: scale(1.2);
+  box-shadow: 0px 1px 4px #393736;
+}
 .circulo button:hover {
-	color: 	#7FFF00;
-	background-color: black;
-	border-radius: 50%;	
-	transform: scale(1.2);
+  color: #30b409;
+  background-color: transparent;
 }
-.buttonDelete{
-	font-weight: 400;
+.button-delete:hover {
+  color: red;
 }
-.buttonDelete:hover{
-	color: red;
-	background-color: black;
-	border-radius: 50%;	
-	transform: scale(1.2);
+.button-save-edit:hover {
+  color: #30b409;
+}
 
+.button-edit:hover {
+  color: #30b409;
 }
-.lua{
-	z-index: 3;
+.display-none {
+  display: none;
+}
+/* .priority-active {
+  color: goldenrod;
+} */
+
+.priority-desable {
+  color: gray;
+}
+
+.gold {
+  color: #FFDF00;
+}
+#gold {
+  border: 2px solid #FFDF00;
+}
+
+.silver {
+  color: silver;
+}
+#silver {
+  border: 2px solid #C0C0C0;
+}
+
+.bronze {
+  color: #CD7F32;
+}
+#bronze {
+  border: 2px solid #CD7F32;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.priority-level {
+  width: 40px;
+  height: 25px;
+  margin-right: 15px;
+  padding: 0;
+  font-weight: 400;
+}
+.actions-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.tooltip .toooltip-text {
+  z-index: 1;
+  color: #fff;
+  width: 120px;
+  padding: 5px 0;
+  margin-left: 10px;
+  visibility: hidden;
+  border-radius: 6px;
+  text-align: center;
+  position: absolute;
+  transform: scale(0.5);
+  background-color: rgba(49, 49, 49, 0.7);
+}
+
+.tooltip:hover .toooltip-text {
+  visibility: visible;
+  width: 120;
+  bottom: 100%;
+  margin-left: -40px;
+}
+
+.tooltip:hover .tooltip-text-right {
+  margin-left: -40px;
+}
+
+#disabled {
+  display: none;
 }

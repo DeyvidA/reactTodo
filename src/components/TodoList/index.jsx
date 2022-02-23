@@ -1,41 +1,37 @@
-import React from 'react';
-import { TodoItem } from '../TodoItem';
-import { TodoCounter } from '../TodoCounter';
-import './TodoList.css';
+import "./TodoList.css";
+import React, { useContext } from "react";
+import { TodoItem } from "../TodoItem";
+import { TodoContext } from "../TodoContext";
+import { TodoCounter } from "../TodoCounter";
+import { TodoFilterButtons } from "../TodoFilterButtons";
 
-const  TodoList = ({
-	showTodos,
-	totalTodos,
-	completedTodos,
-	deleteTodo,
-	checkTodo,
-	deleteTodoCompleted,
-	setFilterTodo,
-	todos,
-	saveTodos
-}) => {
-	return (
-		<section className="list">
-			<ul>
-				{showTodos.map((todo) => (
-					<TodoItem
-						checkTodo={checkTodo}
-						deleteTodo={deleteTodo}
-						todo={todo}
-						key={todo.text}
-						todos={todos}
-						saveTodos={saveTodos}
-					/>
-				))}
-			</ul>
-			<TodoCounter
-				deleteTodoCompleted={deleteTodoCompleted}
-				totalTodos={totalTodos}
-				completedTodos={completedTodos}
-				setFilterTodo={setFilterTodo}
-			/>
-		</section>
-	);
-}
+const TodoList = () => {
+  const {
+    color,
+    showTodos,
+    totalTodos,
+    completedTodos,
+    setFilterTodo,
+    deleteTodoCompleted,
+  } = useContext(TodoContext);
+  return (
+    <section className="list-element">
+      <TodoCounter
+        color={color}
+        totalTodos={totalTodos}
+        completedTodos={completedTodos}
+      />
+      <TodoFilterButtons
+        setFilterTodo={setFilterTodo}
+        deleteTodoCompleted={deleteTodoCompleted}
+      />
+      <ul className="todo-list-container">
+        {showTodos.map((todo, index) => (
+          <TodoItem key={index} todo={todo} index={index} />
+        ))}
+      </ul>
+    </section>
+  );
+};
 
 export { TodoList };

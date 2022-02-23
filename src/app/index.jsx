@@ -1,97 +1,121 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Header } from '../components/Header';
-import { TodoCreate } from '../components/TodoCreate';
-import { TodoList } from '../components/TodoList/';
-import './App.css';
+import React from "react";
+import { SectionRight } from "../layouts/sectionRight";
+import { SectionLeft } from "../layouts/sectionLeft";
+import { TodoCreate } from "../components/TodoCreate";
+import { TodoList } from "../components/TodoList/";
+import { Modal } from "../components/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
+import { TodoProvider } from "../components/TodoContext";
+import { TodoContext } from "../components/TodoContext";
+
+import "./App.css";
 
 const App = () => {
-	// localStorage
-	let initialTodos = JSON.parse(localStorage.getItem('todos'));
-	if (!initialTodos) {
-		initialTodos = [];
-	}
+  // App UI
+  return (
+    <TodoProvider>
+      <TodoContext.Consumer>
+        {({
+          color,
+          dayOfWeek,
+          dateOfMoth,
+          renderButtons,
+          opModal,
+          addTodo,
+          todos,
+          saveTodos,
+          showTodos,
+          totalTodos,
+          setFilterTodo,
+          completedTodos,
+          deleteTodoCompleted,
+          openModal,
+          addThemeValue,
+        }) => (
+          <main className="main">
+            <SectionLeft color={color} />
 
-	const [todos, saveTodos] = useState(initialTodos);
-	const [filterTodo, setFilterTodo] = useState('all');
-	
-	const completedTodos = todos.filter((todo) => todo.completed).length;
-	const totalTodos = todos.length;
+            <section className="section-main">
+              <div className="section">
+                <div className="header-main">
+                  <div className="header-main-options">
+                    <div className="header-title">
+                      <h2>To Do List</h2>
+                      <h1>
+                        {dayOfWeek} {dateOfMoth}
+                      </h1>
+                    </div>
+                    <div className="dinamic-buttons">
+                      <div id="toolbox">{renderButtons()}</div>
+                    </div>
+                    <button
+                      className="open-modal-theme"
+                      onClick={() => opModal()}
+                    >
+                      <FontAwesomeIcon icon={faPalette} />
+                    </button>
+                  </div>
+                  <TodoCreate addTodo={addTodo} color={color} />
+                </div>
+                <TodoList
+                  todos={todos}
+                  color={color}
+                  saveTodos={saveTodos}
+                  showTodos={showTodos}
+                  totalTodos={totalTodos}
+                  setFilterTodo={setFilterTodo}
+                  completedTodos={completedTodos}
+                  deleteTodoCompleted={deleteTodoCompleted}
+                />
+              </div>
+            </section>
 
+            <SectionRight color={color} />
 
-	// Todo Actions
+            {openModal && (
+              <Modal>
+                <div className="add-theme-container">
+                  <h1>Make your own theme</h1>
+                  <form action="">
+                    <div className="form">
+                      <div className="form-theme form-theme-name">
+                        <label className="label-modal">Theme Name:</label>
+                        <input type="text" required id="themeName" />
+                      </div>
 
+                      <div className="form-theme form-theme-primary-color">
+                        <label className="label-modal">Primary Color:</label>
+                        <input type="color" name="" id="primaryColor" />
+                      </div>
 
-	const addTodo = (text) => {
-		const newTodo = [...todos];
-		newTodo.push({ text, completed: false });
-		saveTodos(newTodo);
-	};
-
-	const deleteTodo = (text) => {
-		const newTodo = todos.filter((todo) => todo.text !== text);
-		saveTodos(newTodo);
-	};
-
-	const deleteTodoCompleted = () => {
-		const newTodo = todos.filter((todo) => todo.completed !== true);
-		saveTodos(newTodo);
-	};
-
-
-	const checkTodo = (text) => {
-		let newTodo = todos.filter((todo) => todo.text === text);
-		if (newTodo[0].completed) {
-			newTodo[0].completed = false;
-		} else {
-			newTodo[0].completed = true;
-		}
-
-		newTodo = [...todos];
-		saveTodos(newTodo);
-	};
-
-
-	// Filter Todos
-	let showTodos = [];
-	if (filterTodo === 'all') {
-		showTodos = todos;
-	} else if (filterTodo === 'active') {
-		showTodos = todos.filter((todo) => todo.completed !== true);
-	} else if (filterTodo === 'completed') {
-		showTodos = todos.filter((todo) => todo.completed !== false);
-	}
-	
-
-	//  Local Storage State
-	useEffect(() => {
-		if (initialTodos) {
-			localStorage.setItem('todos', JSON.stringify(todos));
-		} else {
-			localStorage.setItem('todos', JSON.stringify([]));
-		}
-	}, [todos, initialTodos]);
-
-	
-	// App UI
-	return (
-		<Fragment>	
-			<Header />
-			<main className="main">
-				<TodoCreate   addTodo={addTodo} />
-				<TodoList
-					completedTodos={completedTodos}
-					totalTodos={totalTodos}
-					showTodos={showTodos}
-					checkTodo={checkTodo}
-					deleteTodo={deleteTodo}
-					deleteTodoCompleted={deleteTodoCompleted}
-					setFilterTodo={setFilterTodo}
-					todos = {todos}
-					saveTodos = {saveTodos}
-				/>
-			</main>
-		</Fragment>
-	);
-}
+                      <div className="form-theme form-theme-secundary-color">
+                        <label className="label-modal">Secundary color:</label>
+                        <input type="color" name="" id="secundaryColor" />
+                      </div>
+                    </div>
+                    <div className="buttons">
+                      <button
+                        type="button"
+                        className="modal-button modal-button-cancel"
+                        onClick={opModal}
+                      >
+                        <FontAwesomeIcon icon={faWindowClose} />
+                      </button>
+                      <button onClick={addThemeValue} className="modal-button">
+                        <FontAwesomeIcon icon={faSave} />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </Modal>
+            )}
+          </main>
+        )}
+      </TodoContext.Consumer>
+    </TodoProvider>
+  );
+};
 
 export default App;
