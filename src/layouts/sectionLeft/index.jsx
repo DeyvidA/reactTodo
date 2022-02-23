@@ -14,7 +14,6 @@ const SectionLeft = () => {
       <div className="section-reminders">
         <div className="reminders-title">
           <h4>Weekly Pinned</h4>
-          <button className={`theme-text`}>View All</button>
         </div>
         <TodoWeeklyPin />
         <div className="reminder reminder-calendar">

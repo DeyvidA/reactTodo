@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoElementEdit.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
-  const [value, setValue] = React.useState(valueText);
+  const [value, setValue] = useState(valueText);
 
   const saveEdit = (state) => {
     let catchValueText = document.getElementById("inputEdit").value;

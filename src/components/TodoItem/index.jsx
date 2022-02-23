@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { TodoContext } from "../TodoContext";
 import { TodoElementEdit } from "../TodoElementEdit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import "../TodoCreate/TodoCreate.css";
+import "./TodoItem.css";
 import {
   faTrashAlt,
   faCheckCircle,
   faEdit,
 } from "@fortawesome/free-regular-svg-icons";
-import "./TodoItem.css";
-import "../TodoCreate/TodoCreate.css";
 
-const TodoItem = ({ todo, todos, index, saveTodos }) => {
-  const [editTodo, setEditTodo] = React.useState(false);
+const TodoItem = ({ index, todo }) => {
+  const { checkTodo, deleteTodo, priorityTodo, saveTodos, todos } =
+    useContext(TodoContext);
+
+  const [editTodo, setEditTodo] = useState(false);
 
   const newTextValue = (text) => {
     let todoEdit = todos.filter((todo) => todo.text);
@@ -24,39 +28,6 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
     return text;
   };
 
-  const checkTodo = () => {
-    let newTodo = todos.filter((todo) => todo.text);
-    if (newTodo[index].completed) {
-      newTodo[index].completed = false;
-    } else {
-      newTodo[index].completed = true;
-    }
-    newTodo = [...todos];
-    saveTodos(newTodo);
-  };
-
-  const priorityTodo = () => {
-    let newTodo = todos.filter((todo) => todo.text);
-    if (newTodo[index].priority) {
-      if (newTodo[index].priorityLevel < 3) {
-        newTodo[index].priorityLevel += 1;
-      } else {
-        newTodo[index].priority = false;
-        newTodo[index].priorityLevel = 1;
-      }
-    } else {
-      newTodo[index].priority = true;
-      newTodo[index].priorityLevel = 1;
-    }
-    newTodo = [...todos];
-    saveTodos(newTodo);
-  };
-
-  const deleteTodo = () => {
-    const newTodo = todos.filter((todo) => todo.text);
-    newTodo.splice(index, 1);
-    saveTodos(newTodo);
-  };
   return (
     <li
       id={
@@ -128,7 +99,7 @@ const TodoItem = ({ todo, todos, index, saveTodos }) => {
         </button>
         <button
           id={editTodo ? "disabled" : "buttonEdit"}
-          onClick={() => priorityTodo()}
+          onClick={() => priorityTodo(index)}
           className={
             todo.priority
               ? todo.priorityLevel == "1"

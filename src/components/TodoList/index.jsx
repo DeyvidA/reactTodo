@@ -1,20 +1,19 @@
-import React from "react";
+import "./TodoList.css";
+import React, { useContext } from "react";
 import { TodoItem } from "../TodoItem";
+import { TodoContext } from "../TodoContext";
 import { TodoCounter } from "../TodoCounter";
 import { TodoFilterButtons } from "../TodoFilterButtons";
-import "./TodoList.css";
 
-const TodoList = ({
-  color,
-  todos,
-  showTodos,
-  saveTodos,
-  checkTodo,
-  totalTodos,
-  setFilterTodo,
-  completedTodos,
-  deleteTodoCompleted,
-}) => {
+const TodoList = () => {
+  const {
+    color,
+    showTodos,
+    totalTodos,
+    completedTodos,
+    setFilterTodo,
+    deleteTodoCompleted,
+  } = useContext(TodoContext);
   return (
     <section className="list-element">
       <TodoCounter
@@ -28,15 +27,7 @@ const TodoList = ({
       />
       <ul className="todo-list-container">
         {showTodos.map((todo, index) => (
-          <TodoItem
-            key={index}
-            todo={todo}
-            todos={todos}
-            color={color}
-            index={index}
-            checkTodo={checkTodo}
-            saveTodos={saveTodos}
-          />
+          <TodoItem key={index} todo={todo} index={index} />
         ))}
       </ul>
     </section>
