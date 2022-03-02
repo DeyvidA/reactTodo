@@ -1,18 +1,47 @@
 import React from "react";
-import { SectionRight } from "../layouts/sectionRight";
-import { SectionLeft } from "../layouts/sectionLeft";
-import { TodoCreate } from "../components/TodoCreate";
-import { TodoList } from "../components/TodoList/";
+import moment from "moment";
 import { Modal } from "../components/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPalette } from "@fortawesome/free-solid-svg-icons";
-import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
-import { TodoProvider } from "../components/TodoContext";
+import { TodoList } from "../components/TodoList";
+import { TodoCreate } from "../components/TodoCreate";
 import { TodoContext } from "../components/TodoContext";
+import { TodoProvider } from "../components/TodoContext";
+import { SectionLeft } from "../layouts/sectionLeft";
+import { SectionRight } from "../layouts/sectionRight";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 import "./App.css";
 
 const App = () => {
+  // DateTime
+  let dateOfMoth = moment().date();
+  let dayOfWeek = moment().day();
+
+  switch (dayOfWeek) {
+    case 1:
+      dayOfWeek = "Monday";
+      break;
+    case 2:
+      dayOfWeek = "Tuestday";
+      break;
+    case 3:
+      dayOfWeek = "Wednessday";
+      break;
+    case 4:
+      dayOfWeek = "Thurstday";
+      break;
+    case 5:
+      dayOfWeek = "Friday";
+      break;
+    case 6:
+      dayOfWeek = "Saturday";
+      break;
+    default:
+      dayOfWeek = "Sunday";
+      break;
+  }
+
   // App UI
   const saveimages = () => {
     const image = document.getElementById("element").value;
@@ -21,6 +50,7 @@ const App = () => {
   return (
     <TodoProvider>
       <TodoContext.Consumer>
+<<<<<<< HEAD
         {({
           color,
           dayOfWeek,
@@ -37,6 +67,9 @@ const App = () => {
           openModal,
           addThemeValue,
         }) => (
+=======
+        {({ renderButtons, opModal, openModal, addTheme }) => (
+>>>>>>> c8d8d9611d10190f499bbe5eb72b0a8c5159e870
           <main className="main">
             <SectionLeft />
 
@@ -62,16 +95,7 @@ const App = () => {
                   </div>
                   <TodoCreate />
                 </div>
-                <TodoList
-                  todos={todos}
-                  color={color}
-                  saveTodos={saveTodos}
-                  showTodos={showTodos}
-                  totalTodos={totalTodos}
-                  setFilterTodo={setFilterTodo}
-                  completedTodos={completedTodos}
-                  deleteTodoCompleted={deleteTodoCompleted}
-                />
+                <TodoList />
               </div>
               <form action="">
                 <input
@@ -86,7 +110,7 @@ const App = () => {
               </form>
             </section>
 
-            <SectionRight color={color} />
+            <SectionRight />
 
             {openModal && (
               <Modal>
@@ -117,7 +141,7 @@ const App = () => {
                       >
                         <FontAwesomeIcon icon={faWindowClose} />
                       </button>
-                      <button onClick={addThemeValue} className="modal-button">
+                      <button onClick={addTheme} className="modal-button">
                         <FontAwesomeIcon icon={faSave} />
                       </button>
                     </div>

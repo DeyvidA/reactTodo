@@ -28,7 +28,11 @@ const SectionRight = () => {
   // Wheather API
   useEffect(() => {
     const API_URL_WHEATHER =
+<<<<<<< HEAD
       ".http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+=======
+      "32http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+>>>>>>> c8d8d9611d10190f499bbe5eb72b0a8c5159e870
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
