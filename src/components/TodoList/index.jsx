@@ -6,25 +6,11 @@ import { TodoCounter } from "../TodoCounter";
 import { TodoFilterButtons } from "../TodoFilterButtons";
 
 const TodoList = () => {
-  const {
-    color,
-    showTodos,
-    totalTodos,
-    completedTodos,
-    setFilterTodo,
-    deleteTodoCompleted,
-  } = useContext(TodoContext);
+  const { showTodos } = useContext(TodoContext);
   return (
     <section className="list-element">
-      <TodoCounter
-        color={color}
-        totalTodos={totalTodos}
-        completedTodos={completedTodos}
-      />
-      <TodoFilterButtons
-        setFilterTodo={setFilterTodo}
-        deleteTodoCompleted={deleteTodoCompleted}
-      />
+      <TodoCounter />
+      <TodoFilterButtons />
       <ul className="todo-list-container">
         {showTodos.map((todo, index) => (
           <TodoItem key={index} todo={todo} index={index} />

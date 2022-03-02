@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../TodoContext";
 import "./TodoCounter.css";
 
-const TodoFilterButtons = ({ deleteTodoCompleted, setFilterTodo }) => {
+const TodoFilterButtons = () => {
+  const { deleteTodoCompleted, setFilterTodo } = useContext(TodoContext);
   const [filterStatePending, setFilterStatePending] = React.useState(false);
 
   // Filter buttons

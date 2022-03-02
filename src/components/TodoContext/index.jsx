@@ -1,22 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
-import moment from "moment";
+import React, { createContext, useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 const TodoContext = createContext();
 
 const TodoProvider = (props) => {
-  let initialTodos = JSON.parse(localStorage.getItem("todos"));
-  if (!initialTodos) {
-    initialTodos = [];
-  }
-  // localStorege color
-  let initialThemes = JSON.parse(localStorage.getItem("themes"));
-  if (!initialThemes) {
-    initialThemes = [];
-  }
-  // localStora
-
-  const [todos, saveTodos] = useState(initialTodos);
-  const [themes, saveThemes] = useState(initialThemes);
+  const [todos, saveTodos] = useLocalStorage("todos", []);
+  const [themes, saveThemes] = useLocalStorage("themes", []);
 
   const [openModal, setOpenModal] = useState(false);
   const [filterTodo, setFilterTodo] = useState("all");
@@ -24,25 +13,29 @@ const TodoProvider = (props) => {
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
-  const [color, setColor] = useState("blue");
-
   const themeValues = (valor) => {
+    const root = document.querySelector(":root");
+
     themes.forEach((colors) => {
-      if (colors.title === valor) {
-        setColor(colors.title);
-        setPrimaryColorTheme(colors.primaryColor);
-        setSecundaryColorTheme(colors.secundaryColor);
+      if (colors.titleTheme === valor) {
+        root.style.setProperty("--main-color--", colors.mainColor);
+        root.style.setProperty("--secundary-color--", colors.secundaryColor);
         return null;
       } else {
         return null;
       }
     });
   };
-
+  const [priorityLevel, setPriorityLevel] = useState(false);
   // Todo Actions
   const addTodo = (text) => {
     const newTodo = [...todos];
-    newTodo.push({ text, completed: false, priority: false, priorityLevel: 1 });
+    newTodo.push({
+      text,
+      completed: false,
+      priority: false,
+      priorityLevel: 1,
+    });
     saveTodos(newTodo);
   };
 
@@ -51,20 +44,17 @@ const TodoProvider = (props) => {
     saveTodos(newTodo);
   };
 
-  const addTheme = (title, primaryColor, secundaryColor) => {
-    const newTheme = [...themes];
-    newTheme.push({ title, primaryColor, secundaryColor });
-    saveThemes(newTheme);
-  };
-
-  const addThemeValue = () => {
+  const addTheme = () => {
     let titleTheme = document.getElementById("themeName").value;
     let mainColor = document.getElementById("primaryColor").value;
-    let secondColor = document.getElementById("secundaryColor").value;
+    let secundaryColor = document.getElementById("secundaryColor").value;
+
     if (titleTheme === "") {
       alert("You need to write the Theme Name");
     } else {
-      addTheme(titleTheme, mainColor, secondColor);
+      const newTheme = [...themes];
+      newTheme.push({ titleTheme, mainColor, secundaryColor });
+      saveThemes(newTheme);
     }
   };
 
@@ -86,46 +76,18 @@ const TodoProvider = (props) => {
     showTodos = todos.filter((todo) => todo.priority !== false);
   }
 
-  //  Local Storage State
-  useEffect(() => {
-    if (initialTodos) {
-      localStorage.setItem("todos", JSON.stringify(todos));
-    } else {
-      localStorage.setItem("todos", JSON.stringify([]));
-    }
-  }, [todos, initialTodos]);
-
-  useEffect(() => {
-    if (initialThemes) {
-      localStorage.setItem("themes", JSON.stringify(themes));
-    } else {
-      localStorage.setItem("themes", JSON.stringify([]));
-    }
-  }, [themes, initialThemes]);
-
-  // Dinamic Color
-  const root = document.querySelector(":root");
-
-  const setPrimaryColorTheme = (color) => {
-    root.style.setProperty("--main-color--", color);
-  };
-
-  const setSecundaryColorTheme = (color) => {
-    root.style.setProperty("--secundary-color--", color);
-  };
-
   // Color triggers
   const renderButtons = () => {
     return themes.map((color, index) => {
       return (
         <li
           key={index}
-          className={"tooltip-theme color-selector " + color.title}
-          style={{ background: color.primaryColor }}
-          onClick={() => themeValues(color.title)}
+          className={"tooltip-theme color-selector " + color.titleTheme}
+          style={{ background: color.mainColor }}
+          onClick={() => themeValues(color.titleTheme)}
         >
           <span className="tooltip-theme-text tooltip-theme-text">
-            {color.title}
+            {color.titleTheme}
           </span>
         </li>
       );
@@ -134,34 +96,6 @@ const TodoProvider = (props) => {
   const opModal = () => {
     setOpenModal(!openModal);
   };
-
-  // DateTime
-  let dateOfMoth = moment().date();
-  let dayOfWeek = moment().day();
-
-  switch (dayOfWeek) {
-    case 1:
-      dayOfWeek = "Monday";
-      break;
-    case 2:
-      dayOfWeek = "Tuestday";
-      break;
-    case 3:
-      dayOfWeek = "Wednessday";
-      break;
-    case 4:
-      dayOfWeek = "Thurstday";
-      break;
-    case 5:
-      dayOfWeek = "Friday";
-      break;
-    case 6:
-      dayOfWeek = "Saturday";
-      break;
-    default:
-      dayOfWeek = "Sunday";
-      break;
-  }
 
   // Todos Actions
   const checkTodo = (index) => {
@@ -201,24 +135,23 @@ const TodoProvider = (props) => {
   return (
     <TodoContext.Provider
       value={{
-        color,
-        dayOfWeek,
-        dateOfMoth,
-        renderButtons,
+        todos,
         opModal,
         addTodo,
-        todos,
+        addTheme,
         saveTodos,
+        openModal,
+        checkTodo,
         showTodos,
         totalTodos,
-        setFilterTodo,
-        completedTodos,
-        deleteTodoCompleted,
-        openModal,
-        addThemeValue,
-        priorityTodo,
-        checkTodo,
         deleteTodo,
+        priorityTodo,
+        renderButtons,
+        setFilterTodo,
+        priorityLevel,
+        completedTodos,
+        setPriorityLevel,
+        deleteTodoCompleted,
       }}
     >
       {props.children}
