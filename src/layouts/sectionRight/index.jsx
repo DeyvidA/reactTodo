@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
 import "./sectionRight.css";
+import React, { useEffect } from "react";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { SvgImg } from "../../components/svg/SvgImg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faForward,
+  faBackward,
+  faPlay,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Provitional Img Imports
 import logo from "../../img/Nicarao-Agency---Vertical-Logo---Full-Color.png";
@@ -22,7 +28,7 @@ const SectionRight = () => {
   // Wheather API
   useEffect(() => {
     const API_URL_WHEATHER =
-      ",.http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+      ".http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
@@ -103,6 +109,17 @@ const SectionRight = () => {
           </div>
           <div className="info-more">
             <SvgImg />
+          </div>
+          <div className="quotes-controls">
+            <button className="quote-control-button">
+              <FontAwesomeIcon icon={faBackward} />
+            </button>
+            <button className="quote-control-button">
+              <FontAwesomeIcon icon={faPlay} />
+            </button>
+            <button className="quote-control-button">
+              <FontAwesomeIcon icon={faForward} />
+            </button>
           </div>
         </div>
       </div>

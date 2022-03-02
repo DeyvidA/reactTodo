@@ -14,6 +14,10 @@ import "./App.css";
 
 const App = () => {
   // App UI
+  const saveimages = () => {
+    const image = document.getElementById("element").value;
+    console.log(image);
+  };
   return (
     <TodoProvider>
       <TodoContext.Consumer>
@@ -23,7 +27,6 @@ const App = () => {
           dateOfMoth,
           renderButtons,
           opModal,
-          addTodo,
           todos,
           saveTodos,
           showTodos,
@@ -35,7 +38,7 @@ const App = () => {
           addThemeValue,
         }) => (
           <main className="main">
-            <SectionLeft color={color} />
+            <SectionLeft />
 
             <section className="section-main">
               <div className="section">
@@ -57,7 +60,7 @@ const App = () => {
                       <FontAwesomeIcon icon={faPalette} />
                     </button>
                   </div>
-                  <TodoCreate addTodo={addTodo} color={color} />
+                  <TodoCreate />
                 </div>
                 <TodoList
                   todos={todos}
@@ -70,6 +73,17 @@ const App = () => {
                   deleteTodoCompleted={deleteTodoCompleted}
                 />
               </div>
+              <form action="">
+                <input
+                  required
+                  type="file"
+                  id="element"
+                  accept="image/png, image/jpeg"
+                />
+                <button type="button" onClick={saveimages}>
+                  send
+                </button>
+              </form>
             </section>
 
             <SectionRight color={color} />

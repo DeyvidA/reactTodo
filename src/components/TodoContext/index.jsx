@@ -1,10 +1,18 @@
 import React, { createContext, useEffect, useState } from "react";
-import moment from "moment";
+// import moment from "moment";
 
 const TodoContext = createContext();
 
+var data;
 const TodoProvider = (props) => {
-  let initialTodos = JSON.parse(localStorage.getItem("todos"));
+  const context = (datas) => {
+    // datas++;
+    data = datas;
+    console.log(data);
+    return datas;
+  };
+  // console.log(data);
+  let initialTodos = JSON.parse(localStorage.getItem(data));
   if (!initialTodos) {
     initialTodos = [];
   }
@@ -41,6 +49,7 @@ const TodoProvider = (props) => {
 
   // Todo Actions
   const addTodo = (text) => {
+    console.log(text);
     const newTodo = [...todos];
     newTodo.push({ text, completed: false, priority: false, priorityLevel: 1 });
     saveTodos(newTodo);
@@ -135,33 +144,33 @@ const TodoProvider = (props) => {
     setOpenModal(!openModal);
   };
 
-  // DateTime
-  let dateOfMoth = moment().date();
-  let dayOfWeek = moment().day();
+  // // DateTime
+  // let dateOfMoth = moment().date();
+  // let dayOfWeek = moment().day();
 
-  switch (dayOfWeek) {
-    case 1:
-      dayOfWeek = "Monday";
-      break;
-    case 2:
-      dayOfWeek = "Tuestday";
-      break;
-    case 3:
-      dayOfWeek = "Wednessday";
-      break;
-    case 4:
-      dayOfWeek = "Thurstday";
-      break;
-    case 5:
-      dayOfWeek = "Friday";
-      break;
-    case 6:
-      dayOfWeek = "Saturday";
-      break;
-    default:
-      dayOfWeek = "Sunday";
-      break;
-  }
+  // switch (dayOfWeek) {
+  //   case 1:
+  //     dayOfWeek = "Monday";
+  //     break;
+  //   case 2:
+  //     dayOfWeek = "Tuestday";
+  //     break;
+  //   case 3:
+  //     dayOfWeek = "Wednessday";
+  //     break;
+  //   case 4:
+  //     dayOfWeek = "Thurstday";
+  //     break;
+  //   case 5:
+  //     dayOfWeek = "Friday";
+  //     break;
+  //   case 6:
+  //     dayOfWeek = "Saturday";
+  //     break;
+  //   default:
+  //     dayOfWeek = "Sunday";
+  //     break;
+  // }
 
   // Todos Actions
   const checkTodo = (index) => {
@@ -177,16 +186,23 @@ const TodoProvider = (props) => {
 
   const priorityTodo = (index) => {
     let newTodo = todos.filter((todo) => todo.text);
+    // if (newTodo[index].priority) {
+    //   if (newTodo[index].priorityLevel < 3) {
+    //     newTodo[index].priorityLevel += 1;
+    //   } else {
+    //     newTodo[index].priority = false;
+    //     newTodo[index].priorityLevel = 1;
+    //   }
+    // } else {
+    //   newTodo[index].priority = true;
+    //   newTodo[index].priorityLevel = 1;
+    // }
     if (newTodo[index].priority) {
-      if (newTodo[index].priorityLevel < 3) {
-        newTodo[index].priorityLevel += 1;
-      } else {
-        newTodo[index].priority = false;
-        newTodo[index].priorityLevel = 1;
-      }
+      newTodo[index].priorityLevel = "0";
+      newTodo[index].priority = false;
     } else {
       newTodo[index].priority = true;
-      newTodo[index].priorityLevel = 1;
+      newTodo[index].priorityLevel = "1";
     }
     newTodo = [...todos];
     saveTodos(newTodo);
@@ -202,8 +218,8 @@ const TodoProvider = (props) => {
     <TodoContext.Provider
       value={{
         color,
-        dayOfWeek,
-        dateOfMoth,
+        // dayOfWeek,
+        // dateOfMoth,
         renderButtons,
         opModal,
         addTodo,
@@ -219,6 +235,7 @@ const TodoProvider = (props) => {
         priorityTodo,
         checkTodo,
         deleteTodo,
+        context,
       }}
     >
       {props.children}

@@ -1,10 +1,14 @@
 import "./SectionLeft.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Calendar from "react-calendar";
+import { TodoContext } from "../../components/TodoContext";
 import { TodoWeeklyPin } from "../../components/TodoWeeklyPin";
 
 const SectionLeft = () => {
   const [value, onChange] = useState(new Date());
+  const { context } = useContext(TodoContext);
+
+  context(value);
   return (
     <section className={`section-dates theme-background`}>
       <div className="section-dates-header">

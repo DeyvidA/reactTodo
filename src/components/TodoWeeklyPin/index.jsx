@@ -70,7 +70,7 @@ const TodoWeeklyPin = () => {
         onClick={() => setCreatePin(true)}
       >
         <button>
-          <FontAwesomeIcon icon={faPlus} onClick={() => setCreatePin(true)} />
+          <FontAwesomeIcon icon={faPlus} />
         </button>
         <h3>Add New Weekly Pin</h3>
       </div>

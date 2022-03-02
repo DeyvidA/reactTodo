@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TodoContext } from "../TodoContext";
 import { TodoElementEdit } from "../TodoElementEdit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faCrown, faMedal } from "@fortawesome/free-solid-svg-icons";
 import "../TodoCreate/TodoCreate.css";
 import "./TodoItem.css";
 import {
@@ -15,6 +15,8 @@ const TodoItem = ({ index, todo }) => {
   const { checkTodo, deleteTodo, priorityTodo, saveTodos, todos } =
     useContext(TodoContext);
 
+  const [priorityLevel, setPriorityLevel] = useState(false);
+
   const [editTodo, setEditTodo] = useState(false);
 
   const newTextValue = (text) => {
@@ -26,6 +28,25 @@ const TodoItem = ({ index, todo }) => {
     todoEdit = [...todos];
     saveTodos(todoEdit);
     return text;
+  };
+  const enterKey = (event) => {
+    let catchValue = event.target.value;
+    let validation = event.target.value.trim().length > 0;
+    if (event.charCode === 13) {
+      setPriorityLevel(false);
+      editPriorityLevel(catchValue, index);
+    } else if (event.charCode === 13 && validation) {
+      alert("You need write something");
+    }
+  };
+  const editPriorityLevel = (priorityLevel, index) => {
+    let todoEdit = todos.filter((todo) => todo.text);
+    if (todoEdit[0]) {
+      console.log(priorityLevel);
+      todoEdit[index].priorityLevel = priorityLevel;
+    }
+    todoEdit = [...todos];
+    saveTodos(todoEdit);
   };
 
   return (
@@ -78,6 +99,34 @@ const TodoItem = ({ index, todo }) => {
         )}
       </div>
       <div className={"actions-buttons"}>
+        {todo.priority && (
+          <button
+            className={
+              todo.priority
+                ? todo.priorityLevel === "1"
+                  ? "button-list tooltip bronze"
+                  : todo.priorityLevel === "2"
+                  ? "button-list tooltip silver"
+                  : "button-list tooltip gold"
+                : "button-list priority-desable tooltip"
+            }
+            onDoubleClick={() => setPriorityLevel(true)}
+          >
+            {priorityLevel ? (
+              <input
+                id="priorityLevelValue"
+                className="priority-level"
+                onKeyPress={enterKey}
+                onChange={enterKey}
+                type="number"
+                max="3"
+                min="1"
+              />
+            ) : (
+              <FontAwesomeIcon icon={faMedal} />
+            )}
+          </button>
+        )}
         <button
           className={editTodo ? `disable` : `button-list button-edit tooltip`}
           onClick={() => setEditTodo(!editTodo)}
@@ -102,9 +151,9 @@ const TodoItem = ({ index, todo }) => {
           onClick={() => priorityTodo(index)}
           className={
             todo.priority
-              ? todo.priorityLevel == "1"
+              ? todo.priorityLevel === "1"
                 ? "button-list tooltip bronze"
-                : todo.priorityLevel == "2"
+                : todo.priorityLevel === "2"
                 ? "button-list tooltip silver"
                 : "button-list tooltip gold"
               : "button-list priority-desable tooltip"

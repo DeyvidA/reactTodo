@@ -20,22 +20,6 @@
   transform: scale(1.2);
   box-shadow: 0px 1px 4px #393736;
 }
-.input-edit {
-  height: 40px;
-  max-height: 90px;
-  min-height: 30px;
-  width: 80%;
-  min-width: 280px;
-  font-size: 16px;
-  font-weight: 500;
-  border: 0;
-  border-radius: 6px;
-  padding: 10px;
-  display: block;
-  overflow: hidden;
-  box-sizing: padding-box;
-  box-shadow: 2px 2px 8px rgba(black, 0.3);
-}
 .inpute-dit:focus {
   color: green;
 }
