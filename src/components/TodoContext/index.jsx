@@ -50,9 +50,11 @@ const TodoProvider = (props) => {
   };
 
   // Filter Todos
-  let showTodos = [];
+  var showTodos = [];
   if (filterTodo === "all") {
-    showTodos = todos;
+    showTodos = todos[0].todo;
+    // let toro = showTodos[0].todo;
+    // showTodos = toro;
     showTodos.sort((a, b) => {
       return b.priority - a.priority;
     });
@@ -69,7 +71,8 @@ const TodoProvider = (props) => {
 
   const addTodo = (text) => {
     const newTodo = [...todos];
-    newTodo.push({
+    console.log(newTodo);
+    newTodo[0].todo.push({
       text,
       completed: false,
       priority: false,
@@ -77,32 +80,6 @@ const TodoProvider = (props) => {
     });
     saveTodos(newTodo);
   };
-  // const addTodo = (text) => {
-  //   const newTodo = [...todos];
-  //   newTodo.push({
-  //     todoDay,
-  //     value: {
-  //       text,
-  //       completed: false,
-  //       priority: false,
-  //       priorityLevel: 1,
-  //     },
-  //   });
-  //   saveTodos(newTodo);
-  // };
-  // const addTodo = (text) => {
-  //   const newTodo = [...todos];
-  //   newTodo.push({
-  //     todoDay,
-  //     value: {
-  //       text: todoDay,
-  //       completed: false,
-  //       priority: false,
-  //       priorityLevel: 1,
-  //     },
-  //   });
-  //   saveTodos(newTodo);
-  // };
 
   // Color triggers
   const renderButtons = () => {
@@ -138,7 +115,8 @@ const TodoProvider = (props) => {
   };
 
   const priorityTodo = (index) => {
-    let newTodo = todos.filter((todo) => todo.text);
+    let newTodo = todos[0].todo;
+    console.log(newTodo);
     // if (newTodo[index].priority) {
     //   if (newTodo[index].priorityLevel < 3) {
     //     newTodo[index].priorityLevel += 1;
@@ -162,8 +140,8 @@ const TodoProvider = (props) => {
   };
 
   const deleteTodo = (index) => {
-    const newTodo = todos.filter((todo) => todo.text);
-    newTodo.splice(index, 1);
+    let newTodo = todos;
+    newTodo[0].todo.splice(index, 1);
     saveTodos(newTodo);
   };
 

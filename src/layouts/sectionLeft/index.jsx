@@ -6,20 +6,24 @@ import { TodoWeeklyPin } from "../../components/TodoWeeklyPin";
 
 const SectionLeft = () => {
   const [calendarDate, setCalendarDate] = useState(new Date());
-  const { setTodoDay, todos } = useContext(TodoContext);
+  const { setTodoDay, todos, saveTodos } = useContext(TodoContext);
+
+  let output =
+    calendarDate.getFullYear() +
+    String(calendarDate.getMonth() + 1).padStart(2, "0") +
+    String(calendarDate.getDate()).padStart(2, "0");
 
   useEffect(() => {
-    console.log("nombre", calendarDate);
+    // console.log("nombre", output);
   }, [calendarDate]);
 
   const createNewTodo = () => {
-    console.log("se creo");
+    console.log(output);
     const newTodo = [...todos];
-    newTodo.push({
-      calendarDate,
-      todo: [],
-    });
+    newTodo.push({ output, todo: [] });
+    saveTodos(newTodo);
   };
+
   setTodoDay(calendarDate);
   return (
     <section className={`section-dates theme-background`}>
@@ -37,8 +41,8 @@ const SectionLeft = () => {
             <Calendar
               onChange={setCalendarDate}
               value={calendarDate}
-              onClick={() => createNewTodo()}
-              // onClickDay={(value, event) => console.log("Clicked day: ", value)}
+              onClick={() => createNewTodo}
+              onClickDay={() => createNewTodo()}
             />
           </div>
         </div>
