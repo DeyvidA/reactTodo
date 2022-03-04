@@ -1,14 +1,26 @@
 import "./SectionLeft.css";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Calendar from "react-calendar";
 import { TodoContext } from "../../components/TodoContext";
 import { TodoWeeklyPin } from "../../components/TodoWeeklyPin";
 
 const SectionLeft = () => {
-  const [value, onChange] = useState(new Date());
-  const { context } = useContext(TodoContext);
+  const [calendarDate, setCalendarDate] = useState(new Date());
+  const { setTodoDay, todos } = useContext(TodoContext);
 
-  context(value);
+  useEffect(() => {
+    console.log("nombre", calendarDate);
+  }, [calendarDate]);
+
+  const createNewTodo = () => {
+    console.log("se creo");
+    const newTodo = [...todos];
+    newTodo.push({
+      calendarDate,
+      todo: [],
+    });
+  };
+  setTodoDay(calendarDate);
   return (
     <section className={`section-dates theme-background`}>
       <div className="section-dates-header">
@@ -22,7 +34,12 @@ const SectionLeft = () => {
         <TodoWeeklyPin />
         <div className="reminder reminder-calendar">
           <div>
-            <Calendar onChange={onChange} value={value} />
+            <Calendar
+              onChange={setCalendarDate}
+              value={calendarDate}
+              onClick={() => createNewTodo()}
+              // onClickDay={(value, event) => console.log("Clicked day: ", value)}
+            />
           </div>
         </div>
       </div>

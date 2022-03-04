@@ -7,7 +7,7 @@ import "./TodoWeeklyPin.css";
 
 const TodoWeeklyPin = () => {
   const [createPin, setCreatePin] = useState(false);
-  const [pin, savePin] = useLocalStorage("themes", []);
+  const [pin, savePin] = useLocalStorage("pin", []);
 
   const addPin = (values) => {
     const newPin = [...pin];

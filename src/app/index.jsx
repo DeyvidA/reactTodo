@@ -45,31 +45,11 @@ const App = () => {
   // App UI
   const saveimages = () => {
     const image = document.getElementById("element").value;
-    console.log(image);
   };
   return (
     <TodoProvider>
       <TodoContext.Consumer>
-<<<<<<< HEAD
-        {({
-          color,
-          dayOfWeek,
-          dateOfMoth,
-          renderButtons,
-          opModal,
-          todos,
-          saveTodos,
-          showTodos,
-          totalTodos,
-          setFilterTodo,
-          completedTodos,
-          deleteTodoCompleted,
-          openModal,
-          addThemeValue,
-        }) => (
-=======
         {({ renderButtons, opModal, openModal, addTheme }) => (
->>>>>>> c8d8d9611d10190f499bbe5eb72b0a8c5159e870
           <main className="main">
             <SectionLeft />
 

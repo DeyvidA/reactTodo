@@ -16,6 +16,8 @@ const useLocalStorage = (itemName, initialValues) => {
     }
   }, [item, localStorageItem]);
 
+  localStorage.setItem(itemName, JSON.stringify(item));
+
   return [item, saveItems];
 };
 

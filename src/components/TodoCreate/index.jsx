@@ -5,10 +5,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { TodoContext } from "../TodoContext";
 
 const TodoCreate = () => {
-<<<<<<< HEAD
-=======
-  const { addTodo } = useContext(TodoContext);
->>>>>>> c8d8d9611d10190f499bbe5eb72b0a8c5159e870
   // Add Todo con enter
   const { addTodo } = useContext(TodoContext);
 
