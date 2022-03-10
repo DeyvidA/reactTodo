@@ -27,7 +27,9 @@ const TodoItem = ({ index, todo }) => {
   const [editTodo, setEditTodo] = useState(false);
 
   const newTextValue = (text) => {
-    let todoEdit = todos.filter((todo) => todo.text);
+    let todoEdit = todos[0].todo.filter((todo) => todo.text);
+    // let todoEdit = todos.filter((todo) => todo.text);
+
     if (todoEdit[index]) {
       todoEdit[index].text = text;
     }
@@ -48,7 +50,8 @@ const TodoItem = ({ index, todo }) => {
   };
 
   const editPriorityLevel = (priorityLevel, index) => {
-    let todoEdit = todos.filter((todo) => todo.text);
+    let todoEdit = todos[0].todo;
+    console.log(todoEdit);
     if (todoEdit[0]) {
       todoEdit[index].priorityLevel = priorityLevel;
     }

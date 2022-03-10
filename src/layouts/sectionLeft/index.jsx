@@ -6,7 +6,7 @@ import { TodoWeeklyPin } from "../../components/TodoWeeklyPin";
 
 const SectionLeft = () => {
   const [calendarDate, setCalendarDate] = useState(new Date());
-  const { setTodoDay, todos, saveTodos } = useContext(TodoContext);
+  const { todos, saveTodos } = useContext(TodoContext);
 
   let output =
     calendarDate.getFullYear() +
@@ -14,17 +14,36 @@ const SectionLeft = () => {
     String(calendarDate.getDate()).padStart(2, "0");
 
   useEffect(() => {
-    // console.log("nombre", output);
+    let out = "a" + output;
+    todos.forEach((element) => {
+      // console.log(out);
+      if (element.out === out) {
+        console.log("ya existe");
+      }
+    });
+    // console.log("se Creo con exito");
+    // const newTodo = [...todos];
+    // newTodo.push({ out, todo: [] });
+    // saveTodos(newTodo);
   }, [calendarDate]);
 
   const createNewTodo = () => {
-    console.log(output);
-    const newTodo = [...todos];
-    newTodo.push({ output, todo: [] });
-    saveTodos(newTodo);
+    // Valida que exista
+    // console.log("algo pasa");
+    todos.forEach((element) => {
+      let out = "a" + output;
+      if (element.out === out) {
+        console.log("ya existe", out);
+      } else {
+        console.log("se Creo con exito", out);
+        // const newTodo = [...todos];
+        // newTodo.push({ out, todo: [] });
+        // saveTodos(newTodo);
+      }
+    });
   };
 
-  setTodoDay(calendarDate);
+  // setTodoDay(output);
   return (
     <section className={`section-dates theme-background`}>
       <div className="section-dates-header">
@@ -41,7 +60,7 @@ const SectionLeft = () => {
             <Calendar
               onChange={setCalendarDate}
               value={calendarDate}
-              onClick={() => createNewTodo}
+              onClick={() => createNewTodo()}
               onClickDay={() => createNewTodo()}
             />
           </div>

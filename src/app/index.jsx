@@ -43,9 +43,6 @@ const App = () => {
   }
 
   // App UI
-  const saveimages = () => {
-    const image = document.getElementById("element").value;
-  };
   return (
     <TodoProvider>
       <TodoContext.Consumer>
@@ -77,17 +74,6 @@ const App = () => {
                 </div>
                 <TodoList />
               </div>
-              <form action="">
-                <input
-                  required
-                  type="file"
-                  id="element"
-                  accept="image/png, image/jpeg"
-                />
-                <button type="button" onClick={saveimages}>
-                  send
-                </button>
-              </form>
             </section>
 
             <SectionRight />

@@ -4,7 +4,6 @@ import { useLocalStorage } from "./useLocalStorage";
 const TodoContext = createContext();
 
 const TodoProvider = (props) => {
-  const [todoDay, setTodoDay] = useState();
   const [todos, saveTodos] = useLocalStorage("todos", []);
   const [themes, saveThemes] = useLocalStorage("themes", []);
 
@@ -12,6 +11,7 @@ const TodoProvider = (props) => {
   const [filterTodo, setFilterTodo] = useState("all");
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
+  // const totalTodos = todos[0].todo.length;
   const totalTodos = todos.length;
 
   const themeValues = (valor) => {
@@ -53,8 +53,7 @@ const TodoProvider = (props) => {
   var showTodos = [];
   if (filterTodo === "all") {
     showTodos = todos[0].todo;
-    // let toro = showTodos[0].todo;
-    // showTodos = toro;
+
     showTodos.sort((a, b) => {
       return b.priority - a.priority;
     });
@@ -62,11 +61,11 @@ const TodoProvider = (props) => {
       return b.priorityLevel - a.priorityLevel;
     });
   } else if (filterTodo === "active") {
-    showTodos = todos.filter((todo) => todo.completed !== true);
+    showTodos = todos[0].todo.filter((todo) => todo.completed !== true);
   } else if (filterTodo === "completed") {
-    showTodos = todos.filter((todo) => todo.completed !== false);
+    showTodos = todos[0].todo.filter((todo) => todo.completed !== false);
   } else if (filterTodo === "priority") {
-    showTodos = todos.filter((todo) => todo.priority !== false);
+    showTodos = todos[0].todo.filter((todo) => todo.priority !== false);
   }
 
   const addTodo = (text) => {
@@ -104,7 +103,7 @@ const TodoProvider = (props) => {
 
   // Todos Actions
   const checkTodo = (index) => {
-    let newTodo = todos.filter((todo) => todo.text);
+    let newTodo = todos[0].todo.filter((todo) => todo.text);
     if (newTodo[index].completed) {
       newTodo[index].completed = false;
     } else {
@@ -115,19 +114,10 @@ const TodoProvider = (props) => {
   };
 
   const priorityTodo = (index) => {
+    // let newTodo = todos;
     let newTodo = todos[0].todo;
+
     console.log(newTodo);
-    // if (newTodo[index].priority) {
-    //   if (newTodo[index].priorityLevel < 3) {
-    //     newTodo[index].priorityLevel += 1;
-    //   } else {
-    //     newTodo[index].priority = false;
-    //     newTodo[index].priorityLevel = 1;
-    //   }
-    // } else {
-    //   newTodo[index].priority = true;
-    //   newTodo[index].priorityLevel = 1;
-    // }
     if (newTodo[index].priority) {
       newTodo[index].priorityLevel = "0";
       newTodo[index].priority = false;
@@ -156,7 +146,6 @@ const TodoProvider = (props) => {
         openModal,
         checkTodo,
         showTodos,
-        setTodoDay,
         totalTodos,
         deleteTodo,
         priorityTodo,

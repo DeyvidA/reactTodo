@@ -91,7 +91,8 @@
   border-radius: 10%;
 }
 .react-calendar__tile--now {
-  background: var(--secundary-color--);
+  background: var(--main-color--);
+  color: white;
 }
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
