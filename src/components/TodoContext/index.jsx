@@ -4,6 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 const TodoContext = createContext();
 
 const TodoProvider = (props) => {
+  const [day, setDay] = useState("");
   const [todos, saveTodos] = useLocalStorage("todos", []);
   const [themes, saveThemes] = useLocalStorage("themes", []);
 
@@ -50,17 +51,35 @@ const TodoProvider = (props) => {
   };
 
   // Filter Todos
-  var showTodos = [];
+  let showTodos = todos;
+  let i;
   if (filterTodo === "all") {
-    showTodos = todos[0].todo;
-
-    showTodos.sort((a, b) => {
-      return b.priority - a.priority;
-    });
-    showTodos.sort((a, b) => {
-      return b.priorityLevel - a.priorityLevel;
-    });
+    // for (i = 0; i < todos.length; i++) {
+    //   if (todos[i].out === day) {
+    //     showTodos = todos[0].todo;
+    //     console.log(showTodos);
+    //   }
+    //   showTodos.sort((a, b) => {
+    //     return b.priority - a.priority;
+    //   });
+    //   showTodos.sort((a, b) => {
+    //     return b.priorityLevel - a.priorityLevel;
+    //   });
+    // }
+    let todoIndex = todos.findIndex((dayArray) => dayArray.day === day);
+    setTimeout(function () {
+      console.log(todoIndex);
+    }, 1000);
+    if (todoIndex >= 0) {
+      todos[todoIndex].todo.sort((a, b) => {
+        return b.priority - a.priority;
+      });
+      showTodos.sort((a, b) => {
+        return b.priorityLevel - a.priorityLevel;
+      });
+    }
   } else if (filterTodo === "active") {
+    console.log(i);
     showTodos = todos[0].todo.filter((todo) => todo.completed !== true);
   } else if (filterTodo === "completed") {
     showTodos = todos[0].todo.filter((todo) => todo.completed !== false);
@@ -70,7 +89,7 @@ const TodoProvider = (props) => {
 
   const addTodo = (text) => {
     const newTodo = [...todos];
-    console.log(newTodo);
+    // console.log(newTodo);
     newTodo[0].todo.push({
       text,
       completed: false,
@@ -117,7 +136,7 @@ const TodoProvider = (props) => {
     // let newTodo = todos;
     let newTodo = todos[0].todo;
 
-    console.log(newTodo);
+    // console.log(newTodo);
     if (newTodo[index].priority) {
       newTodo[index].priorityLevel = "0";
       newTodo[index].priority = false;
@@ -139,6 +158,7 @@ const TodoProvider = (props) => {
     <TodoContext.Provider
       value={{
         todos,
+        setDay,
         opModal,
         addTodo,
         addTheme,

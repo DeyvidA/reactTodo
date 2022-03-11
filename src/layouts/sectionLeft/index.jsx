@@ -6,7 +6,7 @@ import { TodoWeeklyPin } from "../../components/TodoWeeklyPin";
 
 const SectionLeft = () => {
   const [calendarDate, setCalendarDate] = useState(new Date());
-  const { todos, saveTodos } = useContext(TodoContext);
+  const { todos, saveTodos, setDay } = useContext(TodoContext);
 
   let output =
     calendarDate.getFullYear() +
@@ -14,13 +14,20 @@ const SectionLeft = () => {
     String(calendarDate.getDate()).padStart(2, "0");
 
   useEffect(() => {
-    let out = "a" + output;
+    let day = output;
     todos.forEach((element) => {
       // console.log(out);
-      if (element.out === out) {
-        console.log("ya existe");
+      if (element.day === day) {
+        // console.log("ya existe");
+      } else if (element.day == day) {
+        // console.log("se creo uno nuevo");
       }
+      setDay(day);
     });
+
+    // setDay(out);
+    // console.log(out);
+
     // console.log("se Creo con exito");
     // const newTodo = [...todos];
     // newTodo.push({ out, todo: [] });
@@ -30,17 +37,18 @@ const SectionLeft = () => {
   const createNewTodo = () => {
     // Valida que exista
     // console.log("algo pasa");
+    let day = output;
     todos.forEach((element) => {
-      let out = "a" + output;
-      if (element.out === out) {
-        console.log("ya existe", out);
+      if (element.out === day) {
+        // console.log("ya existe", out);
       } else {
-        console.log("se Creo con exito", out);
-        // const newTodo = [...todos];
-        // newTodo.push({ out, todo: [] });
-        // saveTodos(newTodo);
+        // console.log("se Creo con exito", out);
+        const newTodo = [...todos];
+        newTodo.push({ day, todo: [] });
+        saveTodos(newTodo);
       }
     });
+    setDay(day);
   };
 
   // setTodoDay(output);
