@@ -13,45 +13,19 @@ const SectionLeft = () => {
     String(calendarDate.getMonth() + 1).padStart(2, "0") +
     String(calendarDate.getDate()).padStart(2, "0");
 
+  let day = output;
   useEffect(() => {
-    let day = output;
     todos.forEach((element) => {
-      // console.log(out);
       if (element.day === day) {
-        // console.log("ya existe");
-      } else if (element.day == day) {
-        // console.log("se creo uno nuevo");
-      }
-      setDay(day);
-    });
-
-    // setDay(out);
-    // console.log(out);
-
-    // console.log("se Creo con exito");
-    // const newTodo = [...todos];
-    // newTodo.push({ out, todo: [] });
-    // saveTodos(newTodo);
-  }, [calendarDate]);
-
-  const createNewTodo = () => {
-    // Valida que exista
-    // console.log("algo pasa");
-    let day = output;
-    todos.forEach((element) => {
-      if (element.out === day) {
-        // console.log("ya existe", out);
+        console.log("ya estaba");
       } else {
-        // console.log("se Creo con exito", out);
         const newTodo = [...todos];
         newTodo.push({ day, todo: [] });
         saveTodos(newTodo);
       }
+      setDay(day);
     });
-    setDay(day);
-  };
-
-  // setTodoDay(output);
+  }, [calendarDate]);
   return (
     <section className={`section-dates theme-background`}>
       <div className="section-dates-header">
@@ -65,12 +39,7 @@ const SectionLeft = () => {
         <TodoWeeklyPin />
         <div className="reminder reminder-calendar">
           <div>
-            <Calendar
-              onChange={setCalendarDate}
-              value={calendarDate}
-              onClick={() => createNewTodo()}
-              onClickDay={() => createNewTodo()}
-            />
+            <Calendar onChange={setCalendarDate} value={calendarDate} />
           </div>
         </div>
       </div>

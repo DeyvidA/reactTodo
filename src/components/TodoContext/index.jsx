@@ -11,9 +11,8 @@ const TodoProvider = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [filterTodo, setFilterTodo] = useState("all");
 
+  let todoIndex = todos.findIndex((dayArray) => dayArray.day === day);
   const completedTodos = todos.filter((todo) => todo.completed).length;
-  // const totalTodos = todos[0].todo.length;
-  const totalTodos = todos.length;
 
   const themeValues = (valor) => {
     const root = document.querySelector(":root");
@@ -51,46 +50,28 @@ const TodoProvider = (props) => {
   };
 
   // Filter Todos
-  let showTodos = todos;
-  let i;
+  let showTodos = [];
   if (filterTodo === "all") {
-    // for (i = 0; i < todos.length; i++) {
-    //   if (todos[i].out === day) {
-    //     showTodos = todos[0].todo;
-    //     console.log(showTodos);
-    //   }
-    //   showTodos.sort((a, b) => {
-    //     return b.priority - a.priority;
-    //   });
-    //   showTodos.sort((a, b) => {
-    //     return b.priorityLevel - a.priorityLevel;
-    //   });
-    // }
-    let todoIndex = todos.findIndex((dayArray) => dayArray.day === day);
-    setTimeout(function () {
-      console.log(todoIndex);
-    }, 1000);
     if (todoIndex >= 0) {
-      todos[todoIndex].todo.sort((a, b) => {
+      showTodos = todos[todoIndex].todo.sort((a, b) => {
         return b.priority - a.priority;
       });
-      showTodos.sort((a, b) => {
+      showTodos = todos[todoIndex].todo.sort((a, b) => {
         return b.priorityLevel - a.priorityLevel;
       });
     }
   } else if (filterTodo === "active") {
-    console.log(i);
-    showTodos = todos[0].todo.filter((todo) => todo.completed !== true);
+    showTodos = todos[todoIndex].todo.filter((todo) => todo.completed !== true);
   } else if (filterTodo === "completed") {
-    showTodos = todos[0].todo.filter((todo) => todo.completed !== false);
+    showTodos = todos[todoIndex].todo.filter(
+      (todo) => todo.completed !== false
+    );
   } else if (filterTodo === "priority") {
-    showTodos = todos[0].todo.filter((todo) => todo.priority !== false);
+    showTodos = todos[todoIndex].todo.filter((todo) => todo.priority !== false);
   }
-
   const addTodo = (text) => {
     const newTodo = [...todos];
-    // console.log(newTodo);
-    newTodo[0].todo.push({
+    newTodo[todoIndex].todo.push({
       text,
       completed: false,
       priority: false,
@@ -122,7 +103,7 @@ const TodoProvider = (props) => {
 
   // Todos Actions
   const checkTodo = (index) => {
-    let newTodo = todos[0].todo.filter((todo) => todo.text);
+    let newTodo = todos[todoIndex].todo;
     if (newTodo[index].completed) {
       newTodo[index].completed = false;
     } else {
@@ -133,10 +114,8 @@ const TodoProvider = (props) => {
   };
 
   const priorityTodo = (index) => {
-    // let newTodo = todos;
-    let newTodo = todos[0].todo;
+    let newTodo = todos[todoIndex].todo;
 
-    // console.log(newTodo);
     if (newTodo[index].priority) {
       newTodo[index].priorityLevel = "0";
       newTodo[index].priority = false;
@@ -150,7 +129,8 @@ const TodoProvider = (props) => {
 
   const deleteTodo = (index) => {
     let newTodo = todos;
-    newTodo[0].todo.splice(index, 1);
+    newTodo[todoIndex].todo.splice(index, 1);
+    console.log(newTodo);
     saveTodos(newTodo);
   };
 
@@ -166,8 +146,8 @@ const TodoProvider = (props) => {
         openModal,
         checkTodo,
         showTodos,
-        totalTodos,
         deleteTodo,
+        todoIndex,
         priorityTodo,
         renderButtons,
         setFilterTodo,

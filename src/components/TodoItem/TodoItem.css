@@ -1,6 +1,7 @@
 .todo-item,
 .todo-item-complete {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -70,24 +71,24 @@
 }
 
 .gold {
-  color: #FFDF00;
+  color: #ffdf00;
 }
 #gold {
-  border: 2px solid #FFDF00;
+  border: 2px solid #ffdf00;
 }
 
 .silver {
   color: silver;
 }
 #silver {
-  border: 2px solid #C0C0C0;
+  border: 2px solid #c0c0c0;
 }
 
 .bronze {
-  color: #CD7F32;
+  color: #cd7f32;
 }
 #bronze {
-  border: 2px solid #CD7F32;
+  border: 2px solid #cd7f32;
 }
 
 .tooltip {
@@ -133,4 +134,27 @@
 
 #disabled {
   display: none;
+}
+.absolute {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  left: 0px;
+  background-color: #393736;
+  height: 100%;
+  border-radius: 20px;
+}
+.priorityButtons {
+  width: 15%;
+  height: 50px;
+  border-radius: 20px;
+  border-color: transparent;
+  transition: 0.5s;
+}
+
+.priorityButtons:hover {
+  background-color: rgba(104, 97, 97, 0.7);
+  color: wheat;
 }

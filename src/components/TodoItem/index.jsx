@@ -51,7 +51,6 @@ const TodoItem = ({ index, todo }) => {
 
   const editPriorityLevel = (priorityLevel, index) => {
     let todoEdit = todos[0].todo;
-    console.log(todoEdit);
     if (todoEdit[0]) {
       todoEdit[index].priorityLevel = priorityLevel;
     }
@@ -172,6 +171,22 @@ const TodoItem = ({ index, todo }) => {
           <span className="toooltip-text">Set Priority</span>
           <FontAwesomeIcon icon={faCrown} />
         </button>
+      </div>
+      <div className="absolute">
+        <button className="priorityButtons">
+          {" "}
+          <FontAwesomeIcon className="gold" icon={faMedal} /> Priority
+        </button>
+        <button className="priorityButtons">
+          {" "}
+          <FontAwesomeIcon className="silver" icon={faMedal} /> Priority
+        </button>
+        <button className="priorityButtons">
+          {" "}
+          <FontAwesomeIcon className="bronze" icon={faMedal} /> Priority
+        </button>
+        <button className="priorityButtons">Normal</button>
+        <button className="priorityButtons">isn't</button>
       </div>
     </li>
   );
