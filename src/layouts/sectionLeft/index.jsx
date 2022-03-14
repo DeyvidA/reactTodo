@@ -10,14 +10,16 @@ const SectionLeft = () => {
 
   let output =
     calendarDate.getFullYear() +
+    "-" +
     String(calendarDate.getMonth() + 1).padStart(2, "0") +
+    "-" +
     String(calendarDate.getDate()).padStart(2, "0");
 
   let day = output;
   useEffect(() => {
     todos.forEach((element) => {
       if (element.day === day) {
-        console.log("ya estaba");
+        console.log("e");
       } else {
         const newTodo = [...todos];
         newTodo.push({ day, todo: [] });

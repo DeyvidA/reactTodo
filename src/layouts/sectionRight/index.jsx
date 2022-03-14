@@ -1,8 +1,9 @@
 import "./sectionRight.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { SvgImg } from "../../components/svg/SvgImg";
+import { TodoContext } from "../../components/TodoContext";
 
 // Provitional Img Imports
 import logo from "../../img/Nicarao-Agency---Vertical-Logo---Full-Color.png";
@@ -17,7 +18,7 @@ import logo8 from "../../img/Nicarao-Agency-Vertical-Black.png";
 import logo9 from "../../img/Nicarao-Agency-Vertical-Black.png";
 
 const SectionRight = () => {
-  //  API CONNECTIONS
+  const { day } = useContext(TodoContext);
 
   // Wheather API
   useEffect(() => {
@@ -41,7 +42,7 @@ const SectionRight = () => {
 
   // Quotes API
   useEffect(() => {
-    const API_URL_QUOTES = "http://localhost:8080/quotes";
+    const API_URL_QUOTES = `http://localhost:8080/quotes?date=${day}`;
 
     fetch(API_URL_QUOTES)
       .then((response) => response.json())
@@ -49,10 +50,11 @@ const SectionRight = () => {
         const HTMLresponse = document.querySelector("#app");
         const quoteText = response[0].quote;
         const quoteAuthor = response[0].author;
+        console.log(day);
         return (HTMLresponse.innerHTML = `<cite class="quote"><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
       })
       .catch((error) => error);
-  }, []);
+  }, [day]);
 
   // SLIDER IMAGES
   const images = [

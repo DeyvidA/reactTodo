@@ -57,8 +57,6 @@ const TodoProvider = (props) => {
     let mainColorText;
     let secundaryColorText;
 
-    console.log(hexToRgb(mainColor).r);
-
     let o = Math.round(
       (parseInt(hexToRgb(mainColor).r) * 299 +
         parseInt(hexToRgb(mainColor).g) * 587 +
@@ -173,13 +171,15 @@ const TodoProvider = (props) => {
   const deleteTodo = (index) => {
     let newTodo = todos;
     newTodo[todoIndex].todo.splice(index, 1);
-    console.log(newTodo);
+    console.log(newTodo[todoIndex].todo);
+    newTodo = [...todos];
     saveTodos(newTodo);
   };
 
   return (
     <TodoContext.Provider
       value={{
+        day,
         todos,
         setDay,
         opModal,
