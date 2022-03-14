@@ -22,13 +22,13 @@ const TodoItem = ({ index, todo }) => {
     priorityTodo,
     priorityLevel,
     setPriorityLevel,
+    todoIndex,
   } = useContext(TodoContext);
 
   const [editTodo, setEditTodo] = useState(false);
 
   const newTextValue = (text) => {
-    let todoEdit = todos[0].todo.filter((todo) => todo.text);
-    // let todoEdit = todos.filter((todo) => todo.text);
+    let todoEdit = todos[todoIndex].todo.filter((todo) => todo.text);
 
     if (todoEdit[index]) {
       todoEdit[index].text = text;
@@ -38,6 +38,7 @@ const TodoItem = ({ index, todo }) => {
     saveTodos(todoEdit);
     return text;
   };
+
   const enterKey = (event) => {
     let catchValue = event.target.value;
     let validation = event.target.value.trim().length > 0;
@@ -50,10 +51,22 @@ const TodoItem = ({ index, todo }) => {
   };
 
   const editPriorityLevel = (priorityLevel, index) => {
-    let todoEdit = todos[0].todo;
-    if (todoEdit[0]) {
+    let todoEdit = todos[todoIndex].todo;
+    if (todoEdit) {
       todoEdit[index].priorityLevel = priorityLevel;
     }
+
+    todoEdit = [...todos];
+    saveTodos(todoEdit);
+  };
+
+  const asignPriorityLevel = (level) => {
+    let todoEdit = todos[todoIndex].todo;
+
+    todoEdit[index].priorityLevel = level;
+    todoEdit[index].priorityEdit = false;
+    todoEdit[index].priority = true;
+
     todoEdit = [...todos];
     saveTodos(todoEdit);
   };
@@ -66,7 +79,9 @@ const TodoItem = ({ index, todo }) => {
             ? "bronze"
             : todo.priorityLevel === "2"
             ? "silver"
-            : "gold"
+            : todo.priorityLevel === "3"
+            ? "gold"
+            : "normal"
           : "default"
       }
       className={
@@ -116,7 +131,9 @@ const TodoItem = ({ index, todo }) => {
                   ? "button-list tooltip bronze"
                   : todo.priorityLevel === "2"
                   ? "button-list tooltip silver"
-                  : "button-list tooltip gold"
+                  : todo.priorityLevel === "3"
+                  ? "button-list tooltip gold"
+                  : "display-none"
                 : "button-list priority-desable tooltip"
             }
             onDoubleClick={() => setPriorityLevel(true)}
@@ -164,29 +181,47 @@ const TodoItem = ({ index, todo }) => {
                 ? "button-list tooltip bronze"
                 : todo.priorityLevel === "2"
                 ? "button-list tooltip silver"
-                : "button-list tooltip gold"
-              : "button-list priority-desable tooltip"
+                : todo.priorityLevel === "3"
+                ? "button-list tooltip gold"
+                : "button-list tooltip normal"
+              : "button-list priority-desable  tooltip"
           }
         >
           <span className="toooltip-text">Set Priority</span>
           <FontAwesomeIcon icon={faCrown} />
         </button>
       </div>
-      <div className="absolute">
-        <button className="priorityButtons">
+      <div className={todo.priorityEdit ? "absolute" : "disable"}>
+        <button
+          className="priorityButtons"
+          onClick={() => asignPriorityLevel("3")}
+        >
           {" "}
           <FontAwesomeIcon className="gold" icon={faMedal} /> Priority
         </button>
-        <button className="priorityButtons">
+        <button
+          className="priorityButtons"
+          onClick={() => asignPriorityLevel("2")}
+        >
           {" "}
           <FontAwesomeIcon className="silver" icon={faMedal} /> Priority
         </button>
-        <button className="priorityButtons">
+        <button
+          className="priorityButtons"
+          onClick={() => asignPriorityLevel("1")}
+        >
           {" "}
           <FontAwesomeIcon className="bronze" icon={faMedal} /> Priority
         </button>
-        <button className="priorityButtons">Normal</button>
-        <button className="priorityButtons">isn't</button>
+        <button
+          className="priorityButtons"
+          onClick={() => asignPriorityLevel("0")}
+        >
+          Normal
+        </button>
+        <button className="priorityButtons" onClick={() => priorityTodo(index)}>
+          isn't
+        </button>
       </div>
     </li>
   );

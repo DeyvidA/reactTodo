@@ -1,6 +1,8 @@
 :root {
   --main-color--: #2a37a2;
   --secundary-color--: aliceblue;
+  --main-text-color--: black;
+  --secundary-text-color--: aliceblue;
 }
 * {
   padding: 0;
@@ -13,6 +15,15 @@ html {
 }
 main {
   display: flex;
+}
+div,
+p,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--main-text-color--);
 }
 .section-main {
   width: 65vw;
@@ -132,10 +143,11 @@ h1 {
 }
 .add-theme-container h1 {
   text-align: center;
+  color: var(--main-color--);
   margin-bottom: 20px;
 }
-.add-theme-container form {
-  color: rgba(49, 49, 49, 0.8);
+.add-theme-container form label {
+  color: var(--main-color--);
   font-weight: 900;
 }
 .add-theme-container .save-theme {

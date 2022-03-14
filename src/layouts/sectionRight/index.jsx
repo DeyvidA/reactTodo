@@ -49,7 +49,7 @@ const SectionRight = () => {
         const HTMLresponse = document.querySelector("#app");
         const quoteText = response[0].quote;
         const quoteAuthor = response[0].author;
-        return (HTMLresponse.innerHTML = `<cite><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
+        return (HTMLresponse.innerHTML = `<cite class="quote"><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
       })
       .catch((error) => error);
   }, []);

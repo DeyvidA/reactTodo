@@ -94,3 +94,6 @@ svg {
   background-color: transparent;
   border: transparent;
 }
+.observation-time, .weather_descriptions, .quote{
+  color: var(--main-text-color--)
+}

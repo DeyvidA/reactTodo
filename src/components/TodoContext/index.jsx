@@ -21,6 +21,11 @@ const TodoProvider = (props) => {
       if (colors.titleTheme === valor) {
         root.style.setProperty("--main-color--", colors.mainColor);
         root.style.setProperty("--secundary-color--", colors.secundaryColor);
+        root.style.setProperty("--main-text-color--", colors.mainColorText);
+        root.style.setProperty(
+          "--secundary-text-color--",
+          colors.secundaryColorText
+        );
         return null;
       } else {
         return null;
@@ -34,17 +39,52 @@ const TodoProvider = (props) => {
     const newTodo = todos.filter((todo) => todo.completed !== true);
     saveTodos(newTodo);
   };
+  const hexToRgb = (hex) => {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  };
 
   const addTheme = () => {
     let titleTheme = document.getElementById("themeName").value;
     let mainColor = document.getElementById("primaryColor").value;
     let secundaryColor = document.getElementById("secundaryColor").value;
+    let mainColorText;
+    let secundaryColorText;
+
+    console.log(hexToRgb(mainColor).r);
+
+    let o = Math.round(
+      (parseInt(hexToRgb(mainColor).r) * 299 +
+        parseInt(hexToRgb(mainColor).g) * 587 +
+        parseInt(hexToRgb(mainColor).b) * 114) /
+        1000
+    );
+
+    if (o > 125) {
+      mainColorText = "black";
+      secundaryColorText = "white";
+    } else {
+      mainColorText = "white";
+      secundaryColorText = "black";
+    }
 
     if (titleTheme === "") {
       alert("You need to write the Theme Name");
     } else {
       const newTheme = [...themes];
-      newTheme.push({ titleTheme, mainColor, secundaryColor });
+      newTheme.push({
+        titleTheme,
+        mainColor,
+        secundaryColor,
+        mainColorText,
+        secundaryColorText,
+      });
       saveThemes(newTheme);
     }
   };
@@ -69,13 +109,15 @@ const TodoProvider = (props) => {
   } else if (filterTodo === "priority") {
     showTodos = todos[todoIndex].todo.filter((todo) => todo.priority !== false);
   }
+
   const addTodo = (text) => {
     const newTodo = [...todos];
     newTodo[todoIndex].todo.push({
       text,
       completed: false,
       priority: false,
-      priorityLevel: 1,
+      priorityLevel: 0,
+      priorityEdit: false,
     });
     saveTodos(newTodo);
   };
@@ -116,13 +158,14 @@ const TodoProvider = (props) => {
   const priorityTodo = (index) => {
     let newTodo = todos[todoIndex].todo;
 
-    if (newTodo[index].priority) {
+    if (newTodo[index].priorityEdit) {
       newTodo[index].priorityLevel = "0";
       newTodo[index].priority = false;
+      newTodo[index].priorityEdit = false;
     } else {
-      newTodo[index].priority = true;
-      newTodo[index].priorityLevel = "1";
+      newTodo[index].priorityEdit = true;
     }
+
     newTodo = [...todos];
     saveTodos(newTodo);
   };
