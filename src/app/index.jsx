@@ -1,41 +1,54 @@
 import React from "react";
-import { SectionRight } from "../layouts/sectionRight";
-import { SectionLeft } from "../layouts/sectionLeft";
-import { TodoCreate } from "../components/TodoCreate";
-import { TodoList } from "../components/TodoList/";
+import moment from "moment";
 import { Modal } from "../components/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPalette } from "@fortawesome/free-solid-svg-icons";
-import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
-import { TodoProvider } from "../components/TodoContext";
+import { TodoList } from "../components/TodoList";
+import { TodoCreate } from "../components/TodoCreate";
 import { TodoContext } from "../components/TodoContext";
+import { TodoProvider } from "../components/TodoContext";
+import { SectionLeft } from "../layouts/sectionLeft";
+import { SectionRight } from "../layouts/sectionRight";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose, faSave } from "@fortawesome/free-regular-svg-icons";
 
 import "./App.css";
 
 const App = () => {
+  // DateTime
+  let dateOfMoth = moment().date();
+  let dayOfWeek = moment().day();
+
+  switch (dayOfWeek) {
+    case 1:
+      dayOfWeek = "Monday";
+      break;
+    case 2:
+      dayOfWeek = "Tuestday";
+      break;
+    case 3:
+      dayOfWeek = "Wednessday";
+      break;
+    case 4:
+      dayOfWeek = "Thurstday";
+      break;
+    case 5:
+      dayOfWeek = "Friday";
+      break;
+    case 6:
+      dayOfWeek = "Saturday";
+      break;
+    default:
+      dayOfWeek = "Sunday";
+      break;
+  }
+
   // App UI
   return (
     <TodoProvider>
       <TodoContext.Consumer>
-        {({
-          color,
-          dayOfWeek,
-          dateOfMoth,
-          renderButtons,
-          opModal,
-          addTodo,
-          todos,
-          saveTodos,
-          showTodos,
-          totalTodos,
-          setFilterTodo,
-          completedTodos,
-          deleteTodoCompleted,
-          openModal,
-          addThemeValue,
-        }) => (
+        {({ renderButtons, opModal, openModal, addTheme }) => (
           <main className="main">
-            <SectionLeft color={color} />
+            <SectionLeft />
 
             <section className="section-main">
               <div className="section">
@@ -57,22 +70,13 @@ const App = () => {
                       <FontAwesomeIcon icon={faPalette} />
                     </button>
                   </div>
-                  <TodoCreate addTodo={addTodo} color={color} />
+                  <TodoCreate />
                 </div>
-                <TodoList
-                  todos={todos}
-                  color={color}
-                  saveTodos={saveTodos}
-                  showTodos={showTodos}
-                  totalTodos={totalTodos}
-                  setFilterTodo={setFilterTodo}
-                  completedTodos={completedTodos}
-                  deleteTodoCompleted={deleteTodoCompleted}
-                />
+                <TodoList />
               </div>
             </section>
 
-            <SectionRight color={color} />
+            <SectionRight />
 
             {openModal && (
               <Modal>
@@ -103,7 +107,7 @@ const App = () => {
                       >
                         <FontAwesomeIcon icon={faWindowClose} />
                       </button>
-                      <button onClick={addThemeValue} className="modal-button">
+                      <button onClick={addTheme} className="modal-button">
                         <FontAwesomeIcon icon={faSave} />
                       </button>
                     </div>

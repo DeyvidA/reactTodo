@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./TodoCreateWeeklypin.css";
 
-const TodoCreateWeeklyPin = ({ addPin, setCreatePin }) => {
+const TodoCreateWeeklyPin = ({ setCreatePin, addPin }) => {
   // Add Todo WeeklyPin.
   const addButton = () => {
     let pinTitle = document.getElementById("pinTitle").value;
@@ -13,7 +13,6 @@ const TodoCreateWeeklyPin = ({ addPin, setCreatePin }) => {
 
     if (validation) {
       addPin({ pinTitle, pinDate, pinDescription });
-      document.getElementById("textArea").value = "";
       setCreatePin(false);
     } else {
       alert("Add Title");

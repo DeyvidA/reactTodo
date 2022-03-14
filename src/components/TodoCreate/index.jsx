@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./TodoCreate.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { TodoContext } from "../TodoContext";
 
-const TodoCreate = ({ addTodo }) => {
+const TodoCreate = () => {
   // Add Todo con enter
+  const { addTodo } = useContext(TodoContext);
 
   const addButton = () => {
     let inputValue = document.getElementById("textArea").value;
     let validation = inputValue.trim();
-
     if (validation) {
       addTodo(inputValue);
       document.getElementById("textArea").value = "";
@@ -48,8 +49,8 @@ const TodoCreate = ({ addTodo }) => {
   return (
     <section className={`create-todo theme-background`}>
       <textarea
-        rows="1"
         id="textArea"
+        rows="1"
         data-min-rows="1"
         className="input auto-expand"
         placeholder="Create a new todo..."

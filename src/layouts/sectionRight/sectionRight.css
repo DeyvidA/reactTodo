@@ -29,7 +29,6 @@
 }
 .widget-music {
   height: auto;
-
 }
 .widget-music .img-slider {
   border-radius: 10%;
@@ -82,4 +81,19 @@ svg {
   font-size: 16px;
   display: flex;
   align-items: center;
+}
+.quotes-controls {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 10px;
+}
+
+.quote-control-button {
+  padding: 0 4px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: transparent;
+}
+.observation-time, .weather_descriptions, .quote{
+  color: var(--main-text-color--)
 }

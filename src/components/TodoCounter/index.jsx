@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../TodoContext";
 import "./TodoCounter.css";
 
-const TodoCounter = ({ completedTodos, totalTodos, color }) => {
+const TodoCounter = () => {
+  const { completedTodos, todos, todoIndex } = useContext(TodoContext);
+  if (todoIndex >= 0) {
+    var totalTodos = todos[todoIndex].todo.length;
+  }
+
   return (
     <div>
       <p className={`items theme-text`}>

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useLocalStorage } from "../TodoContext/useLocalStorage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { TodoCreateWeeklyPin } from "../TodoCreateWeeklyPin";
@@ -6,23 +7,8 @@ import "./TodoWeeklyPin.css";
 
 const TodoWeeklyPin = () => {
   const [createPin, setCreatePin] = useState(false);
+  const [pin, savePin] = useLocalStorage("pin", []);
 
-  let initialPin = JSON.parse(localStorage.getItem("weeklyPin"));
-  if (!initialPin) {
-    initialPin = [];
-  }
-
-  const [pin, savePin] = useState(initialPin);
-  //  Local Storage State
-  useEffect(() => {
-    if (initialPin) {
-      localStorage.setItem("weeklyPin", JSON.stringify(pin));
-    } else {
-      localStorage.setItem("weeklyPin", JSON.stringify([]));
-    }
-  }, [pin, initialPin]);
-
-  // Pin Actions
   const addPin = (values) => {
     const newPin = [...pin];
     newPin.push({
@@ -32,7 +18,6 @@ const TodoWeeklyPin = () => {
     });
     savePin(newPin);
   };
-
   const deletePin = (index) => {
     const newTodo = pin.filter((pin) => pin);
     newTodo.splice(index, 1);
@@ -70,7 +55,7 @@ const TodoWeeklyPin = () => {
         onClick={() => setCreatePin(true)}
       >
         <button>
-          <FontAwesomeIcon icon={faPlus} onClick={() => setCreatePin(true)} />
+          <FontAwesomeIcon icon={faPlus} />
         </button>
         <h3>Add New Weekly Pin</h3>
       </div>

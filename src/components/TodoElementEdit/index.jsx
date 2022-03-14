@@ -21,9 +21,10 @@ const TodoElementEdit = ({ valueText, editState, newTextValue }) => {
 
   return (
     <div className="edit-container">
-      <input
+      <textarea
         id="inputEdit"
-        className="input-edit"
+        rows="1"
+        className="auto-expand input text-area"
         value={value}
         placeholder={valueText}
         onChange={() => saveEdit(false)}

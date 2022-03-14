@@ -33,7 +33,7 @@
   color: var(--main-color--);
 }
 .weekly-pin-add h3 {
-  color: white;
+  color: var(--main-text-color--);
 }
 .disabled {
   display: none;
@@ -42,16 +42,19 @@
   display: flex;
 }
 .pin-header {
+  color: black;
   font-size: 16px;
   font-weight: 600;
 }
-.pin-date{
-    font-size: 14px;
+.pin-date {
+  color: black;
+  font-size: 14px;
 }
 .pin-data {
+  color: black;
   font-size: 18px;
 }
-.pin-delete{
+.pin-delete {
   background-color: transparent;
   display: none;
 }
@@ -60,9 +63,10 @@
   height: 20px;
   background: var(--main-color--);
   margin: 0px 8px;
+  color: var(--main-text-color--);
   border-radius: 4px;
   border-color: transparent;
 }
-.pin-element:hover .pin-delete{
+.pin-element:hover .pin-delete {
   display: inline-block;
 }
