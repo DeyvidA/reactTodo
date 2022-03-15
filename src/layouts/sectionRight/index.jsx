@@ -1,7 +1,8 @@
 import "./sectionRight.css";
-import React, { useEffect, useContext } from "react";
-import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+
+import { Zoom } from "react-slideshow-image";
+import React, { useEffect, useContext } from "react";
 import { SvgImg } from "../../components/svg/SvgImg";
 import { TodoContext } from "../../components/TodoContext";
 
@@ -13,9 +14,6 @@ import logo3 from "../../img/Nicarao-Agency-Horizontal-Logo-Full-Color.png";
 import logo4 from "../../img/Nicarao-Agency-Horizontal-White-and-gray.png";
 import logo5 from "../../img/Nicarao-Agency-Horizontal-White.png";
 import logo6 from "../../img/Nicarao-Agency-Vertical-Black.png";
-import logo7 from "../../img/Nicarao-Agency-Vertical-Black.png";
-import logo8 from "../../img/Nicarao-Agency-Vertical-Black.png";
-import logo9 from "../../img/Nicarao-Agency-Vertical-Black.png";
 
 const SectionRight = () => {
   const { day } = useContext(TodoContext);
@@ -23,7 +21,7 @@ const SectionRight = () => {
   // Wheather API
   useEffect(() => {
     const API_URL_WHEATHER =
-      ".http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
+      "http://api.weatherstack.com/current?access_key=aa2111e89fb5da18f8c99c89f70a1731&query=Managua";
 
     const HTMLresponse = document.querySelector("#wheather-time");
 
@@ -50,25 +48,13 @@ const SectionRight = () => {
         const HTMLresponse = document.querySelector("#app");
         const quoteText = response[0].quote;
         const quoteAuthor = response[0].author;
-        console.log(day);
         return (HTMLresponse.innerHTML = `<cite class="quote"><h4>"${quoteText}"</h4> <div className="author-name">-${quoteAuthor}.</div></cite>`);
       })
       .catch((error) => error);
   }, [day]);
 
   // SLIDER IMAGES
-  const images = [
-    logo,
-    logo1,
-    logo2,
-    logo3,
-    logo4,
-    logo5,
-    logo6,
-    logo7,
-    logo8,
-    logo9,
-  ];
+  const images = [logo, logo1, logo2, logo3, logo4, logo5, logo6];
 
   return (
     <section className="section-chill">

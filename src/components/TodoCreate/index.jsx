@@ -6,7 +6,19 @@ import { TodoContext } from "../TodoContext";
 
 const TodoCreate = () => {
   // Add Todo con enter
-  const { addTodo } = useContext(TodoContext);
+  const { todos, todoIndex, saveTodos } = useContext(TodoContext);
+
+  const addTodo = (text) => {
+    const newTodo = [...todos];
+    newTodo[todoIndex].todo.push({
+      text,
+      completed: false,
+      priority: false,
+      priorityLevel: 0,
+      priorityEdit: false,
+    });
+    saveTodos(newTodo);
+  };
 
   const addButton = () => {
     let inputValue = document.getElementById("textArea").value;

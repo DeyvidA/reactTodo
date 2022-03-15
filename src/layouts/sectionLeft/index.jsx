@@ -8,18 +8,17 @@ const SectionLeft = () => {
   const [calendarDate, setCalendarDate] = useState(new Date());
   const { todos, saveTodos, setDay } = useContext(TodoContext);
 
-  let output =
+  let day =
     calendarDate.getFullYear() +
     "-" +
     String(calendarDate.getMonth() + 1).padStart(2, "0") +
     "-" +
     String(calendarDate.getDate()).padStart(2, "0");
 
-  let day = output;
   useEffect(() => {
     todos.forEach((element) => {
       if (element.day === day) {
-        console.log("e");
+        console.log("already exist");
       } else {
         const newTodo = [...todos];
         newTodo.push({ day, todo: [] });
@@ -28,6 +27,7 @@ const SectionLeft = () => {
       setDay(day);
     });
   }, [calendarDate]);
+
   return (
     <section className={`section-dates theme-background`}>
       <div className="section-dates-header">

@@ -3,7 +3,8 @@ import { TodoContext } from "../TodoContext";
 import "./TodoCounter.css";
 
 const TodoFilterButtons = () => {
-  const { deleteTodoCompleted, setFilterTodo } = useContext(TodoContext);
+  const { setFilterTodo, todos, saveTodos, todoIndex } =
+    useContext(TodoContext);
   const [filterStatePending, setFilterStatePending] = React.useState(false);
 
   // Filter buttons
@@ -44,6 +45,12 @@ const TodoFilterButtons = () => {
     }
   };
 
+  const deleteTodoCompleted = () => {
+    let newTodo = [...todos];
+    newTodo[todoIndex].todo.filter((todo) => todo.completed !== true);
+    saveTodos(newTodo);
+  };
+
   return (
     <div className="todo-couter-container">
       <div className="filterTodo-buttons-container">
@@ -63,7 +70,7 @@ const TodoFilterButtons = () => {
 
       <button
         onClick={deleteTodoCompleted}
-        className={filterStatePending ? " disable " : "clear-btn"}
+        className={filterStatePending ? " disable " : " disable "}
       >
         Clear Completed
       </button>

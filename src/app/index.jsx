@@ -23,13 +23,13 @@ const App = () => {
       dayOfWeek = "Monday";
       break;
     case 2:
-      dayOfWeek = "Tuestday";
+      dayOfWeek = "Tuesday";
       break;
     case 3:
-      dayOfWeek = "Wednessday";
+      dayOfWeek = "Wednesday";
       break;
     case 4:
-      dayOfWeek = "Thurstday";
+      dayOfWeek = "Thursday";
       break;
     case 5:
       dayOfWeek = "Friday";
@@ -46,7 +46,7 @@ const App = () => {
   return (
     <TodoProvider>
       <TodoContext.Consumer>
-        {({ renderButtons, opModal, openModal, addTheme }) => (
+        {({ renderButtons, setOpenModal, openModal, addTheme }) => (
           <main className="main">
             <SectionLeft />
 
@@ -65,7 +65,7 @@ const App = () => {
                     </div>
                     <button
                       className="open-modal-theme"
-                      onClick={() => opModal()}
+                      onClick={() => setOpenModal(!openModal)}
                     >
                       <FontAwesomeIcon icon={faPalette} />
                     </button>
@@ -103,7 +103,7 @@ const App = () => {
                       <button
                         type="button"
                         className="modal-button modal-button-cancel"
-                        onClick={opModal}
+                        onClick={() => setOpenModal(!openModal)}
                       >
                         <FontAwesomeIcon icon={faWindowClose} />
                       </button>
